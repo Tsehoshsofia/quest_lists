@@ -257,9 +257,85 @@ tw-passage[tags~="l71"] {
     padding-top: 60px !important;
 }
 
-/* Цвета для неправильных ответов (красный) */
-tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], tw-passage[tags~="l14"], tw-passage[tags~="l17"], tw-passage[tags~="l18"], tw-passage[tags~="l24"], tw-passage[tags~="l25"], tw-passage[tags~="l30"], tw-passage[tags~="l31"], tw-passage[tags~="l32"], tw-passage[tags~="l38"], tw-passage[tags~="l39"], tw-passage[tags~="l44"], tw-passage[tags~="l45"], tw-passage[tags~="l46"], tw-passage[tags~="l51"], tw-passage[tags~="l52"], tw-passage[tags~="l53"], tw-passage[tags~="l59"], tw-passage[tags~="l61"], tw-passage[tags~="l65"], tw-passage[tags~="l67"], tw-passage[tags~="l68"] { color: #CC0000 !important; } 
+/* Оформление слова "Не верно" (красное, по центру) */
+.error-word { 
+    color: #CC0000 !important; 
+    text-align: center !important; 
+    display: block !important; 
+    margin-bottom: 10px !important; 
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
 
+/* Красивые кнопки для блоков с ошибками */
+tw-passage[tags~="l4"] tw-link, tw-passage[tags~="l5"] tw-link, 
+tw-passage[tags~="l9"] tw-link, tw-passage[tags~="l10"] tw-link, 
+tw-passage[tags~="l11"] tw-link, tw-passage[tags~="l14"] tw-link, 
+tw-passage[tags~="l17"] tw-link, tw-passage[tags~="l18"] tw-link, 
+tw-passage[tags~="l24"] tw-link, tw-passage[tags~="l25"] tw-link, 
+tw-passage[tags~="l30"] tw-link, tw-passage[tags~="l31"] tw-link, 
+tw-passage[tags~="l32"] tw-link, tw-passage[tags~="l38"] tw-link, 
+tw-passage[tags~="l39"] tw-link, tw-passage[tags~="l44"] tw-link, 
+tw-passage[tags~="l45"] tw-link, tw-passage[tags~="l46"] tw-link, 
+tw-passage[tags~="l51"] tw-link, tw-passage[tags~="l52"] tw-link, 
+tw-passage[tags~="l53"] tw-link, tw-passage[tags~="l59"] tw-link, 
+tw-passage[tags~="l61"] tw-link, tw-passage[tags~="l65"] tw-link, 
+tw-passage[tags~="l67"] tw-link, tw-passage[tags~="l68"] tw-link,
+tw-passage[tags~="l203"] tw-link, tw-passage[tags~="l205"] tw-link,
+tw-passage[tags~="l210"] tw-link, tw-passage[tags~="l213"] tw-link,
+tw-passage[tags~="l215"] tw-link, tw-passage[tags~="l218"] tw-link,
+tw-passage[tags~="l220"] tw-link, tw-passage[tags~="l223"] tw-link,
+tw-passage[tags~="l225"] tw-link, tw-passage[tags~="l228"] tw-link,
+tw-passage[tags~="l230"] tw-link, tw-passage[tags~="l234"] tw-link,
+tw-passage[tags~="l235"] tw-link, tw-passage[tags~="l239"] tw-link,
+tw-passage[tags~="l240"] tw-link, tw-passage[tags~="l243"] tw-link,
+tw-passage[tags~="l245"] tw-link, tw-passage[tags~="l248"] tw-link,
+tw-passage[tags~="l250"] tw-link {
+    display: block !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 8px auto !important; 
+    padding: 12px 15px !important;
+    background-color: #F4F9FF !important; 
+    border: 2px solid #4169E1 !important; 
+    border-radius: 10px !important; 
+    color: #4169E1 !important; 
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-align: center !important; 
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out !important; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+tw-passage[tags~="l4"] tw-link:hover, tw-passage[tags~="l5"] tw-link:hover,
+tw-passage[tags~="l9"] tw-link:hover, tw-passage[tags~="l10"] tw-link:hover,
+tw-passage[tags~="l11"] tw-link:hover, tw-passage[tags~="l14"] tw-link:hover,
+tw-passage[tags~="l17"] tw-link:hover, tw-passage[tags~="l18"] tw-link:hover,
+tw-passage[tags~="l24"] tw-link:hover, tw-passage[tags~="l25"] tw-link:hover,
+tw-passage[tags~="l30"] tw-link:hover, tw-passage[tags~="l31"] tw-link:hover,
+tw-passage[tags~="l32"] tw-link:hover, tw-passage[tags~="l38"] tw-link:hover,
+tw-passage[tags~="l39"] tw-link:hover, tw-passage[tags~="l44"] tw-link:hover,
+tw-passage[tags~="l45"] tw-link:hover, tw-passage[tags~="l46"] tw-link:hover,
+tw-passage[tags~="l51"] tw-link:hover, tw-passage[tags~="l52"] tw-link:hover,
+tw-passage[tags~="l53"] tw-link:hover, tw-passage[tags~="l59"] tw-link:hover,
+tw-passage[tags~="l61"] tw-link:hover, tw-passage[tags~="l65"] tw-link:hover,
+tw-passage[tags~="l67"] tw-link:hover, tw-passage[tags~="l68"] tw-link:hover,
+tw-passage[tags~="l203"] tw-link:hover, tw-passage[tags~="l205"] tw-link:hover,
+tw-passage[tags~="l210"] tw-link:hover, tw-passage[tags~="l213"] tw-link:hover,
+tw-passage[tags~="l215"] tw-link:hover, tw-passage[tags~="l218"] tw-link:hover,
+tw-passage[tags~="l220"] tw-link:hover, tw-passage[tags~="l223"] tw-link:hover,
+tw-passage[tags~="l225"] tw-link:hover, tw-passage[tags~="l228"] tw-link:hover,
+tw-passage[tags~="l230"] tw-link:hover, tw-passage[tags~="l234"] tw-link:hover,
+tw-passage[tags~="l235"] tw-link:hover, tw-passage[tags~="l239"] tw-link:hover,
+tw-passage[tags~="l240"] tw-link:hover, tw-passage[tags~="l243"] tw-link:hover,
+tw-passage[tags~="l245"] tw-link:hover, tw-passage[tags~="l248"] tw-link:hover,
+tw-passage[tags~="l250"] tw-link:hover {
+    background-color: #4169E1 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important; 
+    box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
+}
 /* ============================================================ */
 /* 7. СТРЕЛКА «НАЗАД» (ТОЛЬКО ДЛЯ УКАЗАННЫХ БЛОКОВ) */
 /* ============================================================ */
@@ -908,11 +984,12 @@ input() принимает не более одного аргумента.<br><
 </tw-passagedata>
 
 <tw-passagedata pid="203" name="Списки: Ошибка 1А" tags="l4" position="1100,3200" size="100,100">
+<span class="error-word">Не верно</span>
 <p>У списков Python отсутствует метод <code>add()</code>.</p>
 
 <p><b>Рекомендация:</b> для добавления элемента в конец списка используется метод <code>append()</code>.</p>
 
-[[Вернуться к вопросу->Списки: Задание 1]]
+[[Начать обучение->Пользователь]]
 </tw-passagedata>
 
 <tw-passagedata pid="204" name="Списки: Ответ 1Б" tags="l3" position="1200,3200" size="100,100">
