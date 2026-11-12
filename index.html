@@ -113,7 +113,8 @@ tw-passage[tags]:not([tags~="l1"]) {
     width: 700px !important;
     max-width: calc(100% - 40px) !important;
     
-    background-color: #FFFFFF !important; 
+    background-color: rgba(255, 255, 255, 0.25) !important; /* <-- 75% прозрачности */
+    backdrop-filter: blur(5px) !important; /* <-- Легкое размытие заднего фона, чтобы текст не сливался с картинкой */
     padding: 25px !important;         
     border-radius: 15px !important;   
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important; 
