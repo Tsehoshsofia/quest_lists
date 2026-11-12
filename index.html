@@ -523,6 +523,7 @@ tw-passage[tags~="l1"] tw-link:hover {
 }
 
 /* ============================================================ */
+/* ============================================================ */
 /* 8.5. СПЕЦИАЛЬНЫЙ ДИЗАЙН ДЛЯ "СПИСКИ: СИТУАЦИЯ 1" (l201)      */
 /* ============================================================ */
 
@@ -534,12 +535,13 @@ tw-story[tags~="l201"] {
     background-repeat: no-repeat !important;
 }
 
-/* Облако с текстом */
-tw-passage[tags~="l201"] {
+/* Облако с текстом (селектор усилен, чтобы перебить общие стили) */
+tw-passage[tags~="l201"]:not([tags~="l1"]) {
     position: fixed !important;
     top: 8vh !important;       
     right: 5vw !important;     
     left: auto !important;
+    bottom: auto !important; /* Сбрасываем привязку к низу */
     transform: none !important; 
     width: 90vw !important;    
     max-width: 450px !important; 
@@ -685,10 +687,12 @@ tw-passage[tags~="l201"] tw-link:hover {
       top: 68vh !important; 
   }
 
-  /* --- Мобильная адаптация для l201 --- */
-  tw-passage[tags~="l201"] {
+  /* --- Мобильная адаптация для l201 (также усилена селектором) --- */
+  tw-passage[tags~="l201"]:not([tags~="l1"]) {
       top: 3vh !important;
       right: 5vw !important;
+      left: auto !important;
+      bottom: auto !important; /* Сбрасываем привязку к низу на телефонах */
       width: 85vw !important;
       max-width: 320px !important;
       padding: 20px !important;
@@ -1026,14 +1030,6 @@ input() принимает не более одного аргумента.<br><
 <h2>Ситуация 1. Покупка автомобиля</h2>
 <p>Мы решили приобрести новый автомобиль. В гараже уже имеются следующие автомобили. Мы приобрели автомобиль <b>'Aurus Senat'</b> и хотим добавить его в конец списка.</p>
 <p><code>garage = ['Lada Granta', 'Niva Travel', 'Lada Vesta', 'УАЗ Патриот']</code></p>
-[[Перейти к вопросу->Списки: Задание 1]]
-</tw-passagedata>
-
-<tw-passagedata pid="201" name="Списки: Ситуация 1" tags="l3" position="900,3100" size="100,100">
-<h2>Ситуация 1. Покупка автомобиля</h2>
-<p>Мы решили приобрести новый автомобиль. В гараже уже имеются следующие автомобили. Мы приобрели автомобиль <b>'Aurus Senat'</b> и хотим добавить его в конец списка.</p>
-<p><code>garage = ['Lada Granta', 'Niva Travel', 'Lada Vesta', 'УАЗ Патриот']</code></p>
-<img src="19.jpeg" alt="Покупка автомобиля" style="width:100%; max-height: 35vh; object-fit: contain; border-radius:12px; margin:16px 0;">
 [[Перейти к вопросу->Списки: Задание 1]]
 </tw-passagedata>
 
