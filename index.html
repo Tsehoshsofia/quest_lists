@@ -157,10 +157,11 @@ tw-passage[tags~="l58"] tw-link:hover, tw-passage[tags~="l63"] tw-link:hover {
 /* ============================================================ */
 /* 5. БЛОКИ "ВЕРНО" (ИСПРАВЛЕН ПРОБЕЛ) */
 /* ============================================================ */
+/* Блоки "Верно" (карточки l3, l13 и т.д.) */
 tw-passage[tags~="l3"], tw-passage[tags~="l13"], tw-passage[tags~="l20"], 
 tw-passage[tags~="l23"], tw-passage[tags~="l29"], tw-passage[tags~="l37"], 
 tw-passage[tags~="l43"], tw-passage[tags~="l54"], tw-passage[tags~="l60"], 
-tw-passage[tags~="l66"],tw-passage[tags~="l72"] {
+tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
     text-align: justify !important; 
     text-justify: inter-word !important;
     color: #000000 !important;
@@ -179,13 +180,21 @@ tw-passage[tags~="l72"] div {
     font-size: 15px !important;
     line-height: 1.2 !important;
 }
+
+/* Слово "Верно" (теперь в строку, зеленое) */
 .success-word { 
     color: #008000 !important; 
-    text-align: center !important; 
-    display: block !important; 
-    margin-bottom: 10px !important; 
+    font-weight: bold !important;
 }
 
+/* Слово "Не верно" (теперь в строку, красное) */
+.error-word { 
+    color: #CC0000 !important; 
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+
+/* Кнопки для карточек с правильными ответами */
 tw-passage[tags~="l3"] tw-link, tw-passage[tags~="l13"] tw-link,
 tw-passage[tags~="l20"] tw-link, tw-passage[tags~="l23"] tw-link,
 tw-passage[tags~="l29"] tw-link, tw-passage[tags~="l37"] tw-link,
@@ -554,10 +563,10 @@ tw-passage[tags~="l1"] tw-link:hover {
 [[Print()]]
 [[input()]]
 [[print()]]</tw-passagedata><tw-passagedata pid="3" name="print()" tags="l3" position="900,450" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span> 
-[[Переходим к следующему вопросу_2]]</tw-passagedata><tw-passagedata pid="4" name="input()" tags="l4" position="1025,325" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Переходим к следующему вопросу_2]]</tw-passagedata><tw-passagedata pid="4" name="input()" tags="l4" position="1025,325" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа]]
 [[Начать обучение]]</tw-passagedata>
-<tw-passagedata pid="5" name="Print()" tags="l5" position="1225,300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+<tw-passagedata pid="5" name="Print()" tags="l5" position="1225,300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение неправильного ответа]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="6" name="Переходим к следующему вопросу_2" tags="l8" position="875,575" size="100,100">Ситуация: Вам нужно создать переменную для хранения имени клиента.
 
@@ -567,7 +576,7 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 [[clientname = &quot;Иванов&quot;]]
 
-[[Клиент = &quot;Иванов&quot;]]</tw-passagedata><tw-passagedata pid="7" name="Пояснение не верного ответа" tags="l7" position="1050,475" size="100,100">Эта функция нужна для получения данных от пользователя (ввода), а не для вывода.</tw-passagedata><tw-passagedata pid="8" name="Пояснение неправильного ответа" tags="l6" position="1250,450" size="100,100">В Python регистр имеет значение. Print() вызовет ошибку NameError, так как функция называется только строчными буквами.</tw-passagedata><tw-passagedata pid="9" name="client name = &quot;Иванов&quot;" tags="l14" position="400,400" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Клиент = &quot;Иванов&quot;]]</tw-passagedata><tw-passagedata pid="7" name="Пояснение не верного ответа" tags="l7" position="1050,475" size="100,100">Эта функция нужна для получения данных от пользователя (ввода), а не для вывода.</tw-passagedata><tw-passagedata pid="8" name="Пояснение неправильного ответа" tags="l6" position="1250,450" size="100,100">В Python регистр имеет значение. Print() вызовет ошибку NameError, так как функция называется только строчными буквами.</tw-passagedata><tw-passagedata pid="9" name="client name = &quot;Иванов&quot;" tags="l14" position="400,400" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="10" name="Переходим к следующему вопросу_3" tags="l16" position="425,750" size="100,100">
 Ситуация: У вас есть переменная age = &#39;22&#39;. Вы хотите узнать, сколько лет будет человеку через 10 лет, и сложить age + 10.
@@ -578,9 +587,9 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 [[age = int(age); print(age + 10)]] 
 
-[[age = float(age); print(age + 10)]] </tw-passagedata><tw-passagedata pid="11" name="clientname = &quot;Иванов&quot;" tags="l10" position="1000,775" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[age = float(age); print(age + 10)]] </tw-passagedata><tw-passagedata pid="11" name="clientname = &quot;Иванов&quot;" tags="l10" position="1000,775" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение неправильного ответа 2]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="12" name="Клиент = &quot;Иванов&quot;" tags="l9" position="750,675" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="12" name="Клиент = &quot;Иванов&quot;" tags="l9" position="750,675" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение неправильного ответа 2_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="13" name="Пояснение не верного ответа 2" tags="l15" position="325,525" size="100,100">Пробел между словами. Python воспринимает это как два отдельных имени: client и name. Получается синтаксическая ошибка (SyntaxError).
 
@@ -593,9 +602,9 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 Начинается с большой буквы. В Python так обычно называют классы, а не переменные.
 
-Технически в Python 3 русские буквы в именах переменных разрешены, но это плохой стиль и нарушает правила из твоей презентации. Поэтому в квесте это помечается как ошибка.</tw-passagedata><tw-passagedata pid="16" name="print(age + 10)" tags="l17" position="200,825" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+Технически в Python 3 русские буквы в именах переменных разрешены, но это плохой стиль и нарушает правила из твоей презентации. Поэтому в квесте это помечается как ошибка.</tw-passagedata><tw-passagedata pid="16" name="print(age + 10)" tags="l17" position="200,825" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 3_1]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="17" name="age = float(age); print(age + 10)" tags="l18" position="500,950" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="17" name="age = float(age); print(age + 10)" tags="l18" position="500,950" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 3_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="18" name="Пояснение не верного ответа 3_1" tags="l19" position="175,975" size="100,100">Ошибка: TypeError, нельзя сложить строку и число</tw-passagedata><tw-passagedata pid="19" name="Пояснение не верного ответа 3_2" tags="l21" position="500,1075" size="100,100">Правильно, но даст 32.0, а не 32</tw-passagedata><tw-passagedata pid="20" name="client_name = &quot;Иванов&quot;" tags="l13" position="625,800" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
 
@@ -622,9 +631,9 @@ tw-passage[tags~="l1"] tw-link:hover {
 
  В Python однострочный комментарий начинается с символа #. Всё, что стоит после # в этой же строке, интерпретатор игнорирует. Комментарий можно писать как отдельной строкой, так и после кода:
 
-[[Переходим к следующему вопросу_5]]</tw-passagedata><tw-passagedata pid="24" name="&#39;&#39;&#39; Это комментарий &#39;&#39;&#39;" tags="l24" position="350,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Переходим к следующему вопросу_5]]</tw-passagedata><tw-passagedata pid="24" name="&#39;&#39;&#39; Это комментарий &#39;&#39;&#39;" tags="l24" position="350,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 4_1]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="25" name="// Это комментарий" tags="l25" position="475,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="25" name="// Это комментарий" tags="l25" position="475,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 4_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="26" name="Переходим к следующему вопросу_5" tags="l28" position="225,1400" size="100,100">Ситуация: Вы создаете переменную для хранения номера договора. Какой вариант правильный?
 
@@ -647,11 +656,11 @@ tw-passage[tags~="l1"] tw-link:hover {
 Английский язык, нижний регистр, начинается с буквы.
 
 [[Переходим к следующему вопросу_7]]</tw-passagedata>
-<tw-passagedata pid="30" name="номер_договора = 123" tags="l30" position="162.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+<tw-passagedata pid="30" name="номер_договора = 123" tags="l30" position="162.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 5_1]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="31" name="contract number = 123" tags="l31" position="287.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="31" name="contract number = 123" tags="l31" position="287.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 5_3]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="32" name="2024_contract = 123" tags="l32" position="412.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="32" name="2024_contract = 123" tags="l32" position="412.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 5_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="33" name="Пояснение не верного ответа 5_1" tags="l33" position="162.5,1650" size="100,100">В Python 3 русские буквы технически допустимы в именах переменных. По правилам хорошего тона так писать не рекомендуется.</tw-passagedata><tw-passagedata pid="34" name="Пояснение не верного ответа 5_2" tags="l35" position="412.5,1650" size="100,100">Имя переменной не может начинаться с цифры. Это SyntaxError.</tw-passagedata><tw-passagedata pid="35" name="Пояснение не верного ответа 5_3" tags="l34" position="287.5,1650" size="100,100">Пробел между словами. Python видит два отдельных имени, это SyntaxError</tw-passagedata><tw-passagedata pid="36" name="Переходим к следующему вопросу_7" tags="l36" position="225,1800" size="100,100">Ситуация: Вам нужно вывести фразу: Он сказал: &quot;Привет!&quot;. Как записать это в коде, чтобы избежать ошибки?
 
@@ -669,9 +678,9 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 [[Переходим к следующему вопросу_8]]
 
-</tw-passagedata><tw-passagedata pid="38" name="text = &quot;Он сказал: &quot;Привет!&quot;&quot;" tags="l38" position="225,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+</tw-passagedata><tw-passagedata pid="38" name="text = &quot;Он сказал: &quot;Привет!&quot;&quot;" tags="l38" position="225,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 7_1]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="39" name="text = # Он сказал: &quot;Привет!&quot;" tags="l39" position="350,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="39" name="text = # Он сказал: &quot;Привет!&quot;" tags="l39" position="350,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 7_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="40" name="Пояснение не верного ответа 7_1" tags="l41" position="225,2050" size="100,100">Внутренние двойные кавычки закрывают строку раньше времени. Python видит &quot;Он сказал: &quot; как одну строку, а Привет! - как непонятный код. Нужно использовать разные кавычки: одинарные снаружи.</tw-passagedata><tw-passagedata pid="41" name="Переходим к следующему вопросу_8" tags="l40" position="100,2050" size="100,100">Ситуация: У вас есть переменная age = &#39;22&#39;. Вы хотите превратить её в целое число. Какую функцию использовать?
 Варианты:
@@ -692,11 +701,11 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 [[Переходим к следующему вопросу_9]]
 
-</tw-passagedata><tw-passagedata pid="44" name="age = str(age)" tags="l44" position="200,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+</tw-passagedata><tw-passagedata pid="44" name="age = str(age)" tags="l44" position="200,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 8_1]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="45" name="age = float(age)" tags="l45" position="325,2300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="45" name="age = float(age)" tags="l45" position="325,2300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 8_2]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="46" name="age = bool(age)" tags="l46" position="450,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="46" name="age = bool(age)" tags="l46" position="450,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 8_3]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="47" name="Пояснение не верного ответа 8_1" tags="l48" position="200,2400" size="100,100">str() не меняет тип на целое число. Она наоборот превращает значение в строку. Так как age уже строка &#39;22&#39;, то после str(age) она останется той же строкой &#39;22&#39;. 
 
@@ -727,11 +736,11 @@ print() добавляет пробелы только между несколь
 Но здесь аргумент один - уже склеенная строка &quot;54&quot;. Поэтому вывод будет 54, без пробела.
 
 
-[[Переходим к следующему вопросу 10]]</tw-passagedata><tw-passagedata pid="52" name="9" tags="l51" position="0,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Переходим к следующему вопросу 10]]</tw-passagedata><tw-passagedata pid="52" name="9" tags="l51" position="0,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 9_3]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="53" name="Ошибка" tags="l52" position="137.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="53" name="Ошибка" tags="l52" position="137.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 9_2]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="54" name="5 4" tags="l53" position="262.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="54" name="5 4" tags="l53" position="262.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 9_1]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="55" name="Пояснение не верного ответа 9_1" tags="l57" position="262.5,2725" size="100,100">Пробел не ставится. Функция print() выводит результат выражения number1 + number2.
 
@@ -756,13 +765,13 @@ number2 = int(input(&#39;Введите второе число: &#39;))
 
 [[input(&quot;Введите имя: &quot;)]] 
 
-[[get_name(&quot;Введите имя: &quot;)]] </tw-passagedata><tw-passagedata pid="59" name="print(&quot;Введите имя: &quot;)" tags="l59" position="500,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[get_name(&quot;Введите имя: &quot;)]] </tw-passagedata><tw-passagedata pid="59" name="print(&quot;Введите имя: &quot;)" tags="l59" position="500,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 10_1]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="60" name="input(&quot;Введите имя: &quot;)" tags="l60" position="625,2725" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
 
 input() - это встроенная функция Python для получения данных от пользователя. Она выводит приглашение &quot;Введите имя: &quot; на экран, ждёт, пока пользователь что-то введёт и нажмёт Enter, а затем возвращает введённый текст в виде строки (str). Именно эту функцию нужно использовать, чтобы получить имя с клавиатуры.
 
-[[Переходим к следующему вопросу 11]]</tw-passagedata><tw-passagedata pid="61" name="get_name(&quot;Введите имя: &quot;)" tags="l61" position="750,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Переходим к следующему вопросу 11]]</tw-passagedata><tw-passagedata pid="61" name="get_name(&quot;Введите имя: &quot;)" tags="l61" position="750,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 10_2]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="62" name="Переходим к следующему вопросу 11" tags="l63" position="625,2850" size="100,100">Сколько аргументов может принимать функция input()?
 Варианты:
@@ -781,7 +790,7 @@ input() - это встроенная функция Python для получе�
 </tw-passagedata>
 <tw-passagedata pid="64" name="Пояснение не верного ответа 10_2" tags="l64" position="750,2850" size="100,100">Данной функции в Python не существует. (print: "get_name()") - это выдуманное имя, его нет среди встроенных функций. Если попробовать выполнить этот код, Python выдаст ошибку NameError: name (print: "'get_name'") is not defined. Для получения ввода с клавиатуры в Python есть только одна стандартная функция - input().
 </tw-passagedata>
-<tw-passagedata pid="65" name="Сколько угодно" tags="l65" position="437.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+<tw-passagedata pid="65" name="Сколько угодно" tags="l65" position="437.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 11_1]]
 [[Начать обучение]]</tw-passagedata>
 <tw-passagedata pid="66" name="Только один" tags="l66" position="550,3025" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span><br><br>
@@ -803,9 +812,9 @@ input() принимает не более одного аргумента.<br><
 Всё, что введёт пользователь, возвращается как строка (str).<br><br><br>
 
 [[Перейти к спискам->Списки: Начало]]</tw-passagedata>
-<tw-passagedata pid="67" name="Ни одного" tags="l67" position="687.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+<tw-passagedata pid="67" name="Ни одного" tags="l67" position="687.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 11_2]]
-[[Начать обучение]]</tw-passagedata><tw-passagedata pid="68" name="Только два" tags="l68" position="812.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="68" name="Только два" tags="l68" position="812.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span>
 [[Пояснение не верного ответа 11_3]]
 [[Начать обучение]]</tw-passagedata><tw-passagedata pid="69" name="Пояснение не верного ответа 11_1" tags="l69" position="437.5,3100" size="100,100">input() не может принимать произвольное количество аргументов. У неё есть только один параметр - строка-приглашение. 
 
