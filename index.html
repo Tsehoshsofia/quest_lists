@@ -38,6 +38,7 @@ p, span, div {
 /* Убираем лишние пустые строки */
 tw-story tw-consecutive-br { display: none !important; }
 tw-story br { display: block !important; content: "" !important; margin-bottom: 0px !important; }    
+
 /* ============================================================ */
 /* 2. ФОНОВЫЕ ИЗОБРАЖЕНИЯ ДЛЯ ВСЕХ БЛОКОВ */
 /* ============================================================ */
@@ -152,6 +153,7 @@ tw-passage[tags~="l58"] tw-link:hover, tw-passage[tags~="l63"] tw-link:hover {
     transform: translateY(-2px) !important; 
     box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
 }
+
 /* ============================================================ */
 /* 5. БЛОКИ "ВЕРНО" (ИСПРАВЛЕН ПРОБЕЛ) */
 /* ============================================================ */
@@ -162,24 +164,21 @@ tw-passage[tags~="l66"],tw-passage[tags~="l72"] {
     text-align: justify !important; 
     text-justify: inter-word !important;
     color: #000000 !important;
-    max-height: none !important; /* УБРАЛИ ОГРАНИЧЕНИЕ ВЫСОТЫ */
-    overflow-y: visible !important; /* УБРАЛИ ПРОКРУТКУ */
+    max-height: none !important; 
+    overflow-y: visible !important; 
     padding: 20px 25px !important;
-    font-size: 16px !important; /* Уменьшили шрифт */
+    font-size: 16px !important; 
     line-height: 1.25 !important; 
     
-    /* Делаем карточку шире */
     width: 90vw !important; 
     max-width: 850px !important; 
-    bottom: 2vh !important; /* Опускаем чуть ниже */
+    bottom: 2vh !important; 
 }
 
-/* Дополнительно уменьшаем шрифт для истории, чтобы она влезла в ширину */
 tw-passage[tags~="l72"] div {
     font-size: 15px !important;
     line-height: 1.2 !important;
 }
-/* Слово "Верно" */
 .success-word { 
     color: #008000 !important; 
     text-align: center !important; 
@@ -187,9 +186,6 @@ tw-passage[tags~="l72"] div {
     margin-bottom: 10px !important; 
 }
 
-
-
-/* Ссылки в блоках "Верно" (ИСПРАВЛЕНО: block, отступы и стили кнопки) */
 tw-passage[tags~="l3"] tw-link, tw-passage[tags~="l13"] tw-link,
 tw-passage[tags~="l20"] tw-link, tw-passage[tags~="l23"] tw-link,
 tw-passage[tags~="l29"] tw-link, tw-passage[tags~="l37"] tw-link,
@@ -197,12 +193,11 @@ tw-passage[tags~="l43"] tw-link, tw-passage[tags~="l54"] tw-link,
 tw-passage[tags~="l60"] tw-link, tw-passage[tags~="l66"] tw-link,
 tw-passage[tags~="l72"] tw-link {
     text-align: center !important;
-    display: block !important;    /* Делаем блочным, чтобы всегда быть на новой строке */
+    display: block !important;    
     width: 100% !important;
-    margin-top: 15px !important;  /* Отступ от текста */
+    margin-top: 15px !important;  
     padding: 12px 15px !important;
     
-    /* Оформление кнопки */
     background-color: #F4F9FF !important; 
     border: 2px solid #4169E1 !important; 
     border-radius: 10px !important; 
@@ -214,7 +209,6 @@ tw-passage[tags~="l72"] tw-link {
     transition: all 0.2s ease-in-out !important; 
 }
 
-/* Эффект при наведении для ссылок в блоках "Верно" */
 tw-passage[tags~="l3"] tw-link:hover, tw-passage[tags~="l13"] tw-link:hover,
 tw-passage[tags~="l20"] tw-link:hover, tw-passage[tags~="l23"] tw-link:hover,
 tw-passage[tags~="l29"] tw-link:hover, tw-passage[tags~="l37"] tw-link:hover,
@@ -227,7 +221,6 @@ tw-passage[tags~="l72"] tw-link:hover {
     box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
 }
 
-/* Спец. правки для l66 */
 tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !important; padding-bottom: 15px !important; line-height: 1.2 !important; }
 
 /* ============================================================ */
@@ -257,7 +250,6 @@ tw-passage[tags~="l71"] {
     padding-top: 60px !important;
 }
 
-/* Оформление слова "Не верно" (красное, по центру) */
 .error-word { 
     color: #CC0000 !important; 
     text-align: center !important; 
@@ -267,7 +259,6 @@ tw-passage[tags~="l71"] {
     font-weight: bold !important;
 }
 
-/* Красивые кнопки для блоков с ошибками */
 tw-passage[tags~="l4"] tw-link, tw-passage[tags~="l5"] tw-link, 
 tw-passage[tags~="l9"] tw-link, tw-passage[tags~="l10"] tw-link, 
 tw-passage[tags~="l11"] tw-link, tw-passage[tags~="l14"] tw-link, 
@@ -336,6 +327,7 @@ tw-passage[tags~="l250"] tw-link:hover {
     transform: translateY(-2px) !important; 
     box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
 }
+
 /* ============================================================ */
 /* 7. СТРЕЛКА «НАЗАД» (ТОЛЬКО ДЛЯ УКАЗАННЫХ БЛОКОВ) */
 /* ============================================================ */
@@ -346,12 +338,10 @@ tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
     -webkit-tap-highlight-color: transparent !important;
 }
 
-/* По умолчанию сайдбары скрыты везде */
 tw-sidebar {
     display: none !important;
 }
 
-/* Показываем сайдбар ТОЛЬКО на указанных вами блоках */
 tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
 tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
 tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -371,13 +361,11 @@ tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar {
     pointer-events: auto !important;
 }
 
-/* Оставляем только стрелку «назад», «вперёд» скрываем */
 tw-sidebar tw-icon[alt="Redo"] {
     display: none !important;
     visibility: hidden !important;
 }
 
-/* Оформление кнопки-стрелки */
 tw-sidebar tw-icon,
 tw-sidebar tw-icon[alt="Undo"] {
     display: flex !important;
@@ -403,7 +391,6 @@ tw-sidebar tw-icon:hover {
     background-color: #FFFFFF !important;
 }
 
-/* --- ПК: Позиционируем над ладонью (только для указанных блоков) --- */
 @media screen and (min-width: 821px) {
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
@@ -427,7 +414,6 @@ tw-sidebar tw-icon:hover {
     }
 }
 
-/* --- Телефон: Позиционируем над ладонью на экране (только для указанных блоков) --- */
 @media screen and (max-width: 820px) {
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
@@ -441,15 +427,14 @@ tw-sidebar tw-icon:hover {
     tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
     tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
     tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar {
-        position: fixed !important; /* Привязка к экрану телефона, а не к плашке */
-        top: 35% !important;        /* Опускаем вниз к ладони (настройте под свой экран) */
-        left: 30% !important;       /* Сдвигаем влево к руке */
+        position: fixed !important; 
+        top: 35% !important;        
+        left: 30% !important;       
         right: auto !important;
         bottom: auto !important;
         transform: none !important;
     }
 
-    /* Размеры самой кнопки-стрелки на телефоне */
     tw-sidebar tw-icon,
     tw-sidebar tw-icon[alt="Undo"] {
         font-size: 30px !important;
@@ -459,7 +444,7 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
-/* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ (ПК, ПЛАНШЕТ, ТЕЛЕФОН) */
+/* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
@@ -485,7 +470,6 @@ tw-passage[tags~="l1"] {
     z-index: 10 !important;
 }
 
-/* Кружочки (хвостик мыслей) */
 tw-passage[tags~="l1"]::before,
 tw-passage[tags~="l1"]::after {
     content: "" !important;
@@ -506,24 +490,15 @@ tw-passage[tags~="l1"]::after {
     width: 12px !important;
     height: 12px !important;
 }
-/* Кнопка "Начать обучение" (По центру внизу) */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
     position: fixed !important;
-    
-    /* Поднимаем вверх (было 80vh, стало 77vh) */
     top: 77vh !important;       
-    
-    /* Сдвигаем левее (было 50%, стало 48%) */
     left: 48% !important;
     transform: translateX(-50%) !important; 
-    
-    /* Отключаем остальные привязки */
     bottom: auto !important;
     right: auto !important;
-    
     margin: 0 !important;
-    
     display: block !important;
     width: max-content !important;
     padding: 12px 25px !important;
@@ -546,13 +521,99 @@ tw-passage[tags~="l1"] tw-link:hover {
     background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
 }
+
 /* ============================================================ */
-/* 9. МОБИЛЬНАЯ АДАПТАЦИЯ (Карточки поверх изображения) */
+/* 8.5. СПЕЦИАЛЬНЫЙ ДИЗАЙН ДЛЯ "СПИСКИ: СИТУАЦИЯ 1" (l201)      */
+/* ============================================================ */
+
+/* Фон на весь экран для этой карточки */
+tw-story[tags~="l201"] {
+    background-image: url("19.jpeg") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Облако с текстом */
+tw-passage[tags~="l201"] {
+    position: fixed !important;
+    top: 8vh !important;       
+    right: 5vw !important;     
+    left: auto !important;
+    transform: none !important; 
+    width: 90vw !important;    
+    max-width: 450px !important; 
+    margin: 0 !important;
+    padding: 30px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    backdrop-filter: blur(10px) !important; 
+    border: none !important;
+    border-radius: 40px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    color: #2c3e50 !important; 
+    text-shadow: none !important;
+    font-size: 18px !important; 
+    font-weight: bold !important;
+    line-height: 1.4 !important;
+    text-align: left !important; 
+    z-index: 10 !important;
+}
+
+/* Хвостик облака */
+tw-passage[tags~="l201"]::before,
+tw-passage[tags~="l201"]::after {
+    content: "" !important;
+    position: absolute !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+tw-passage[tags~="l201"]::before {
+    bottom: -20px !important;
+    left: 40px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+tw-passage[tags~="l201"]::after {
+    bottom: -40px !important;
+    left: 20px !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+/* Синяя кнопка для этой карточки */
+tw-passage[tags~="l201"] tw-link,
+tw-passage[tags~="l201"] tw-link.visited {
+    display: block !important;
+    width: max-content !important;
+    margin: 20px auto 0 !important;
+    padding: 12px 25px !important;
+    background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    border: 2px solid #FFFFFF !important; 
+    text-decoration: none !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+tw-passage[tags~="l201"] tw-link:hover {
+    transform: translateY(-2px) scale(1.02) !important; 
+    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ============================================================ */
+/* 9. МОБИЛЬНАЯ АДАПТАЦИЯ */
 /* ============================================================ */
 @media screen and (max-width: 820px) {
   html, body { 
       height: 100% !important; 
-      overflow: hidden !important; /* Убираем прокрутку всей страницы */
+      overflow: hidden !important; 
       background-color: #000000 !important; 
   }
   
@@ -562,14 +623,11 @@ tw-passage[tags~="l1"] tw-link:hover {
       box-sizing: border-box !important; 
       width: 100vw !important; 
       height: 100vh !important; 
-      height: 100dvh !important; /* На весь экран телефона */
+      height: 100dvh !important; 
       padding: 0 !important; 
       margin: 0 !important; 
-      background-size: cover !important; /* Картинка заполняет весь фон */
-      
-      /* ВОТ ГЛАВНОЕ ИЗМЕНЕНИЕ: Сдвигаем картинку вниз (30% от верха) */
+      background-size: cover !important; 
       background-position: center 30% !important; 
-      
       background-repeat: no-repeat !important; 
       background-color: #000000 !important; 
   }
@@ -577,8 +635,7 @@ tw-passage[tags~="l1"] tw-link:hover {
   tw-story tw-sidebar { position: fixed !important; top: 10px !important; left: 10px !important; right: 10px !important; width: auto !important; z-index: 99 !important; flex-direction: row !important; justify-content: space-between !important; pointer-events: none !important; }
   tw-story tw-sidebar tw-icon { pointer-events: auto !important; }
 
-  /* Общие карточки на телефоне (ИСКЛЮЧАЯ ПЕРВЫЙ ЭКРАН L1) */
-  tw-story tw-passage[tags]:not([tags~="l1"]) { 
+  tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="l201"]) { 
       position: absolute !important; 
       bottom: 5vh !important;        
       left: 5vw !important; 
@@ -592,14 +649,10 @@ tw-passage[tags~="l1"] tw-link:hover {
       background-color: rgba(255, 255, 255, 0.95) !important; 
       border-radius: 15px !important; 
       box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important; 
-      
-      /* Текст по ширине */
       text-align: justify !important; 
-      
       z-index: 10 !important;
   }
 
-  /* Кнопки внутри вопросов на телефоне */
   tw-passage[tags~="l2"] tw-link, tw-passage[tags~="l8"] tw-link, tw-passage[tags~="l16"] tw-link, tw-passage[tags~="l22"] tw-link, tw-passage[tags~="l28"] tw-link, tw-passage[tags~="l36"] tw-link, tw-passage[tags~="l40"] tw-link, tw-passage[tags~="l47"] tw-link, tw-passage[tags~="l58"] tw-link, tw-passage[tags~="l63"] tw-link {
         width: 100% !important; 
         font-size: 16px !important; 
@@ -608,7 +661,6 @@ tw-passage[tags~="l1"] tw-link:hover {
         display: block !important;
   }
 
-  /* Убираем лишнюю прокрутку для карточек с коротким текстом */
   tw-passage[tags~="l2"], tw-passage[tags~="l8"], tw-passage[tags~="l16"], 
   tw-passage[tags~="l22"], tw-passage[tags~="l28"], tw-passage[tags~="l36"], 
   tw-passage[tags~="l40"], tw-passage[tags~="l47"], tw-passage[tags~="l58"], 
@@ -619,21 +671,28 @@ tw-passage[tags~="l1"] tw-link:hover {
       max-height: 70vh !important;
   }
 
-  /* --- ИСПРАВЛЕНИЕ ОБЛАКА (ТОЛЬКО ДЛЯ ТЕЛЕФОНА) --- */
-  
   tw-passage[tags~="l1"] {
-      top: 3vh !important;          /* Прижимаем облако к самому верху */
-      right: 5vw !important;        /* Сдвигаем правее */
-      width: 65vw !important;       /* Делаем его заметно уже */
-      max-width: 280px !important;  /* Ограничиваем максимальную ширину */
-      padding: 15px !important;     /* Уменьшаем отступы внутри */
-      font-size: 13px !important;   /* Чуть уменьшаем шрифт */
+      top: 3vh !important;          
+      right: 5vw !important;        
+      width: 65vw !important;       
+      max-width: 280px !important;  
+      padding: 15px !important;     
+      font-size: 13px !important;   
   }
 
-  /* Кнопка "Начать обучение" на телефоне */
   tw-passage[tags~="l1"] tw-link,
   tw-passage[tags~="l1"] tw-link.visited {
-      top: 68vh !important; /* Поднимаем кнопку над панелью браузера */
+      top: 68vh !important; 
+  }
+
+  /* --- Мобильная адаптация для l201 --- */
+  tw-passage[tags~="l201"] {
+      top: 3vh !important;
+      right: 5vw !important;
+      width: 85vw !important;
+      max-width: 320px !important;
+      padding: 20px !important;
+      font-size: 15px !important;
   }
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag><tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
@@ -963,15 +1022,10 @@ input() принимает не более одного аргумента.<br><
 [[Начать изучение->Списки: Ситуация 1]]
 </tw-passagedata>
 
-<tw-passagedata pid="201" name="Списки: Ситуация 1" tags="l3" position="900,3100" size="100,100">
+<tw-passagedata pid="201" name="Списки: Ситуация 1" tags="l3 l201" position="900,3100" size="100,100">
 <h2>Ситуация 1. Покупка автомобиля</h2>
-
 <p>Мы решили приобрести новый автомобиль. В гараже уже имеются следующие автомобили. Мы приобрели автомобиль <b>'Aurus Senat'</b> и хотим добавить его в конец списка.</p>
-
-`garage = &#91;'Lada Granta', 'Niva Travel', 'Lada Vesta', 'УАЗ Патриот'&#93;`
-
-<img src="1.jpeg" alt="Покупка автомобиля" style="width:100%; border-radius:12px; margin:16px 0;">
-
+<p><code>garage = ['Lada Granta', 'Niva Travel', 'Lada Vesta', 'УАЗ Патриот']</code></p>
 [[Перейти к вопросу->Списки: Задание 1]]
 </tw-passagedata>
 
