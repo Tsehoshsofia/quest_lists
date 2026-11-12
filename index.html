@@ -524,175 +524,21 @@ tw-passage[tags~="l1"] tw-link:hover {
 
 /* ============================================================ */
 /* ============================================================ */
-/* 8.5. СПЕЦИАЛЬНЫЙ ДИЗАЙН ДЛЯ "СПИСКИ: СИТУАЦИЯ 1" (l201)      */
-/* ============================================================ */
-
-/* Фон на весь экран для этой карточки */
-tw-story[tags~="l201"] {
-    background-image: url("19.jpeg") !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-}
-
-/* Облако с текстом (селектор усилен, чтобы перебить общие стили) */
-tw-passage[tags~="l201"]:not([tags~="l1"]) {
-    position: fixed !important;
-    top: 8vh !important;       
-    right: 5vw !important;     
-    left: auto !important;
-    bottom: auto !important; /* Сбрасываем привязку к низу */
-    transform: none !important; 
-    width: 90vw !important;    
-    max-width: 450px !important; 
-    margin: 0 !important;
-    padding: 30px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important; 
-    backdrop-filter: blur(10px) !important; 
-    border: none !important;
-    border-radius: 40px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
-    color: #2c3e50 !important; 
-    text-shadow: none !important;
-    font-size: 18px !important; 
-    font-weight: bold !important;
-    line-height: 1.4 !important;
-    text-align: left !important; 
-    z-index: 10 !important;
-}
-
-/* Хвостик облака */
-tw-passage[tags~="l201"]::before,
-tw-passage[tags~="l201"]::after {
-    content: "" !important;
-    position: absolute !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50% !important;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
-}
-
-tw-passage[tags~="l201"]::before {
-    bottom: -20px !important;
-    left: 40px !important;
-    width: 25px !important;
-    height: 25px !important;
-}
-
-tw-passage[tags~="l201"]::after {
-    bottom: -40px !important;
-    left: 20px !important;
-    width: 12px !important;
-    height: 12px !important;
-}
-
-/* Синяя кнопка для этой карточки */
-tw-passage[tags~="l201"] tw-link,
-tw-passage[tags~="l201"] tw-link.visited {
-    display: block !important;
-    width: max-content !important;
-    margin: 20px auto 0 !important;
-    padding: 12px 25px !important;
-    background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
-    color: #FFFFFF !important;
-    border-radius: 8px !important;
-    border: 2px solid #FFFFFF !important; 
-    text-decoration: none !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
-    transition: all 0.3s ease !important;
-}
-
-tw-passage[tags~="l201"] tw-link:hover {
-    transform: translateY(-2px) scale(1.02) !important; 
-    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* ============================================================ */
-/* 9. МОБИЛЬНАЯ АДАПТАЦИЯ */
-/* ============================================================ */
-@media screen and (max-width: 820px) {
-  html, body { 
-      height: 100% !important; 
-      overflow: hidden !important; 
-      background-color: #000000 !important; 
-  }
-  
-  tw-story { 
-      display: block !important; 
-      overflow: hidden !important; 
-      box-sizing: border-box !important; 
-      width: 100vw !important; 
-      height: 100vh !important; 
-      height: 100dvh !important; 
-      padding: 0 !important; 
-      margin: 0 !important; 
-      background-size: cover !important; 
-      background-position: center 30% !important; 
-      background-repeat: no-repeat !important; 
-      background-color: #000000 !important; 
-  }
-  
-  tw-story tw-sidebar { position: fixed !important; top: 10px !important; left: 10px !important; right: 10px !important; width: auto !important; z-index: 99 !important; flex-direction: row !important; justify-content: space-between !important; pointer-events: none !important; }
-  tw-story tw-sidebar tw-icon { pointer-events: auto !important; }
-
-  tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="l201"]) { 
+  /* Исключаем sit из общего стиля карточек на телефонах */
+  tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="sit"]) { 
       position: absolute !important; 
       bottom: 5vh !important;        
-      left: 5vw !important; 
-      right: 5vw !important; 
-      width: 90vw !important;
-      max-height: 65vh !important;   
-      overflow-y: auto !important;
-      padding: 20px !important; 
-      font-size: 16px !important; 
-      line-height: 1.35 !important; 
-      background-color: rgba(255, 255, 255, 0.95) !important; 
-      border-radius: 15px !important; 
-      box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important; 
-      text-align: justify !important; 
-      z-index: 10 !important;
+      /* ... остальные стили для обычных карточек ... */
   }
 
-  tw-passage[tags~="l2"] tw-link, tw-passage[tags~="l8"] tw-link, tw-passage[tags~="l16"] tw-link, tw-passage[tags~="l22"] tw-link, tw-passage[tags~="l28"] tw-link, tw-passage[tags~="l36"] tw-link, tw-passage[tags~="l40"] tw-link, tw-passage[tags~="l47"] tw-link, tw-passage[tags~="l58"] tw-link, tw-passage[tags~="l63"] tw-link {
-        width: 100% !important; 
-        font-size: 16px !important; 
-        padding: 12px 10px !important; 
-        margin: 8px auto !important; 
-        display: block !important;
-  }
+  /* ... */
 
-  tw-passage[tags~="l2"], tw-passage[tags~="l8"], tw-passage[tags~="l16"], 
-  tw-passage[tags~="l22"], tw-passage[tags~="l28"], tw-passage[tags~="l36"], 
-  tw-passage[tags~="l40"], tw-passage[tags~="l47"], tw-passage[tags~="l58"], 
-  tw-passage[tags~="l63"], tw-passage[tags~="l3"], tw-passage[tags~="l13"], 
-  tw-passage[tags~="l20"], tw-passage[tags~="l23"], tw-passage[tags~="l29"], 
-  tw-passage[tags~="l37"], tw-passage[tags~="l43"], tw-passage[tags~="l54"], 
-  tw-passage[tags~="l60"], tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
-      max-height: 70vh !important;
-  }
-
-  tw-passage[tags~="l1"] {
-      top: 3vh !important;          
-      right: 5vw !important;        
-      width: 65vw !important;       
-      max-width: 280px !important;  
-      padding: 15px !important;     
-      font-size: 13px !important;   
-  }
-
-  tw-passage[tags~="l1"] tw-link,
-  tw-passage[tags~="l1"] tw-link.visited {
-      top: 68vh !important; 
-  }
-
-  /* --- Мобильная адаптация для l201 (также усилена селектором) --- */
-  tw-passage[tags~="l201"]:not([tags~="l1"]) {
+  /* --- Мобильная адаптация для sit --- */
+  tw-passage[tags~="sit"]:not([tags~="l1"]) {
       top: 3vh !important;
       right: 5vw !important;
       left: auto !important;
-      bottom: auto !important; /* Сбрасываем привязку к низу на телефонах */
+      bottom: auto !important; 
       width: 85vw !important;
       max-width: 320px !important;
       padding: 20px !important;
