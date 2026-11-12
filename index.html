@@ -580,6 +580,7 @@ tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="sit"]) {
     position: absolute !important; 
     bottom: 5vh !important;        
 }
+/* 1. Основной блок: текст по ширине (выравнивание по обоим краям) */
 tw-passage[tags~="sit"]:not([tags~="l1"]) {
     top: auto !important;
     bottom: 0 !important;      
@@ -596,17 +597,14 @@ tw-passage[tags~="sit"]:not([tags~="l1"]) {
     font-size: 18px !important;  
     line-height: 1.4 !important;
     
-    /* Основной текст по ширине */
+    /* ГЛАВНОЕ ИЗМЕНЕНИЕ: текст по ширине */
     text-align: justify !important; 
     
-    /* Прозрачность 90% (оставляем 10% белого) */
     background-color: rgba(255, 255, 255, 0.1) !important; 
-    
-    /* Без размытия, чтобы картинка была четкой */
     backdrop-filter: none !important; 
     -webkit-backdrop-filter: none !important;
     
-    /* Жесткая белая обводка (без свечения) */
+    /* Обводка текста */
     text-shadow: 
         -2px -2px 0 #fff,  
          2px -2px 0 #fff,
@@ -617,28 +615,40 @@ tw-passage[tags~="sit"]:not([tags~="l1"]) {
          0   -1px 0 #fff,
          0    1px 0 #fff !important;
     
-    box-shadow: none !important; /* Убрали тень карточки для невесомости */
+    box-shadow: none !important; 
     border-radius: 15px 15px 0 0 !important; 
 }
 
-/* Заголовок (первое предложение) строго по центру */
+/* 2. Заголовок (первое предложение): строго по центру */
 tw-passage[tags~="sit"] h2 {
     font-size: 24px !important;
     margin: 0px 0 10px 0 !important; 
-    text-align: center !important; 
+    text-align: center !important; /* Заголовок по центру */
     color: #000 !important;
 }
 
-/* Кнопка по центру, плотная, чтобы не растворялась */
+/* 3. Блок с кодом: принудительно по центру */
+tw-passage[tags~="sit"] code {
+    /* display: table позволяет блоку с кодом сжиматься по размеру текста и центрироваться */
+    display: table !important; 
+    margin: 10px auto !important; /* auto по бокам центрирует его */
+    padding: 4px 10px !important;
+    background-color: rgba(255, 255, 255, 0.9) !important; 
+    border-radius: 6px !important;
+    text-shadow: none !important; 
+    color: #000 !important;
+    text-align: left !important; /* Внутри кода текст лучше выровнять по левому краю */
+}
+
+/* Кнопка остается по центру */
 tw-passage[tags~="sit"] tw-link {
-    display: block !important;
     margin: 15px auto 0 auto !important;
-    width: fit-content !important; 
-    min-width: 250px !important; 
+    display: block !important;
+    width: fit-content !important; /* Кнопка по размеру текста */
+    min-width: 250px !important; /* Но не слишком узкая */
     background-color: #FFFFFF !important; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
 }
-
 /* Блок с кодом по центру, но текст внутри слева */
 tw-passage[tags~="sit"] code {
     display: table !important; /* Сжимается по ширине текста */
