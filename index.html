@@ -28,10 +28,7 @@
     padding: 24px 16px;
   }
 
-  .game {
-    width: 100%;
-    max-width: 860px;
-  }
+  .game { width: 100%; max-width: 860px; }
 
   .topbar {
     display: flex;
@@ -59,26 +56,10 @@
     box-shadow: 0 18px 40px rgba(0,0,0,.25);
   }
 
-  h1 {
-    margin: 0 0 8px;
-    font-size: 30px;
-    line-height: 1.2;
-  }
-
-  h2 {
-    margin: 0 0 10px;
-    font-size: 22px;
-  }
-
-  p {
-    line-height: 1.6;
-    color: var(--text);
-  }
-
-  .muted {
-    color: var(--muted);
-    font-size: 15px;
-  }
+  h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; }
+  h2 { margin: 0 0 10px; font-size: 22px; }
+  p { line-height: 1.6; color: var(--text); }
+  .muted { color: var(--muted); font-size: 15px; }
 
   .code {
     display: block;
@@ -115,11 +96,7 @@
     margin-right: 6px;
   }
 
-  .answers {
-    display: grid;
-    gap: 10px;
-    margin-top: 18px;
-  }
+  .answers { display: grid; gap: 10px; margin-top: 18px; }
 
   button {
     width: 100%;
@@ -221,14 +198,8 @@
   }
 
   .hidden { display: none; }
-
-  .final {
-    text-align: center;
-  }
-
-  .final h1 {
-    font-size: 34px;
-  }
+  .final { text-align: center; }
+  .final h1 { font-size: 34px; }
 
   .score {
     font-size: 40px;
@@ -253,7 +224,6 @@
   </div>
 
   <div class="progress"><div id="progressBar"></div></div>
-
   <div class="card" id="app"></div>
 </div>
 
@@ -269,215 +239,357 @@ const totalSteps = 11;
 const steps = [
   {
     title: "История 1. Покупка автомобиля",
-    text: "Вы пришли в автосалон. В гараже уже есть несколько машин, и вы решили купить <b>Aurus Senat</b>.",
+    text: "Мы решили приобрести новый автомобиль. В гараже уже имеются следующие автомобили. Мы приобрели автомобиль <b>'Aurus Senat'</b> и хотим добавить его в конец списка.",
     code: "garage = ['Lada Granta', 'Niva Travel', 'Lada Vesta', 'УАЗ Патриот']",
     list: ["Lada Granta", "Niva Travel", "Lada Vesta", "УАЗ Патриот"],
-    question: "Как добавить <b>'Aurus Senat'</b> в конец списка <code>garage</code>?",
+    question: "Какой метод следует использовать для добавления <b>'Aurus Senat'</b> в конец списка <code>garage</code>?",
     options: [
-      { text: "garage.add('Aurus Senat')", correct: false, explain: "У списков Python нет метода add(). Для добавления одного элемента в конец используется append()." },
-      { text: "garage.append('Aurus Senat')", correct: true, explain: "Верно! append() добавляет элемент в самый конец списка." },
-      { text: "garage.insert('Aurus Senat')", correct: false, explain: "insert() требует два аргумента: индекс и значение. Например: garage.insert(0, 'Aurus Senat')." }
+      {
+        text: "garage.add('Aurus Senat')",
+        correct: false,
+        explain: "У списков Python отсутствует метод add(). Для добавления элемента в конец списка применяется метод append()."
+      },
+      {
+        text: "garage.append('Aurus Senat')",
+        correct: true,
+        explain: "Верно. Метод append() добавляет элемент в конец списка."
+      },
+      {
+        text: "garage.insert('Aurus Senat')",
+        correct: false,
+        explain: "Метод insert() требует указания двух аргументов: индекса и значения. Для добавления элемента в конец списка используется append()."
+      }
     ],
     result: ["Lada Granta", "Niva Travel", "Lada Vesta", "УАЗ Патриот", "Aurus Senat"]
   },
   {
     title: "История 2. Отмена заказа",
-    text: "В личном кабинете салона отображаются оформленные автомобили. Вы передумали покупать <b>'УАЗ Патриот'</b> и хотите удалить именно его.",
+    text: "В личном кабинете автосалона отображается список оформленных автомобилей. Необходимо отменить заказ на автомобиль <b>'УАЗ Патриот'</b>, зная его точное значение.",
     code: "my_cars = ['Lada Vesta', 'УАЗ Патриот', 'Aurus Senat']",
     list: ["Lada Vesta", "УАЗ Патриот", "Aurus Senat"],
-    question: "Как удалить <b>'УАЗ Патриот'</b>, зная его точное название?",
+    question: "Каким способом можно удалить данный элемент?",
     options: [
-      { text: "del my_cars[1]", correct: true, explain: "Верно! del удаляет элемент по индексу. Но здесь вы также могли использовать remove()." },
-      { text: "my_cars.remove('УАЗ Патриот')", correct: true, explain: "Верно! remove() удаляет первый элемент, значение которого совпадает с указанным." },
-      { text: "my_cars.clear()", correct: false, explain: "clear() удаляет все элементы списка, а не только один автомобиль." }
+      {
+        text: "del my_cars[1]",
+        correct: true,
+        explain: "Верно. Оператор del удаляет элемент по индексу."
+      },
+      {
+        text: "my_cars.remove('УАЗ Патриот')",
+        correct: true,
+        explain: "Верно. Метод remove() удаляет первый элемент, значение которого совпадает с указанным."
+      },
+      {
+        text: "my_cars.clear()",
+        correct: false,
+        explain: "Метод clear() удаляет все элементы списка, а не только один автомобиль."
+      }
     ],
     result: ["Lada Vesta", "Aurus Senat"]
   },
   {
-    title: "История 3. VIP-клиент салона",
-    text: "Вы администратор салона красоты. Клиентка <b>Елена</b> пришла без записи, но является VIP-гостем. Её нужно поставить третьей по счёту — на индекс <code>2</code>.",
+    title: "История 3. VIP-клиент салона красоты",
+    text: "Мы являемся администраторами салона красоты. Клиентка Елена обратилась без предварительной записи, однако является VIP-клиентом. Необходимо добавить её на третью позицию, то есть на индекс 2.",
     code: "appointments = ['Анна', 'Петр', 'Мария', 'Олег']",
     list: ["Анна", "Петр", "Мария", "Олег"],
-    question: "Какой код вставит <b>'Елена'</b> на индекс 2, не удаляя других клиентов?",
+    question: "Какой код следует использовать для вставки <b>'Елена'</b> на индекс 2?",
     options: [
-      { text: "appointments.append('Елена')", correct: false, explain: "append() добавит Елену в конец списка, а не на нужную позицию." },
-      { text: "appointments.insert(2, 'Елена')", correct: true, explain: "Верно! insert(2, 'Елена') вставит элемент на индекс 2, а остальные сдвинутся вправо." },
-      { text: "appointments[2] = 'Елена'", correct: false, explain: "Эта запись заменит Марию на Елену. Клиентка Мария исчезнет из списка." }
+      {
+        text: "appointments.append('Елена')",
+        correct: false,
+        explain: "Метод append() добавляет элемент в конец списка, а не на указанную позицию."
+      },
+      {
+        text: "appointments.insert(2, 'Елена')",
+        correct: true,
+        explain: "Верно. Метод insert(2, 'Елена') вставляет элемент на индекс 2, при этом остальные элементы сдвигаются вправо."
+      },
+      {
+        text: "appointments[2] = 'Елена'",
+        correct: false,
+        explain: "Данная запись заменяет элемент на индексе 2, а не вставляет новый элемент."
+      }
     ],
     result: ["Анна", "Петр", "Елена", "Мария", "Олег"]
   },
   {
-    title: "История 4. Поиск клиента",
-    text: "Перед звонком клиенту нужно убедиться, что <b>'Павел'</b> действительно есть в базе.",
+    title: "История 4. Проверка базы клиентов",
+    text: "Перед звонком клиенту необходимо убедиться, что клиент с именем <b>'Павел'</b> присутствует в базе.",
     code: "clients = ['Павел', 'Петр', 'Анна']",
     list: ["Павел", "Петр", "Анна"],
-    question: "Как правильно проверить, есть ли <b>'Павел'</b> в списке?",
+    question: "Каким образом корректно проверить наличие элемента в списке?",
     options: [
-      { text: "if 'Павел' == clients:", correct: false, explain: "Оператор == сравнивает всю строку со всем списком. Это всегда даст False." },
-      { text: "if 'Павел' in clients:", correct: true, explain: "Верно! Оператор in проверяет, содержится ли элемент в списке." },
-      { text: "if clients.find('Павел'):", correct: false, explain: "У списков нет метода find(). Он используется для строк." }
+      {
+        text: "if 'Павел' == clients:",
+        correct: false,
+        explain: "Оператор == сравнивает строку со всем списком, а не проверяет наличие элемента внутри списка."
+      },
+      {
+        text: "if 'Павел' in clients:",
+        correct: true,
+        explain: "Верно. Оператор in проверяет, содержится ли указанный элемент в списке."
+      },
+      {
+        text: "if clients.find('Павел'):",
+        correct: false,
+        explain: "У списков отсутствует метод find(). Данный метод применяется к строкам."
+      }
     ],
     result: ["Павел", "Петр", "Анна"]
   },
   {
-    title: "История 5. Проверка склада",
-    text: "Вы хотите заказать пылесос на Ozon. Прежде чем добавить его в корзину, нужно проверить наличие товара.",
+    title: "История 5. Проверка наличия товара на складе",
+    text: "Мы хотим заказать товар на Ozon. Перед добавлением товара в корзину необходимо убедиться, что он имеется в наличии.",
     code: "stock = ['Смартфон', 'Наушники', 'Пылесос', 'Чехол']",
     list: ["Смартфон", "Наушники", "Пылесос", "Чехол"],
-    question: "Как проверить, что <b>'Пылесос'</b> есть в списке <code>stock</code>?",
+    question: "Как проверить, что <b>'Пылесос'</b> содержится в списке товаров?",
     options: [
-      { text: "if 'Пылесос' == stock:", correct: false, explain: "Здесь сравнивается строка и весь список. Для поиска элемента нужен оператор in." },
-      { text: "if 'Пылесос' in stock:", correct: true, explain: "Верно! Выражение 'Пылесос' in stock вернёт True, потому что товар есть на складе." },
-      { text: "if stock.find('Пылесос'):", correct: false, explain: "Метод find() работает со строками, но не со списками." }
+      {
+        text: "if 'Пылесос' == stock:",
+        correct: false,
+        explain: "Оператор == сравнивает строку со всем списком, а не осуществляет поиск элемента внутри списка."
+      },
+      {
+        text: "if 'Пылесос' in stock:",
+        correct: true,
+        explain: "Верно. Оператор in проверяет наличие элемента в списке."
+      },
+      {
+        text: "if stock.find('Пылесос'):",
+        correct: false,
+        explain: "Метод find() применяется к строкам, но не к спискам."
+      }
     ],
     result: ["Смартфон", "Наушники", "Пылесос", "Чехол"]
   },
   {
-    title: "История 6. Пополнение корзины",
-    text: "Вы уже выбрали несколько товаров и нашли интересную книгу. Её нужно добавить в самый конец корзины.",
+    title: "История 6. Добавление товара в корзину",
+    text: "В корзину уже добавлены следующие товары. Мы нашли книгу и хотим добавить её в конец корзины.",
     code: "cart = ['Смартфон', 'Наушники', 'Чехол']",
     list: ["Смартфон", "Наушники", "Чехол"],
-    question: "Как добавить <b>'Книга'</b> в конец списка <code>cart</code>?",
+    question: "Какой код следует написать для добавления <b>'Книга'</b> в конец списка?",
     options: [
-      { text: "cart.insert('Книга')", correct: false, explain: "insert() требует два аргумента: сначала индекс, затем значение." },
-      { text: "cart.append('Книга')", correct: true, explain: "Верно! append() добавляет элемент в конец списка." },
-      { text: "cart.add('Книга')", correct: false, explain: "У списков Python нет метода add()." }
+      {
+        text: "cart.insert('Книга')",
+        correct: false,
+        explain: "Метод insert() требует указания двух аргументов: индекса и значения."
+      },
+      {
+        text: "cart.append('Книга')",
+        correct: true,
+        explain: "Верно. Метод append() добавляет элемент в конец списка."
+      },
+      {
+        text: "cart.add('Книга')",
+        correct: false,
+        explain: "У списков Python отсутствует метод add()."
+      }
     ],
     result: ["Смартфон", "Наушники", "Чехол", "Книга"]
   },
   {
-    title: "История 7. Удаление товара",
-    text: "Вы передумали покупать наушники. Они находятся на индексе <code>1</code>.",
+    title: "История 7. Удаление товара из корзины",
+    text: "Мы передумали приобретать наушники. Данный товар находится под индексом 1.",
     code: "cart = ['Смартфон', 'Наушники', 'Чехол', 'Книга']",
     list: ["Смартфон", "Наушники", "Чехол", "Книга"],
-    question: "Как удалить <b>'Наушники'</b> по индексу?",
+    question: "Как удалить элемент по его индексу?",
     options: [
-      { text: "del cart[1]", correct: true, explain: "Верно! del cart[1] удаляет элемент с индексом 1." },
-      { text: "cart.remove(1)", correct: false, explain: "remove() ищет элемент по значению. Он попытается найти число 1, а не элемент с индексом 1." },
-      { text: "cart.pop()", correct: false, explain: "pop() без аргумента удаляет последний элемент — в данном случае 'Книгу'." }
+      {
+        text: "del cart[1]",
+        correct: true,
+        explain: "Верно. Оператор del удаляет элемент по указанному индексу."
+      },
+      {
+        text: "cart.remove(1)",
+        correct: false,
+        explain: "Метод remove() осуществляет поиск элемента по значению, а не по индексу."
+      },
+      {
+        text: "cart.pop()",
+        correct: false,
+        explain: "Метод pop() без аргумента удаляет последний элемент списка."
+      }
     ],
     result: ["Смартфон", "Чехол", "Книга"]
   },
   {
     title: "История 8. Очистка корзины",
-    text: "Вы решили не покупать ничего сегодня и хотите полностью очистить корзину, но сохранить саму переменную <code>cart</code>.",
+    text: "Мы решили полностью очистить корзину, но сохранить саму переменную cart для дальнейшей работы.",
     code: "cart = ['Смартфон', 'Чехол', 'Книга']",
     list: ["Смартфон", "Чехол", "Книга"],
-    question: "Какой код очистит корзину?",
+    question: "Какой метод следует использовать?",
     options: [
-      { text: "cart.clear()", correct: true, explain: "Верно! clear() удаляет все элементы, но переменная cart останется пустым списком: []." },
-      { text: "del cart", correct: false, explain: "del cart удалит саму переменную. После этого обращаться к cart будет нельзя." },
-      { text: "cart.remove_all()", correct: false, explain: "Такого метода у списков Python нет." }
+      {
+        text: "cart.clear()",
+        correct: true,
+        explain: "Верно. Метод clear() удаляет все элементы списка, при этом сама переменная сохраняется как пустой список."
+      },
+      {
+        text: "del cart",
+        correct: false,
+        explain: "Оператор del cart удаляет саму переменную, после чего обращение к ней становится невозможным."
+      },
+      {
+        text: "cart.remove_all()",
+        correct: false,
+        explain: "Метода remove_all() у списков Python не существует."
+      }
     ],
     result: []
   },
   {
     title: "История 9. Запись к врачу",
-    text: "Вы записываетесь к врачу. Нужно добавить приём к <b>'Хирургу'</b> на вторник, то есть на индекс <code>1</code>.",
+    text: "Мы записываемся к врачу. Необходимо добавить запись к хирургу на вторник, то есть на индекс 1.",
     code: "appointments = ['Терапевт (пн)', 'Стоматолог (ср)', 'Окулист (пт)']",
     list: ["Терапевт (пн)", "Стоматолог (ср)", "Окулист (пт)"],
-    question: "Как добавить <b>'Хирург'</b> на индекс 1?",
+    question: "Какой код следует написать?",
     options: [
-      { text: "appointments.append('Хирург')", correct: false, explain: "append() поставит хирурга в конец расписания, после пятницы." },
-      { text: "appointments.insert(1, 'Хирург')", correct: true, explain: "Верно! insert(1, 'Хирург') вставит запись на второе место, а остальные сдвинутся." },
-      { text: "appointments[1] = 'Хирург'", correct: false, explain: "Эта запись заменит стоматолога на хирурга, а не добавит новую запись." }
+      {
+        text: "appointments.append('Хирург')",
+        correct: false,
+        explain: "Метод append() добавляет элемент в конец списка."
+      },
+      {
+        text: "appointments.insert(1, 'Хирург')",
+        correct: true,
+        explain: "Верно. Метод insert(1, 'Хирург') вставляет элемент на индекс 1."
+      },
+      {
+        text: "appointments[1] = 'Хирург'",
+        correct: false,
+        explain: "Данная запись заменяет существующий элемент, а не добавляет новый."
+      }
     ],
     result: ["Терапевт (пн)", "Хирург", "Стоматолог (ср)", "Окулист (пт)"]
   },
   {
     title: "История 10. Перенос тренировки",
-    text: "Вместо бассейна в среду вы решили ходить на бокс. Нужно заменить тренировку, не добавляя новую.",
+    text: "Мы записаны на тренировку по плаванию в среду, на индексе 1. Необходимо заменить эту тренировку на бокс, не добавляя новый элемент в список.",
     code: "schedule = ['Йога (пн)', 'Бассейн (ср)', 'Кроссфит (пт)']",
     list: ["Йога (пн)", "Бассейн (ср)", "Кроссфит (пт)"],
-    question: "Как заменить <b>'Бассейн (ср)'</b> на <b>'Бокс'</b>?",
+    question: "Какой код следует написать?",
     options: [
-      { text: "schedule.append('Бокс')", correct: false, explain: "append() добавит новый элемент в конец, а бассейн останется в расписании." },
-      { text: "schedule[1] = 'Бокс'", correct: true, explain: "Верно! Списки изменяемы: обращение по индексу заменяет старое значение новым." },
-      { text: "schedule.insert(1, 'Бокс')", correct: false, explain: "insert() добавит бокс перед бассейном, но не заменит его." }
+      {
+        text: "schedule.append('Бокс')",
+        correct: false,
+        explain: "Метод append() добавляет новый элемент в конец списка."
+      },
+      {
+        text: "schedule[1] = 'Бокс'",
+        correct: true,
+        explain: "Верно. Списки в Python являются изменяемыми структурами данных. Данная запись заменяет элемент по индексу."
+      },
+      {
+        text: "schedule.insert(1, 'Бокс')",
+        correct: false,
+        explain: "Метод insert() вставляет элемент, но не заменяет существующий."
+      }
     ],
     result: ["Йога (пн)", "Бокс", "Кроссфит (пт)"]
   },
   {
-    title: "История 11. Надёжный пароль",
-    text: "Вы регистрируетесь в личном кабинете клиники. Пароль должен содержать символ <b>@</b> и заглавную букву <b>S</b>.<br><br>Введите пароль и нажмите «Проверить».",
+    title: "История 11. Создание надёжного пароля",
+    text: "Мы регистрируемся в личном кабинете клиники. Система требует создать надёжный пароль. Пароль должен содержать символ <b>@</b> и заглавную букву <b>S</b>. Введите пароль и нажмите кнопку «Проверить».",
     input: true,
     placeholder: "Например: Secure@2026",
     check: value => {
-      if (!value) return { ok: false, message: "Введите пароль." };
+      if (!value) {
+        return { ok: false, message: "Введите пароль." };
+      }
+
       const hasAt = value.includes("@");
       const hasS = value.includes("S");
-      if (hasAt && hasS) return { ok: true, message: "Отличный пароль! В нём есть и @, и заглавная S. В Python это выглядело бы так: '@' in password and 'S' in password." };
-      let message = "Пароль не прошёл проверку. ";
-      if (!hasAt) message += "В нём нет символа @. ";
-      if (!hasS) message += "В нём нет заглавной буквы S. ";
-      message += "Попробуйте снова.";
+
+      if (hasAt && hasS) {
+        return {
+          ok: true,
+          message: "Пароль соответствует требованиям безопасности. В пароле присутствуют символ @ и заглавная буква S. Регистрация завершена."
+        };
+      }
+
+      let message = "Пароль не соответствует требованиям безопасности. ";
+
+      if (!hasAt) message += "В пароле отсутствует символ @. ";
+      if (!hasS) message += "В пароле отсутствует заглавная буква S. ";
+
+      message += "В Python проверка выполняется следующим образом: '@' in password and 'S' in password.";
+
       return { ok: false, message };
     }
   }
 ];
 
 function render() {
-  const s = steps[step];
+  const currentStep = steps[step];
+
   progressBar.style.width = (step / totalSteps * 100) + "%";
   scoreBadge.textContent = "Очки: " + score;
 
-  if (!s) return showFinal();
+  if (!currentStep) {
+    return showFinal();
+  }
 
   let html = `
-    <h1>${s.title}</h1>
-    <p>${s.text}</p>
+    <h1>${currentStep.title}</h1>
+    <p>${currentStep.text}</p>
   `;
 
-  if (s.code) {
-    html += `<div class="code">${s.code}</div>`;
+  if (currentStep.code) {
+    html += `<div class="code">${currentStep.code}</div>`;
   }
 
-  if (s.list) {
-    html += `<div class="list">` + s.list.map((x, i) =>
-      `<div class="item"><span>${i}</span>${x}</div>`
-    ).join("") + `</div>`;
+  if (currentStep.list) {
+    html += `<div class="list">` + currentStep.list.map((item, index) => {
+      return `<div class="item"><span>${index}</span>${item}</div>`;
+    }).join("") + `</div>`;
   }
 
-  if (s.question) {
-    html += `<p><b>Задание:</b> ${s.question}</p>
-      <div class="answers">` +
-      s.options.map((o, i) =>
-        `<button data-i="${i}">${o.text}</button>`
-      ).join("") +
-      `</div>
+  if (currentStep.question) {
+    html += `
+      <p><b>Задание:</b> ${currentStep.question}</p>
+      <div class="answers">
+        ${currentStep.options.map((option, index) => {
+          return `<button data-i="${index}">${option.text}</button>`;
+        }).join("")}
+      </div>
       <div class="feedback" id="feedback"></div>
       <div class="actions hidden" id="actions">
         <button class="btn" id="next">Продолжить →</button>
-      </div>`;
+      </div>
+    `;
   }
 
-  if (s.input) {
+  if (currentStep.input) {
     html += `
-      <input id="password" type="text" placeholder="${s.placeholder}" autocomplete="off">
+      <input id="password" type="text" placeholder="${currentStep.placeholder}" autocomplete="off">
       <div class="actions">
         <button class="btn" id="check">Проверить пароль</button>
       </div>
       <div class="feedback" id="feedback"></div>
       <div class="actions hidden" id="actions">
         <button class="btn" id="next">Перейти к финалу →</button>
-      </div>`;
+      </div>
+    `;
   }
 
   app.innerHTML = html;
 
-  if (s.options) {
+  if (currentStep.options) {
     app.querySelectorAll("button[data-i]").forEach(button => {
-      button.addEventListener("click", () => answer(Number(button.dataset.i)));
+      button.addEventListener("click", () => {
+        answer(Number(button.dataset.i));
+      });
     });
   }
 
-  if (s.input) {
-    const input = document.getElementById("password");
+  if (currentStep.input) {
+    const passwordInput = document.getElementById("password");
     const feedback = document.getElementById("feedback");
     const actions = document.getElementById("actions");
 
     document.getElementById("check").addEventListener("click", () => {
-      const result = s.check(input.value.trim());
+      const result = currentStep.check(passwordInput.value.trim());
+
       feedback.className = "feedback show " + (result.ok ? "ok" : "err");
       feedback.innerHTML = (result.ok ? "✅ " : "❌ ") + result.message;
 
@@ -485,6 +597,7 @@ function render() {
         score += 10;
         scoreBadge.textContent = "Очки: " + score;
         actions.classList.remove("hidden");
+
         document.getElementById("next").addEventListener("click", () => {
           step++;
           render();
@@ -492,70 +605,86 @@ function render() {
       }
     });
 
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") document.getElementById("check").click();
+    passwordInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        document.getElementById("check").click();
+      }
     });
   }
 }
 
 function answer(index) {
-  const s = steps[step];
-  const option = s.options[index];
+  const currentStep = steps[step];
+  const selectedOption = currentStep.options[index];
   const feedback = document.getElementById("feedback");
   const actions = document.getElementById("actions");
 
   app.querySelectorAll("button[data-i]").forEach((button, i) => {
     button.disabled = true;
-    if (s.options[i].correct) button.classList.add("correct");
-    if (i === index && !option.correct) button.classList.add("wrong");
+
+    if (currentStep.options[i].correct) {
+      button.classList.add("correct");
+    }
+
+    if (i === index && !selectedOption.correct) {
+      button.classList.add("wrong");
+    }
   });
 
-  if (option.correct) {
+  if (selectedOption.correct) {
     score += 10;
     scoreBadge.textContent = "Очки: " + score;
+
     feedback.className = "feedback show ok";
-    feedback.innerHTML = "✅ " + option.explain;
+    feedback.innerHTML = "✅ " + selectedOption.explain;
+
     actions.classList.remove("hidden");
+
     document.getElementById("next").addEventListener("click", () => {
       step++;
       render();
     });
   } else {
     feedback.className = "feedback show err";
-    feedback.innerHTML = "❌ " + option.explain;
+    feedback.innerHTML = "❌ " + selectedOption.explain;
+
     actions.classList.remove("hidden");
-    const retry = document.createElement("button");
-    retry.className = "btn secondary";
-    retry.textContent = "Попробовать снова";
-    retry.addEventListener("click", render);
-    actions.appendChild(retry);
+
+    const retryButton = document.createElement("button");
+    retryButton.className = "btn secondary";
+    retryButton.textContent = "Попробовать снова";
+    retryButton.addEventListener("click", render);
+
+    actions.appendChild(retryButton);
   }
 }
 
 function showFinal() {
   progressBar.style.width = "100%";
+
   const percent = Math.round(score / (totalSteps * 10) * 100);
 
   app.innerHTML = `
     <div class="final">
-      <h1>🎉 Квест пройден!</h1>
+      <h1>🎉 Квест успешно завершён!</h1>
       <div class="score">${score} / ${totalSteps * 10}</div>
-      <p>Вы освоили основные приёмы работы со списками Python:</p>
+      <p>В ходе выполнения заданий мы освоили основные операции со списками в Python:</p>
       <div class="code">
-append() — добавить в конец  
-insert(index, value) — вставить на позицию  
-remove(value) — удалить по значению  
-del list[index] — удалить по индексу  
-pop() — удалить и вернуть последний элемент  
-clear() — очистить список  
-in — проверить наличие элемента  
-list[index] = value — заменить элемент
+append() — добавление элемента в конец списка  
+insert(index, value) — вставка элемента на определённую позицию  
+remove(value) — удаление элемента по значению  
+del list[index] — удаление элемента по индексу  
+pop() — удаление последнего элемента  
+clear() — очистка списка  
+in — проверка наличия элемента  
+list[index] = value — замена элемента по индексу
       </div>
       <p class="muted">Ваш результат: ${percent}% правильных ответов.</p>
       <div class="actions" style="justify-content:center">
         <button class="btn" onclick="restart()">Пройти квест снова</button>
       </div>
-    </div>`;
+    </div>
+  `;
 }
 
 function restart() {
