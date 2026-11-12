@@ -113,18 +113,24 @@ tw-passage[tags]:not([tags~="l1"]) {
     width: 700px !important;
     max-width: calc(100% - 40px) !important;
     
-    background-color: rgba(255, 255, 255, 0.25) !important; /* <-- 75% прозрачности */
-    backdrop-filter: blur(5px) !important; /* <-- Легкое размытие заднего фона, чтобы текст не сливался с картинкой */
+    /* Полупрозрачный белый фон (50% непрозрачности) */
+    background-color: rgba(255, 255, 255, 0.5) !important; 
+    
+    /* СИЛЬНОЕ размытие фона под карточкой (создает эффект матового стекла) */
+    backdrop-filter: blur(12px) !important; 
+    -webkit-backdrop-filter: blur(12px) !important;
+    
     padding: 25px !important;         
     border-radius: 15px !important;   
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important; 
+    box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2) !important; 
     
     font-size: 25px !important;       
     font-weight: bold !important;     
-    text-shadow: none !important;
+    
+    /* Легкая белая обводка вокруг текста для лучшей читаемости */
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.9), 0px 0px 8px rgba(255, 255, 255, 0.6) !important;
     z-index: 10 !important;
 }
-
 /* ============================================================ */
 /* 4. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
 /* ============================================================ */
@@ -588,6 +594,19 @@ tw-passage[tags~="sit"]:not([tags~="l1"]) {
     font-size: 16px !important;
     text-align: justify !important;
 }
+
+/* Красивый фон для блоков кода, чтобы они выделялись на прозрачной карточке */
+tw-passage code {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    padding: 3px 6px !important;
+    border-radius: 6px !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+    display: inline-block !important; /* Чтобы отступы работали корректно */
+    margin: 2px 0 !important;
+}
+    
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
 <tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
 [[Начать обучение]]</tw-passagedata>
