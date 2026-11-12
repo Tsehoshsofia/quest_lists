@@ -1,453 +1,842 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мастер списков Python</title>
-<style>
-  :root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --accent: #38bdf8;
-    --good: #22c55e;
-    --bad: #ef4444;
-    --text: #e2e8f0;
-    --muted: #94a3b8;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    font-family: "Segoe UI", system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding: 24px 16px;
-  }
-
-  .game { width: 100%; max-width: 860px; }
-
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-  }
-
-  .badge {
-    background: #1e293b;
-    border: 1px solid #334155;
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-size: 14px;
-    color: var(--muted);
-  }
-
-  .card {
-    background: var(--card);
-    border: 1px solid #334155;
-    border-radius: 18px;
-    padding: 26px;
-    box-shadow: 0 18px 40px rgba(0,0,0,.25);
-  }
-
-  h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; }
-  h2 { margin: 0 0 10px; font-size: 22px; }
-  p { line-height: 1.6; color: var(--text); }
-  .muted { color: var(--muted); font-size: 15px; }
-
-  .code {
-    display: block;
-    background: #0b1120;
-    border: 1px solid #334155;
-    color: #7dd3fc;
-    padding: 14px 16px;
-    border-radius: 12px;
-    font-family: Consolas, Monaco, monospace;
-    font-size: 15px;
-    white-space: pre-wrap;
-    margin: 16px 0;
-  }
-
-  .list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 14px 0 20px;
-  }
-
-  .item {
-    background: #0b1120;
-    border: 1px solid #334155;
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-family: Consolas, Monaco, monospace;
-    font-size: 14px;
-  }
-
-  .item span {
-    color: var(--muted);
-    font-size: 12px;
-    margin-right: 6px;
-  }
-
-  .answers { display: grid; gap: 10px; margin-top: 18px; }
-
-  button {
-    width: 100%;
-    text-align: left;
-    background: #0b1120;
-    border: 1px solid #334155;
-    color: var(--text);
-    padding: 14px 16px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-family: Consolas, Monaco, monospace;
-    cursor: pointer;
-    transition: .15s ease;
-  }
-
-  button:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-  }
-
-  button.correct {
-    border-color: var(--good);
-    background: rgba(34,197,94,.12);
-  }
-
-  button.wrong {
-    border-color: var(--bad);
-    background: rgba(239,68,68,.10);
-  }
-
-  .feedback {
-    margin-top: 16px;
-    padding: 14px 16px;
-    border-radius: 12px;
-    display: none;
-    line-height: 1.55;
-  }
-
-  .feedback.show { display: block; }
-  .feedback.ok { background: rgba(34,197,94,.12); border: 1px solid var(--good); }
-  .feedback.err { background: rgba(239,68,68,.10); border: 1px solid var(--bad); }
-
-  .actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    width: auto;
-    text-align: center;
-    font-family: inherit;
-    background: var(--accent);
-    border: none;
-    color: #04283d;
-    font-weight: 700;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .btn.secondary {
-    background: transparent;
-    border: 1px solid #475569;
-    color: var(--text);
-  }
-
-  input {
-    width: 100%;
-    background: #0b1120;
-    border: 1px solid #334155;
-    color: var(--text);
-    padding: 13px 14px;
-    border-radius: 10px;
-    font-family: Consolas, Monaco, monospace;
-    font-size: 15px;
-    margin-top: 10px;
-  }
-
-  input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-
-  .progress {
-    height: 8px;
-    background: #0b1120;
-    border-radius: 999px;
-    overflow: hidden;
-    margin-bottom: 18px;
-  }
-
-  .progress div {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg, var(--accent), #a78bfa);
-    transition: width .4s ease;
-  }
-
-  .hidden { display: none; }
-  .final { text-align: center; }
-  .final h1 { font-size: 34px; }
-
-  .score {
-    font-size: 40px;
-    font-weight: 800;
-    color: var(--accent);
-    margin: 12px 0;
-  }
-
-  @media (max-width: 600px) {
-    .card { padding: 18px; }
-    h1 { font-size: 24px; }
-    .code { font-size: 13px; }
-  }
-</style>
+<!DOCTYPE html> 
+<html>  
+<head> 
+<meta charset="utf-8">  
+<meta content="width=device-width, initial-scale=1" name="viewport"> 
+<title>Основы программирования</title> 
+<style title="Twine CSS">@keyframes appear{0%{opacity:0}to{opacity:1}}@keyframes fade-in-out{0%,to{opacity:0}50%{opacity:1}}@keyframes rumble{25%{top:-0.1em}75%{top:.1em}0%,to{top:0px}}@keyframes shudder{25%{left:.1em}75%{left:-0.1em}0%,to{left:0px}}@keyframes buoy{25%{top:.25em}75%{top:-0.25em}0%,to{top:0px}}@keyframes sway{25%{left:.25em}75%{left:-0.25em}0%,to{left:0px}}@keyframes pulse{0%{transform:scale(0, 0)}20%{transform:scale(1.2, 1.2)}40%{transform:scale(0.9, 0.9)}60%{transform:scale(1.05, 1.05)}80%{transform:scale(0.925, 0.925)}to{transform:scale(1, 1)}}@keyframes zoom-in{0%{transform:scale(0, 0)}to{transform:scale(1, 1)}}@keyframes shudder-in{0%,to{transform:translateX(0em)}5%,25%,45%{transform:translateX(-1em)}15%,35%,55%{transform:translateX(1em)}65%{transform:translateX(-0.6em)}75%{transform:translateX(0.6em)}85%{transform:translateX(-0.2em)}95%{transform:translateX(0.2em)}}@keyframes rumble-in{0%,to{transform:translateY(0em)}5%,25%,45%{transform:translateY(-1em)}15%,35%,55%{transform:translateY(1em)}65%{transform:translateY(-0.6em)}75%{transform:translateY(0.6em)}85%{transform:translateY(-0.2em)}95%{transform:translateY(0.2em)}}@keyframes fidget{0%,8.1%,82.1%,31.1%,38.1%,44.1%,40.1%,47.1%,74.1%,16.1%,27.1%,72.1%,24.1%,95.1%,6.1%,36.1%,20.1%,4.1%,91.1%,14.1%,87.1%,to{left:0px;top:0px}8%,82%,31%,38%,44%{left:-1px}40%,47%,74%,16%,27%{left:1px}72%,24%,95%,6%,36%{top:-1px}20%,4%,91%,14%,87%{top:1px}}@keyframes slide-right{0%{transform:translateX(-100vw)}}@keyframes slide-left{0%{transform:translateX(100vw)}}@keyframes slide-up{0%{transform:translateY(100vh)}}@keyframes slide-down{0%{transform:translateY(-100vh)}}@keyframes fade-right{0%{opacity:0;transform:translateX(-1em)}to{opacity:1}}@keyframes fade-left{0%{opacity:0;transform:translateX(1em)}to{opacity:1}}@keyframes fade-up{0%{opacity:0;transform:translateY(1em)}to{opacity:1}}@keyframes fade-down{0%{opacity:0;transform:translateY(-1em)}to{opacity:1}}@keyframes flicker{0%,29%,31%,63%,65%,77%,79%,86%,88%,91%,93%{opacity:0}30%{opacity:.2}64%{opacity:.4}78%{opacity:.6}87%{opacity:.8}92%,to{opacity:1}}@keyframes blur{0%{filter:blur(2rem);opacity:0}25%{opacity:1}to{filter:blur(0rem);opacity:1}}.dom-debug-mode tw-story,.dom-debug-mode tw-passage,.dom-debug-mode tw-sidebar,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{outline:1px solid #f5a3da;min-height:32px;display:block !important}.dom-debug-mode tw-story::before,.dom-debug-mode tw-passage::before,.dom-debug-mode tw-sidebar::before,.dom-debug-mode tw-include::before,.dom-debug-mode tw-hook::before,.dom-debug-mode tw-expression::before,.dom-debug-mode tw-link::before,.dom-debug-mode tw-dialog::before,.dom-debug-mode tw-columns::before,.dom-debug-mode tw-column::before,.dom-debug-mode tw-align::before{position:absolute;top:0;left:0;height:16px;background-color:#f5a3da;color:#000;font-size:16px;font-weight:normal;font-style:normal;font-family:monospace;display:inline-block;line-height:100%;white-space:pre;z-index:999997}.dom-debug-mode tw-story:hover,.dom-debug-mode tw-passage:hover,.dom-debug-mode tw-sidebar:hover,.dom-debug-mode tw-include:hover,.dom-debug-mode tw-hook:hover,.dom-debug-mode tw-expression:hover,.dom-debug-mode tw-link:hover,.dom-debug-mode tw-dialog:hover,.dom-debug-mode tw-columns:hover,.dom-debug-mode tw-column:hover,.dom-debug-mode tw-align:hover{outline:1px solid #fc9}.dom-debug-mode tw-story:hover::before,.dom-debug-mode tw-passage:hover::before,.dom-debug-mode tw-sidebar:hover::before,.dom-debug-mode tw-include:hover::before,.dom-debug-mode tw-hook:hover::before,.dom-debug-mode tw-expression:hover::before,.dom-debug-mode tw-link:hover::before,.dom-debug-mode tw-dialog:hover::before,.dom-debug-mode tw-columns:hover::before,.dom-debug-mode tw-column:hover::before,.dom-debug-mode tw-align:hover::before{background-color:#fc9;transition:background-color 1s}.dom-debug-mode tw-passage,.dom-debug-mode tw-include,.dom-debug-mode tw-hook,.dom-debug-mode tw-expression,.dom-debug-mode tw-link,.dom-debug-mode tw-dialog,.dom-debug-mode tw-columns,.dom-debug-mode tw-column,.dom-debug-mode tw-align{padding:1em;margin:0}.dom-debug-mode tw-story::before{content:'<tw-story tags="' attr(tags) '">'}.dom-debug-mode tw-passage::before{top:-16px;content:'<tw-passage tags="' attr(tags) '">'}.dom-debug-mode tw-sidebar::before{top:-16px;content:"<tw-sidebar>"}.dom-debug-mode tw-hook::before{content:'<tw-hook name="' attr(name) '">'}.dom-debug-mode tw-expression::before{content:'<tw-expression name="' attr(name) '">'}.dom-debug-mode tw-link::before{content:'<tw-link name="' attr(name) '">'}.dom-debug-mode tw-dialog::before{content:"<tw-dialog>"}.dom-debug-mode tw-columns::before{content:"<tw-columns>"}.dom-debug-mode tw-column::before{content:"<tw-column>"}.dom-debug-mode tw-align::before{content:"<tw-align>"}.dom-debug-mode tw-include::before{content:'<tw-include type="' attr(type) '" name="' attr(name) '">'}tw-open-button[goto]{display:none}.debug-mode tw-open-button[replay],.debug-mode tw-open-button[goto]{display:inline}.debug-mode tw-expression{display:inline-block !important}.debug-mode tw-expression[type=variable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"$" attr(name)}.debug-mode tw-expression[type=tempVariable]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"_" attr(name)}.debug-mode tw-expression[return=boolean]{background-color:rgba(179,179,179,.2)}.debug-mode tw-expression[return=array]{background-color:rgba(255,102,102,.2)}.debug-mode tw-expression[return=dataset]{background-color:rgba(255,128,0,.2)}.debug-mode tw-expression[return=number]{background-color:rgba(255,179,102,.2)}.debug-mode tw-expression[return=datamap]{background-color:rgba(255,255,102,.2)}.debug-mode tw-expression[return=changer]{background-color:rgba(179,255,102,.2)}.debug-mode tw-expression[return=lambda]{background-color:rgba(102,255,102,.2)}.debug-mode tw-expression[return=hookname]{background-color:rgba(102,255,204,.2)}.debug-mode tw-expression[return=string]{background-color:rgba(102,255,255,.2)}.debug-mode tw-expression[return=datatype]{background-color:rgba(102,153,255,.2)}.debug-mode tw-expression[return=gradient],.debug-mode tw-expression[return=colour]{background-color:rgba(204,102,255,.2)}.debug-mode tw-expression[return=instant],.debug-mode tw-expression[return=macro]{background-color:rgba(240,117,199,.2)}.debug-mode tw-expression[return=command]{background-color:rgba(153,153,255,.2)}.debug-mode tw-expression.false{background-color:rgba(255,0,0,.2) !important}.debug-mode tw-expression[type=macro]::before{content:"(" attr(name) ":)";padding:0 .5rem;font-size:1rem;vertical-align:middle;line-height:normal;background-color:inherit;border:1px solid rgba(255,255,255,.5)}.debug-mode tw-expression[title]:not([title=""]){cursor:help}.debug-mode tw-hook{background-color:rgba(0,85,255,.1) !important}.debug-mode tw-hook::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"["}.debug-mode tw-hook::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]"}.debug-mode tw-hook[name]::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"]<" attr(name) "|"}.debug-mode tw-pseudo-hook{background-color:rgba(255,170,0,.1) !important}.debug-mode tw-collapsed::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"{"}.debug-mode tw-collapsed::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"}"}.debug-mode tw-verbatim::before,.debug-mode tw-verbatim::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:"`"}.debug-mode tw-align[style*="text-align: center"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 50%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: left"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0.25) 0%, hsla(14, 100%, 87%, 0) 100%)}.debug-mode tw-align[style*="text-align: right"]{background:linear-gradient(to right, hsla(14, 100%, 87%, 0) 0%, hsla(14, 100%, 87%, 0.25) 100%)}.debug-mode tw-column{background-color:rgba(189,228,255,.2)}.debug-mode tw-enchantment{animation:enchantment .5s infinite;border:1px solid}.debug-mode tw-link::after,.debug-mode tw-broken-link::after{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(passage-name)}.debug-mode tw-include{background-color:rgba(204,128,51,.1)}.debug-mode tw-include::before{font-size:.8rem;padding-left:.2rem;padding-right:.2rem;vertical-align:top;content:attr(type) ' "' attr(name) '"'}.debug-dialogs tw-backdrop:not(.eval-replay):not(.harlowe-crash){pointer-events:none;opacity:.1}tw-eval-replay tw-eval-code,tw-eval-replay tw-eval-explanation{max-height:20vh;overflow:auto;margin:10px auto}tw-eval-replay tw-eval-code{display:block;font-family:monospace;padding-bottom:1ex;border-bottom:2px solid gray}tw-eval-replay tw-eval-explanation{display:block;text-align:center}tw-eval-replay tw-eval-explanation>code{white-space:pre-wrap}tw-eval-replay tw-eval-explanation>code.from-block{width:40%;display:inline-block;text-align:left;max-height:4em;overflow-wrap:anywhere;overflow-y:scroll}tw-eval-replay tw-eval-explanation>code.from-block~.to-desc{width:calc(40% - 2em);margin-left:2em;display:inline-block}tw-eval-replay tw-eval-explanation>code.from-block+span::after{content:"..."}tw-eval-replay tw-eval-explanation>code.from-inline{text-align:right}tw-eval-replay tw-eval-explanation>:nth-child(2){white-space:pre}tw-eval-replay tw-eval-explanation>.to-desc{text-align:left}tw-eval-replay tw-eval-explanation>table{width:100%;margin-top:1em}tw-eval-replay tw-eval-explanation>table td{white-space:pre-wrap !important;word-wrap:anywhere}tw-eval-replay tw-eval-reason{text-align:center;font-size:80%;font-style:italic;display:block}tw-eval-replay tw-eval-it{text-align:center;font-size:80%;display:block}tw-eval-replay tw-dialog-links{display:-ms-flexbox;display:flex;-ms-flex-pack:distribute;justify-content:space-around}@keyframes enchantment{0%,to{border-color:#ffb366}50%{border-color:#6fc}}tw-debugger{position:fixed;box-sizing:border-box;bottom:0;right:0;z-index:999999;min-width:14em;min-height:1em;padding:0em .5em .5em 1em;font-size:1.25em;font-family:sans-serif;color:#262626;background-color:#fff;border-left:solid #262626 2px;border-top:solid #262626 2px;border-top-left-radius:.5em;opacity:1}tw-debugger.fade-panel:not(:hover){opacity:.33}tw-debugger.theme-dark{color:#d9d9d9;background-color:#000}tw-debugger.theme-dark{border-color:#d9d9d9 rgba(0,0,0,0) rgba(0,0,0,0) #d9d9d9}tw-debugger select{margin-right:1em;width:12em}tw-debugger button,tw-debugger tw-link{border-radius:3px;border:solid #999 1px;margin:auto 4px;color:#262626;background-color:#fff;cursor:pointer}tw-debugger button.enabled,tw-debugger tw-link.enabled{color:#000;background-color:#d9d9d9;box-shadow:inset #999 3px 5px .5em}tw-debugger.theme-dark button,tw-debugger.theme-dark tw-link{color:#d9d9d9;background-color:#000;border-color:#666}tw-debugger.theme-dark button.enabled,tw-debugger.theme-dark tw-link.enabled{color:#e6e6e6;background-color:#424242;box-shadow:inset #666 3px 5px .5em}tw-debugger button{font-size:1em;overflow-x:hidden;text-overflow:ellipsis;white-space:pre}tw-debugger tw-link{font-size:1.25em;border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}tw-debugger tw-link:hover{border-color:#262626;color:#262626}tw-debugger.theme-dark tw-link:hover{border-color:#d9d9d9;color:#d9d9d9}tw-debugger tw-dialog{background-color:#fff;color:#000;font-size:1.25em}tw-debugger.theme-dark tw-dialog{background-color:#000;color:#e6e6e6}tw-debugger .panel{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:absolute;bottom:100%;left:-2px;right:0;padding:1em;overflow-y:scroll;overflow-x:hidden;border:inherit;box-sizing:content-box;background-color:#fff;border-bottom:solid #999 2px;border-top-left-radius:.5em;border-bottom-left-radius:.5em;font-size:.8em}tw-debugger .panel:empty,tw-debugger .panel[hidden]{display:none}tw-debugger.theme-dark .panel{background-color:#000;border-bottom-color:#666}tw-debugger .panel-source .panel-row-buttons{width:2rem}tw-debugger .panel-source .source-tags{width:20%;font-style:italic}tw-debugger .panel-row-source td{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere;max-height:8rem;padding:1rem}tw-debugger .panel-rows{width:100%;overflow-x:scroll}tw-debugger .panel-rows>*{display:table-row}tw-debugger .panel-rows>div:nth-of-type(2n){background-color:#e6e6e6}tw-debugger .panel-tools .panel-rows>*,tw-debugger .panel-options .panel-rows>*{margin-top:.4rem;display:block}tw-debugger.theme-dark .panel-rows>div:nth-of-type(2n){background-color:#212121}tw-debugger .panel-row-buttons{text-align:right}tw-debugger .panel-variables .panel-rows:empty::before{content:"~ No variables ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-enchantments .panel-rows:empty::before{content:"~ No enchantments ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty::before{content:"~ No errors... for now. ~";font-style:italic;color:#575757;text-align:center}tw-debugger .panel-errors .panel-rows:empty+.panel-errors-bottom{display:none}tw-debugger.theme-dark .panel-variables .panel-rows:empty::before,tw-debugger.theme-dark .panel-enchantments .panel-rows:empty::before,tw-debugger.theme-dark .panel-errors .panel-rows:empty::before{color:#a8a8a8}tw-debugger .panel-rows:empty+.panel-variables-bottom{display:none}tw-debugger th[data-col]{text-decoration:underline;cursor:pointer}tw-debugger th[data-col][data-order=asc]::after{content:"↓"}tw-debugger th[data-col][data-order=desc]::after{content:"↑"}tw-debugger .panel-storylets:not(.panel-exclusive) .storylet-exclusive,tw-debugger .panel-storylets:not(.panel-urgent) .storylet-urgent{display:none}tw-debugger .storylet-exclusive,tw-debugger .storylet-urgent,tw-debugger .storylet-open{text-align:center}tw-debugger .panel-variables-bottom{padding-top:5px}tw-debugger .enchantment-row{min-height:1.5em}tw-debugger .variable-path{opacity:.4}tw-debugger .temporary-variable-scope,tw-debugger .enchantment-local{font-family:sans-serif;font-weight:normal;opacity:.8;font-size:.75em}tw-debugger .temporary-variable-scope:not(:empty)::before,tw-debugger .enchantment-local:not(:empty)::before{content:" in "}tw-debugger .variable-name,tw-debugger .enchantment-name{font-family:monospace;font-weight:bold}tw-debugger .variable-type{color:#575757;font-weight:normal;text-overflow:ellipsis;overflow:hidden;max-width:10em}tw-debugger.theme-dark .variable-type{color:#a8a8a8}tw-debugger .error-row{display:table-row;background-color:rgba(230,101,204,.3)}tw-debugger .error-row:nth-of-type(2n){background-color:rgba(237,145,219,.3)}tw-debugger .error-row>*{display:table-cell;padding:.25em .5em}tw-debugger .error-row .error-message[title]:not([title=""]){cursor:help}tw-debugger .error-row .error-passage{color:#575757}tw-debugger.theme-dark .error-row .error-passage{color:#a8a8a8}tw-debugger .storylet-row{background-color:rgba(193,240,225,.3)}tw-debugger .storylet-row:nth-child(2n){background-color:rgba(152,231,204,.3)}tw-debugger .storylet-row.storylet-closed{font-style:italic;background-color:#fff}tw-debugger .storylet-row.storylet-closed:nth-child(2n){background-color:#e6e6e6}tw-debugger .storylet-row.storylet-closed>:not(.storylet-lambda){opacity:.6}.storylet-error tw-debugger .storylet-row{background-color:rgba(230,101,204,.3)}.storylet-error tw-debugger .storylet-row:nth-child(2n){background-color:rgba(237,145,219,.3)}tw-debugger .storylet-row .storylet-name,tw-debugger .storylet-row .storylet-value{display:inline-block;width:50%}tw-debugger .storylet-row .storylet-lambda{font-family:monospace;font-size:1rem;white-space:pre-wrap;overflow-wrap:anywhere}tw-debugger.theme-dark .storylet-row.storylet-closed{background-color:#000}tw-debugger.theme-dark .storylet-row.storylet-closed:nth-child(2n){background-color:#212121}tw-debugger .tabs{padding-bottom:.5em}tw-debugger .tab{border-radius:0px 0px .5em .5em;border-top:none;top:-2px}tw-debugger .resizer-h{position:absolute;height:14em;border-left:2px solid #999;border-right:2px solid #999;top:10px;left:4px;width:8px;cursor:ew-resize}tw-debugger.theme-dark .resizer-h{border-color:rgba(0,0,0,0) #666}tw-debugger .resizer-v{position:absolute;height:8px;border-top:2px solid #999;border-bottom:2px solid #999;margin-bottom:4px;top:4px;left:10px;width:95%;cursor:ns-resize;box-sizing:border-box}tw-debugger.theme-dark .resizer-v{border-color:#666 rgba(0,0,0,0)}tw-debugger mark{color:inherit;background-color:rgba(101,230,230,.3) !important}tw-dialog{z-index:999997;border:#fff solid 2px;padding:2em;color:#fff;background-color:#000;display:block}@media(min-width: 576px){tw-dialog{max-width:50vw}}tw-dialog input[type=text]{font-size:inherit;width:100%;border:solid #fff !important}tw-dialog-links{text-align:right;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}tw-backdrop{z-index:999996;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,.8);display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center}tw-backdrop~tw-backdrop{display:none}tw-link,.enchantment-link{cursor:pointer;color:#4169e1;font-weight:bold;text-decoration:none;transition:color .2s ease-in-out}tw-passage [style^=color] tw-link:not(:hover),tw-passage [style*=" color"] tw-link:not(:hover),tw-passage [style^=color][hover=true] tw-link:hover,tw-passage [style*=" color"][hover=true] tw-link:hover,tw-passage [style^=color] .enchantment-link:not(:hover),tw-passage [style*=" color"] .enchantment-link:not(:hover),tw-passage [style^=color][hover=true] .enchantment-link:hover,tw-passage [style*=" color"][hover=true] .enchantment-link:hover{color:inherit}tw-link:hover,.enchantment-link:hover{color:#00bfff}tw-link:active,.enchantment-link:active{color:#dd4b39}.visited{color:#6941e1}tw-passage [style^=color] .visited:not(:hover),tw-passage [style*=" color"] .visited:not(:hover),tw-passage [style^=color][hover=true] .visited:hover,tw-passage [style*=" color"][hover=true] .visited:hover{color:inherit}.visited:hover{color:#e3e}tw-broken-link{color:#933;border-bottom:2px solid #933;cursor:not-allowed}tw-passage [style^=color] tw-broken-link:not(:hover),tw-passage [style*=" color"] tw-broken-link:not(:hover),tw-passage [style^=color][hover=true] tw-broken-link:hover,tw-passage [style*=" color"][hover=true] tw-broken-link:hover{color:inherit}tw-link.enchantment-mouseover,.link.enchantment-mouseover,tw-expression.enchantment-mouseover>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border-bottom:2px dashed #999}tw-link.enchantment-mouseover:hover,tw-link.enchantment-mouseover:active,.link.enchantment-mouseover:hover,.link.enchantment-mouseover:active,tw-expression.enchantment-mouseover>tw-link:hover,tw-expression.enchantment-mouseover>tw-link:active{color:inherit}tw-link.enchantment-mouseover.enchantment-button,.link.enchantment-mouseover.enchantment-button,tw-expression.enchantment-mouseover>tw-link.enchantment-button{border-style:dashed}tw-link.enchantment-mouseout,.link.enchantment-mouseout,tw-expression.enchantment-mouseout>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;border:rgba(64,149,191,.6) 1px solid;border-radius:.2em}tw-link.enchantment-mouseout:hover,tw-link.enchantment-mouseout:active,.link.enchantment-mouseout:hover,.link.enchantment-mouseout:active,tw-expression.enchantment-mouseout>tw-link:hover,tw-expression.enchantment-mouseout>tw-link:active{color:inherit}tw-link.enchantment-mouseout:hover,.link.enchantment-mouseout:hover,tw-expression.enchantment-mouseout>tw-link:hover{background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 1px solid}tw-link.enchantment-dblclick,.link.enchantment-dblclick,tw-expression.enchantment-dblclick>tw-link{color:inherit;font-weight:inherit;transition:none;cursor:inherit;cursor:pointer;border:2px solid #999;border-radius:0}tw-link.enchantment-dblclick:hover,tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:hover,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:hover,tw-expression.enchantment-dblclick>tw-link:active{color:inherit}tw-link.enchantment-dblclick:active,.link.enchantment-dblclick:active,tw-expression.enchantment-dblclick>tw-link:active{background-color:#999}tw-link.enchantment-button,.link.enchantment-button,.enchantment-button:not(.link) tw-link,.enchantment-button:not(.link) .link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block}.enchantment-button{display:block}.enchantment-clickblock{cursor:pointer;width:100%;height:100%;display:block}.enchantment-clickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;color:rgba(65,105,225,.5);transition:color .2s ease-in-out}.enchantment-clickblock>:not(tw-enchantment):hover::after{color:rgba(0,191,255,.5)}.enchantment-clickblock>:not(tw-enchantment):active::after{color:rgba(222,78,59,.5)}.enchantment-clickblock>:not(tw-enchantment)::after{box-shadow:inset 0 0 0 .5vmax}.enchantment-clickblock>tw-passage::after,.enchantment-clickblock>tw-sidebar::after{box-shadow:0 0 0 .5vmax}.enchantment-mouseoverblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:2px dashed #999}.enchantment-mouseoutblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;border:rgba(64,149,191,.6) 2px solid}.enchantment-mouseoutblock:hover>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;background-color:rgba(175,197,207,.75);border:rgba(0,0,0,0) 2px solid;border-radius:.2em}.enchantment-dblclickblock>:not(tw-enchantment)::after{content:"";width:100%;height:100%;top:0;left:0;display:block;box-sizing:border-box;position:absolute;pointer-events:none;cursor:pointer;border:2px solid #999}tw-dialog-links{padding-top:1.5em}tw-dialog-links tw-link{border-radius:16px;border-style:solid;border-width:2px;text-align:center;padding:0px 8px;display:block;display:inline-block}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font:100% Georgia,serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 5%;overflow:hidden;background-color:#000;color:#fff}tw-story [style*=content-box] *{box-sizing:border-box}@media(min-width: 576px){tw-story{padding:5% 20%}}tw-story tw-consecutive-br{display:block;height:1.6ex;visibility:hidden}tw-story select{background-color:rgba(0,0,0,0);font:inherit;border-style:solid;padding:2px}tw-story select:not([disabled]){color:inherit}tw-story textarea{resize:none;background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none;padding:2px}tw-story input[type=text]{background-color:rgba(0,0,0,0);font:inherit;color:inherit;border-style:none}tw-story input[type=checkbox]{transform:scale(1.5);margin:0 .5em .5em .5em;vertical-align:middle}tw-story tw-noscript{animation:appear .8s}tw-passage{display:block}tw-sidebar{text-align:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}@media(min-width: 576px){tw-sidebar{left:-5em;width:3em;position:absolute;-ms-flex-direction:column;flex-direction:column}tw-enchantment[style*=width]>tw-sidebar{width:inherit}}tw-icon{display:inline-block;margin:.5em 0;font-size:66px;font-family:"Verdana",sans-serif}tw-icon[alt]{opacity:.2;cursor:pointer}tw-icon[alt]:hover{opacity:.4}tw-icon[data-label]::after{font-weight:bold;content:attr(data-label);font-size:20px;bottom:-20px;left:-50%;white-space:nowrap}tw-meter{display:block}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:.2em;padding:.2em;font-size:1rem;cursor:help;white-space:pre-wrap}tw-error.error{background-color:rgba(223,58,190,.6);color:#fff}tw-error.warning{background-color:rgba(223,140,58,.6);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:.8rem;line-height:1rem}tw-open-button,tw-folddown{cursor:pointer;line-height:0em;border-radius:4px;border:1px solid rgba(255,255,255,.5);font-size:.8rem;margin:0 .2rem;padding:3px;white-space:pre}tw-folddown::after{content:"▶"}tw-folddown.open::after{content:"▼"}tw-open-button[replay]{display:none}tw-error tw-open-button,tw-eval-replay tw-open-button{display:inline !important}tw-open-button::after{content:attr(label)}tw-notifier{border-radius:.2em;padding:.2em;font-size:1rem;background-color:rgba(223,182,58,.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid #000;display:inline-block;width:1em;height:1em}tw-enchantment:empty{display:none}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:.3em 0 .6em 0}pre{font-size:1rem;line-height:initial}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,.6);background-color:#ff9}ins{color:rgba(0,0,0,.6);background-color:rgba(255,242,204,.5);border-radius:.5em;box-shadow:0em 0em .2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between}.transition-in{animation:appear 0ms step-start}.transition-out{animation:appear 0ms step-end}[data-t8n^=dissolve].transition-in,[data-t8n=fade].transition-in{animation:appear .8s}[data-t8n^=dissolve].transition-out,[data-t8n=fade].transition-out{animation:appear .8s reverse}[data-t8n^=shudder].transition-in{display:inline-block !important;animation:shudder-in .8s}[data-t8n^=shudder].transition-out{display:inline-block !important;animation:shudder-in .8s reverse}[data-t8n^=rumble].transition-in{display:inline-block !important;animation:rumble-in .8s}[data-t8n^=rumble].transition-out{display:inline-block !important;animation:rumble-in .8s reverse}[data-t8n^=pulse].transition-in{animation:pulse .8s;display:inline-block !important}[data-t8n^=pulse].transition-out{animation:pulse .8s reverse;display:inline-block !important}[data-t8n^=zoom].transition-in{animation:zoom-in .8s;display:inline-block !important}[data-t8n^=zoom].transition-out{animation:zoom-in .8s reverse;display:inline-block !important}[data-t8n^=blur].transition-in{animation:blur .8s;display:inline-block !important}[data-t8n^=blur].transition-out{animation:blur .8s reverse;display:inline-block !important}[data-t8n^=slideleft].transition-in{animation:slide-left .8s;display:inline-block !important}[data-t8n^=slideleft].transition-out{animation:slide-right .8s reverse;display:inline-block !important}[data-t8n^=slideright].transition-in{animation:slide-right .8s;display:inline-block !important}[data-t8n^=slideright].transition-out{animation:slide-left .8s reverse;display:inline-block !important}[data-t8n^=slideup].transition-in{animation:slide-up .8s;display:inline-block !important}[data-t8n^=slideup].transition-out{animation:slide-down .8s reverse;display:inline-block !important}[data-t8n^=slidedown].transition-in{animation:slide-down .8s;display:inline-block !important}[data-t8n^=slidedown].transition-out{animation:slide-up .8s reverse;display:inline-block !important}[data-t8n^=fadeleft].transition-in{animation:fade-left .8s;display:inline-block !important}[data-t8n^=fadeleft].transition-out{animation:fade-right .8s reverse;display:inline-block !important}[data-t8n^=faderight].transition-in{animation:fade-right .8s;display:inline-block !important}[data-t8n^=faderight].transition-out{animation:fade-left .8s reverse;display:inline-block !important}[data-t8n^=fadeup].transition-in{animation:fade-up .8s;display:inline-block !important}[data-t8n^=fadeup].transition-out{animation:fade-down .8s reverse;display:inline-block !important}[data-t8n^=fadedown].transition-in{animation:fade-down .8s;display:inline-block !important}[data-t8n^=fadedown].transition-out{animation:fade-up .8s reverse;display:inline-block !important}[data-t8n^=flicker].transition-in{animation:flicker .8s}[data-t8n^=flicker].transition-out{animation:flicker .8s reverse}
+</style> 
 </head>
 <body>
+<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Основы программирования.</tw-noscript></noscript></tw-story>
+<tw-storydata name="Основы программирования" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="AE45C9B0-B1F9-4CD9-A712-6B9581B3534B" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* ========================================= */
+/* 1. БАЗОВЫЕ НАСТРОЙКИ, ШРИФТ И ПЕРЕНОСЫ */
+/* ============================================================ */
+body {
+    background-color: #FFFFFF !important;
+}
 
-<div class="game">
-  <div class="topbar">
-    <div class="badge">🐍 Мастер списков Python</div>
-    <div class="badge" id="scoreBadge">Очки: 0</div>
-  </div>
+tw-story {
+    background-color: #FFFFFF !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
-  <div class="progress"><div id="progressBar"></div></div>
-  <div class="card" id="app"></div>
-</div>
+tw-story, 
+tw-passage, 
+tw-link, 
+.enchantment-link,
+.success-word,
+tw-error,
+h1, h2, h3, h4, h5, h6, 
+p, span, div {
+    font-family: "Times New Roman", Times, serif !important;
+    line-height: 1.3 !important;
+}
 
-<tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Мастер списков Python.</tw-noscript></tw-noscript></tw-story>
-<tw-storydata name="Мастер списков Python" startnode="1" creator="Twine" creator-version="2.11.1" format="Harlowe" format-version="3.3.9" ifid="AE45C9B0-B1F9-4CD9-A712-6B9581B3534B" options="" tags="" zoom="1" hidden>
+/* Убираем лишние пустые строки */
+tw-story tw-consecutive-br { display: none !important; }
+tw-story br { display: block !important; content: "" !important; margin-bottom: 0px !important; }    
+/* ============================================================ */
+/* 2. ФОНОВЫЕ ИЗОБРАЖЕНИЯ ДЛЯ ВСЕХ БЛОКОВ */
+/* ============================================================ */
+tw-story[tags~="l1"] { background-image: url("7.jpeg"); }
+tw-story[tags~="l2"] { background-image: url("print.jpeg"); }
 
-<!-- ПЕРЕМЕННЫЕ -->
-<tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0, $step to 1, $totalSteps to 11)
-Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". 
-Я помогу тебе разобраться с операциями над списками в Python.
-[[Начать обучение]]</tw-passagedata>
+tw-story[tags~="l3"], tw-story[tags~="l13"], tw-story[tags~="l20"],
+tw-story[tags~="l23"], tw-story[tags~="l29"], tw-story[tags~="l37"],
+tw-story[tags~="l43"], tw-story[tags~="l54"], tw-story[tags~="l60"],
+tw-story[tags~="l66"] { background-image: url("9.jpeg") !important; }
 
-<!-- СТАРТ -->
-<tw-passagedata pid="2" name="Начать обучение" tags="l2" position="800,250" size="100,100">(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))]
+tw-story[tags~="l72"] { background-image: url("25.jpeg") !important; }
+
+tw-story[tags~="l4"], tw-story[tags~="l5"], tw-story[tags~="l9"],
+tw-story[tags~="l6"], tw-story[tags~="l7"], tw-story[tags~="l11"],
+tw-story[tags~="l15"], tw-story[tags~="l19"], tw-story[tags~="l21"],
+tw-story[tags~="l26"], tw-story[tags~="l27"], tw-story[tags~="l33"],
+tw-story[tags~="l34"], tw-story[tags~="l35"], tw-story[tags~="l41"],
+tw-story[tags~="l42"], tw-story[tags~="l48"], tw-story[tags~="l49"],
+tw-story[tags~="l50"], tw-story[tags~="l55"], tw-story[tags~="l56"],
+tw-story[tags~="l57"], tw-story[tags~="l62"], tw-story[tags~="l64"],
+tw-story[tags~="l69"], tw-story[tags~="l70"], tw-story[tags~="l71"] { 
+    background-image: url("15.jpeg") !important; 
+}
+
+tw-story[tags~="l4"], tw-story[tags~="l5"], tw-story[tags~="l9"],
+tw-story[tags~="l10"], tw-story[tags~="l14"], tw-story[tags~="l17"],
+tw-story[tags~="l18"], tw-story[tags~="l24"], tw-story[tags~="l25"],
+tw-story[tags~="l30"], tw-story[tags~="l31"], tw-story[tags~="l32"],
+tw-story[tags~="l38"], tw-story[tags~="l39"], tw-story[tags~="l44"],
+tw-story[tags~="l45"], tw-story[tags~="l46"], tw-story[tags~="l51"],
+tw-story[tags~="l52"], tw-story[tags~="l53"], tw-story[tags~="l59"],
+tw-story[tags~="l61"], tw-story[tags~="l65"], tw-story[tags~="l67"],
+tw-story[tags~="l68"] { background-image: url("4.jpeg") !important; }
+
+tw-story[tags~="l8"], tw-story[tags~="l16"], tw-story[tags~="l22"],
+tw-story[tags~="l28"], tw-story[tags~="l36"], tw-story[tags~="l40"],
+tw-story[tags~="l47"], tw-story[tags~="l58"], tw-story[tags~="l63"] {
+    background-image: url("белый_фон.jpeg") !important; 
+}
+
+/* ============================================================ */
+/* 3. ОБЩИЕ СТИЛИ ДЛЯ КАРТОЧЕК */
+/* ============================================================ */
+tw-passage[tags]:not([tags~="l1"]) { 
+    position: fixed !important;
+    bottom: 5vh !important;   
+    top: auto !important;
+    left: 0 !important;     
+    right: 0 !important;    
+    margin: 0 auto !important; 
+    
+    width: 700px !important;
+    max-width: calc(100% - 40px) !important;
+    
+    background-color: #FFFFFF !important; 
+    padding: 25px !important;         
+    border-radius: 15px !important;   
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important; 
+    
+    font-size: 25px !important;       
+    font-weight: bold !important;     
+    text-shadow: none !important;
+    z-index: 10 !important;
+}
+
+/* ============================================================ */
+/* 4. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
+/* ============================================================ */
+tw-passage[tags~="l2"], tw-passage[tags~="l8"], tw-passage[tags~="l16"], 
+tw-passage[tags~="l22"], tw-passage[tags~="l28"], tw-passage[tags~="l36"], 
+tw-passage[tags~="l40"], tw-passage[tags~="l47"], tw-passage[tags~="l58"], 
+tw-passage[tags~="l63"] {
+    text-align: justify !important; 
+    text-justify: inter-word !important; 
+    color: #000000 !important;
+    max-height: none !important; 
+    overflow-y: visible !important;
+    padding: 20px !important;
+}
+
+/* Кнопки внутри вопросов */
+tw-passage[tags~="l2"] tw-link, tw-passage[tags~="l8"] tw-link, 
+tw-passage[tags~="l16"] tw-link, tw-passage[tags~="l22"] tw-link, 
+tw-passage[tags~="l28"] tw-link, tw-passage[tags~="l36"] tw-link, 
+tw-passage[tags~="l40"] tw-link, tw-passage[tags~="l47"] tw-link, 
+tw-passage[tags~="l58"] tw-link, tw-passage[tags~="l63"] tw-link {
+    display: block !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    margin: 8px auto !important; 
+    padding: 12px 15px !important;
+    background-color: #F4F9FF !important; 
+    border: 2px solid #4169E1 !important; 
+    border-radius: 10px !important; 
+    color: #4169E1 !important; 
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-align: center !important; 
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out !important; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+tw-passage[tags~="l2"] tw-link:hover, tw-passage[tags~="l8"] tw-link:hover, 
+tw-passage[tags~="l16"] tw-link:hover, tw-passage[tags~="l22"] tw-link:hover, 
+tw-passage[tags~="l28"] tw-link:hover, tw-passage[tags~="l36"] tw-link:hover, 
+tw-passage[tags~="l40"] tw-link:hover, tw-passage[tags~="l47"] tw-link:hover, 
+tw-passage[tags~="l58"] tw-link:hover, tw-passage[tags~="l63"] tw-link:hover {
+    background-color: #4169E1 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important; 
+    box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
+}
+/* ============================================================ */
+/* 5. БЛОКИ "ВЕРНО" (ИСПРАВЛЕН ПРОБЕЛ) */
+/* ============================================================ */
+tw-passage[tags~="l3"], tw-passage[tags~="l13"], tw-passage[tags~="l20"], 
+tw-passage[tags~="l23"], tw-passage[tags~="l29"], tw-passage[tags~="l37"], 
+tw-passage[tags~="l43"], tw-passage[tags~="l54"], tw-passage[tags~="l60"], 
+tw-passage[tags~="l66"],tw-passage[tags~="l72"] {
+    text-align: justify !important; 
+    text-justify: inter-word !important;
+    color: #000000 !important;
+    max-height: none !important; /* УБРАЛИ ОГРАНИЧЕНИЕ ВЫСОТЫ */
+    overflow-y: visible !important; /* УБРАЛИ ПРОКРУТКУ */
+    padding: 20px 25px !important;
+    font-size: 16px !important; /* Уменьшили шрифт */
+    line-height: 1.25 !important; 
+    
+    /* Делаем карточку шире */
+    width: 90vw !important; 
+    max-width: 850px !important; 
+    bottom: 2vh !important; /* Опускаем чуть ниже */
+}
+
+/* Дополнительно уменьшаем шрифт для истории, чтобы она влезла в ширину */
+tw-passage[tags~="l72"] div {
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+}
+/* Слово "Верно" */
+.success-word { 
+    color: #008000 !important; 
+    text-align: center !important; 
+    display: block !important; 
+    margin-bottom: 10px !important; 
+}
+
+/* Убираем лишние пустые строки (br) внутри блоков "Верно", чтобы не было дыр */
+tw-passage[tags~="l3"] br, tw-passage[tags~="l13"] br, 
+tw-passage[tags~="l20"] br, tw-passage[tags~="l23"] br, 
+tw-passage[tags~="l29"] br, tw-passage[tags~="l37"] br, 
+tw-passage[tags~="l43"] br, tw-passage[tags~="l54"] br, 
+tw-passage[tags~="l60"] br, tw-passage[tags~="l66"] br {
+    display: none !important; 
+}
+
+/* Ссылки в блоках "Верно" (ИСПРАВЛЕНО: block, отступы и стили кнопки) */
+tw-passage[tags~="l3"] tw-link, tw-passage[tags~="l13"] tw-link,
+tw-passage[tags~="l20"] tw-link, tw-passage[tags~="l23"] tw-link,
+tw-passage[tags~="l29"] tw-link, tw-passage[tags~="l37"] tw-link,
+tw-passage[tags~="l43"] tw-link, tw-passage[tags~="l54"] tw-link,
+tw-passage[tags~="l60"] tw-link, tw-passage[tags~="l66"] tw-link,
+tw-passage[tags~="l72"] tw-link {
+    text-align: center !important;
+    display: block !important;    /* Делаем блочным, чтобы всегда быть на новой строке */
+    width: 100% !important;
+    margin-top: 15px !important;  /* Отступ от текста */
+    padding: 12px 15px !important;
+    
+    /* Оформление кнопки */
+    background-color: #F4F9FF !important; 
+    border: 2px solid #4169E1 !important; 
+    border-radius: 10px !important; 
+    color: #4169E1 !important; 
+    font-size: 20px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    transition: all 0.2s ease-in-out !important; 
+}
+
+/* Эффект при наведении для ссылок в блоках "Верно" */
+tw-passage[tags~="l3"] tw-link:hover, tw-passage[tags~="l13"] tw-link:hover,
+tw-passage[tags~="l20"] tw-link:hover, tw-passage[tags~="l23"] tw-link:hover,
+tw-passage[tags~="l29"] tw-link:hover, tw-passage[tags~="l37"] tw-link:hover,
+tw-passage[tags~="l43"] tw-link:hover, tw-passage[tags~="l54"] tw-link:hover,
+tw-passage[tags~="l60"] tw-link:hover, tw-passage[tags~="l66"] tw-link:hover,
+tw-passage[tags~="l72"] tw-link:hover {
+    background-color: #4169E1 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important; 
+    box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
+}
+
+/* Спец. правки для l66 */
+tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !important; padding-bottom: 15px !important; line-height: 1.2 !important; }
+
+/* ============================================================ */
+/* 6. ПОЯСНЕНИЯ (С ПРОКРУТКОЙ, ПО ШИРИНЕ) */
+/* ============================================================ */
+tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l6"], 
+tw-passage[tags~="l7"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], 
+tw-passage[tags~="l11"], tw-passage[tags~="l14"], tw-passage[tags~="l15"], 
+tw-passage[tags~="l17"], tw-passage[tags~="l18"], tw-passage[tags~="l19"], 
+tw-passage[tags~="l21"], tw-passage[tags~="l24"], tw-passage[tags~="l25"], 
+tw-passage[tags~="l26"], tw-passage[tags~="l27"], tw-passage[tags~="l30"], 
+tw-passage[tags~="l31"], tw-passage[tags~="l32"], tw-passage[tags~="l33"], 
+tw-passage[tags~="l34"], tw-passage[tags~="l35"], tw-passage[tags~="l38"], 
+tw-passage[tags~="l39"], tw-passage[tags~="l41"], tw-passage[tags~="l42"], 
+tw-passage[tags~="l44"], tw-passage[tags~="l45"], tw-passage[tags~="l46"], 
+tw-passage[tags~="l48"], tw-passage[tags~="l49"], tw-passage[tags~="l50"], 
+tw-passage[tags~="l51"], tw-passage[tags~="l52"], tw-passage[tags~="l53"], 
+tw-passage[tags~="l55"], tw-passage[tags~="l56"], tw-passage[tags~="l57"], 
+tw-passage[tags~="l59"], tw-passage[tags~="l61"], tw-passage[tags~="l62"], 
+tw-passage[tags~="l64"], tw-passage[tags~="l65"], tw-passage[tags~="l67"], 
+tw-passage[tags~="l68"], tw-passage[tags~="l69"], tw-passage[tags~="l70"], 
+tw-passage[tags~="l71"] { 
+    text-align: justify !important; 
+    color: #000000 !important;
+    max-height: 55vh !important; 
+    overflow-y: auto !important;
+    padding-top: 60px !important;
+}
+
+/* Цвета для неправильных ответов (красный) */
+tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], tw-passage[tags~="l14"], tw-passage[tags~="l17"], tw-passage[tags~="l18"], tw-passage[tags~="l24"], tw-passage[tags~="l25"], tw-passage[tags~="l30"], tw-passage[tags~="l31"], tw-passage[tags~="l32"], tw-passage[tags~="l38"], tw-passage[tags~="l39"], tw-passage[tags~="l44"], tw-passage[tags~="l45"], tw-passage[tags~="l46"], tw-passage[tags~="l51"], tw-passage[tags~="l52"], tw-passage[tags~="l53"], tw-passage[tags~="l59"], tw-passage[tags~="l61"], tw-passage[tags~="l65"], tw-passage[tags~="l67"], tw-passage[tags~="l68"] { color: #CC0000 !important; } 
+
+/* ============================================================ */
+/* 7. СТРЕЛКА «НАЗАД» (ТОЛЬКО ДЛЯ УКАЗАННЫХ БЛОКОВ) */
+/* ============================================================ */
+tw-link, tw-link:link, tw-link:visited, tw-link:hover, tw-link:active,
+tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
+    color: #0000FF !important;
+    transition: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* По умолчанию сайдбары скрыты везде */
+tw-sidebar {
+    display: none !important;
+}
+
+/* Показываем сайдбар ТОЛЬКО на указанных вами блоках */
+tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
+
+/* Оставляем только стрелку «назад», «вперёд» скрываем */
+tw-sidebar tw-icon[alt="Redo"] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Оформление кнопки-стрелки */
+tw-sidebar tw-icon,
+tw-sidebar tw-icon[alt="Undo"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 36px !important;
+    margin: 0 !important;
+    color: #000000 !important;
+    pointer-events: auto !important;
+    background-color: #FFFFFF !important;
+    border: 2px solid #4169E1 !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4) !important;
+    transition: transform 0.2s ease !important;
+}
+
+tw-sidebar tw-icon:hover {
+    transform: scale(1.1) !important;
+    background-color: #FFFFFF !important;
+}
+
+/* --- ПК: Позиционируем над ладонью (только для указанных блоков) --- */
+@media screen and (min-width: 821px) {
+    tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+    tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+    tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+    tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+    tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+    tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+    tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+    tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+    tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+    tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+    tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+    tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar {
+        position: fixed !important;
+        left: 39% !important;
+        top: 36% !important;
+        transform: translate(-50%, -50%) !important;
+        right: auto !important;
+        bottom: auto !important;
+        flex-direction: row !important;
+    }
+}
+
+/* --- Телефон: Позиционируем над ладонью на экране (только для указанных блоков) --- */
+@media screen and (max-width: 820px) {
+    tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+    tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+    tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+    tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+    tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+    tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+    tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+    tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+    tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+    tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+    tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+    tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar {
+        position: fixed !important; /* Привязка к экрану телефона, а не к плашке */
+        top: 35% !important;        /* Опускаем вниз к ладони (настройте под свой экран) */
+        left: 30% !important;       /* Сдвигаем влево к руке */
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+
+    /* Размеры самой кнопки-стрелки на телефоне */
+    tw-sidebar tw-icon,
+    tw-sidebar tw-icon[alt="Undo"] {
+        font-size: 30px !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+}
+
+/* ============================================================ */
+/* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ (ПК, ПЛАНШЕТ, ТЕЛЕФОН) */
+/* ============================================================ */
+tw-passage[tags~="l1"] {
+    position: fixed !important;
+    top: 8vh !important;       
+    right: 5vw !important;     
+    left: auto !important;
+    transform: none !important; 
+    width: 85vw !important;    
+    max-width: 400px !important; 
+    margin: 0 !important;
+    padding: 25px 30px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    backdrop-filter: blur(10px) !important; 
+    border: none !important;
+    border-radius: 50px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    color: #2c3e50 !important; 
+    text-shadow: none !important;
+    font-size: 16px !important; 
+    font-weight: bold !important;
+    line-height: 1.4 !important;
+    text-align: center !important; 
+    z-index: 10 !important;
+}
+
+/* Кружочки (хвостик мыслей) */
+tw-passage[tags~="l1"]::before,
+tw-passage[tags~="l1"]::after {
+    content: "" !important;
+    position: absolute !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+}
+tw-passage[tags~="l1"]::before {
+    bottom: -20px !important;
+    left: 30px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+tw-passage[tags~="l1"]::after {
+    bottom: -40px !important;
+    left: 10px !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+/* Кнопка "Начать обучение" (По центру внизу) */
+tw-passage[tags~="l1"] tw-link,
+tw-passage[tags~="l1"] tw-link.visited {
+    position: fixed !important;
+    
+    /* Поднимаем вверх (было 80vh, стало 77vh) */
+    top: 77vh !important;       
+    
+    /* Сдвигаем левее (было 50%, стало 48%) */
+    left: 48% !important;
+    transform: translateX(-50%) !important; 
+    
+    /* Отключаем остальные привязки */
+    bottom: auto !important;
+    right: auto !important;
+    
+    margin: 0 !important;
+    
+    display: block !important;
+    width: max-content !important;
+    padding: 12px 25px !important;
+    background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
+    color: #FFFFFF !important;
+    border-radius: 8px !important;
+    border: 2px solid #FFFFFF !important; 
+    text-decoration: none !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    white-space: nowrap !important; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6) !important;
+    transition: all 0.3s ease !important;
+    z-index: 999999 !important; 
+    pointer-events: auto !important;
+}
+
+tw-passage[tags~="l1"] tw-link:hover {
+    transform: translateX(-50%) scale(1.05) !important; 
+    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
+}
+/* ============================================================ */
+/* 9. МОБИЛЬНАЯ АДАПТАЦИЯ (Карточки поверх изображения) */
+/* ============================================================ */
+@media screen and (max-width: 820px) {
+  html, body { 
+      height: 100% !important; 
+      overflow: hidden !important; /* Убираем прокрутку всей страницы */
+      background-color: #000000 !important; 
+  }
+  
+  tw-story { 
+      display: block !important; 
+      overflow: hidden !important; 
+      box-sizing: border-box !important; 
+      width: 100vw !important; 
+      height: 100vh !important; 
+      height: 100dvh !important; /* На весь экран телефона */
+      padding: 0 !important; 
+      margin: 0 !important; 
+      background-size: cover !important; /* Картинка заполняет весь фон */
+      
+      /* ВОТ ГЛАВНОЕ ИЗМЕНЕНИЕ: Сдвигаем картинку вниз (30% от верха) */
+      background-position: center 30% !important; 
+      
+      background-repeat: no-repeat !important; 
+      background-color: #000000 !important; 
+  }
+  
+  tw-story tw-sidebar { position: fixed !important; top: 10px !important; left: 10px !important; right: 10px !important; width: auto !important; z-index: 99 !important; flex-direction: row !important; justify-content: space-between !important; pointer-events: none !important; }
+  tw-story tw-sidebar tw-icon { pointer-events: auto !important; }
+
+  /* Общие карточки на телефоне (ИСКЛЮЧАЯ ПЕРВЫЙ ЭКРАН L1) */
+  tw-story tw-passage[tags]:not([tags~="l1"]) { 
+      position: absolute !important; 
+      bottom: 5vh !important;        
+      left: 5vw !important; 
+      right: 5vw !important; 
+      width: 90vw !important;
+      max-height: 65vh !important;   
+      overflow-y: auto !important;
+      padding: 20px !important; 
+      font-size: 16px !important; 
+      line-height: 1.35 !important; 
+      background-color: rgba(255, 255, 255, 0.95) !important; 
+      border-radius: 15px !important; 
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5) !important; 
+      
+      /* Текст по ширине */
+      text-align: justify !important; 
+      
+      z-index: 10 !important;
+  }
+
+  /* Кнопки внутри вопросов на телефоне */
+  tw-passage[tags~="l2"] tw-link, tw-passage[tags~="l8"] tw-link, tw-passage[tags~="l16"] tw-link, tw-passage[tags~="l22"] tw-link, tw-passage[tags~="l28"] tw-link, tw-passage[tags~="l36"] tw-link, tw-passage[tags~="l40"] tw-link, tw-passage[tags~="l47"] tw-link, tw-passage[tags~="l58"] tw-link, tw-passage[tags~="l63"] tw-link {
+        width: 100% !important; 
+        font-size: 16px !important; 
+        padding: 12px 10px !important; 
+        margin: 8px auto !important; 
+        display: block !important;
+  }
+
+  /* Убираем лишнюю прокрутку для карточек с коротким текстом */
+  tw-passage[tags~="l2"], tw-passage[tags~="l8"], tw-passage[tags~="l16"], 
+  tw-passage[tags~="l22"], tw-passage[tags~="l28"], tw-passage[tags~="l36"], 
+  tw-passage[tags~="l40"], tw-passage[tags~="l47"], tw-passage[tags~="l58"], 
+  tw-passage[tags~="l63"], tw-passage[tags~="l3"], tw-passage[tags~="l13"], 
+  tw-passage[tags~="l20"], tw-passage[tags~="l23"], tw-passage[tags~="l29"], 
+  tw-passage[tags~="l37"], tw-passage[tags~="l43"], tw-passage[tags~="l54"], 
+  tw-passage[tags~="l60"], tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
+      max-height: 70vh !important;
+  }
+
+  /* --- ИСПРАВЛЕНИЕ ОБЛАКА (ТОЛЬКО ДЛЯ ТЕЛЕФОНА) --- */
+  
+  tw-passage[tags~="l1"] {
+      top: 3vh !important;          /* Прижимаем облако к самому верху */
+      right: 5vw !important;        /* Сдвигаем правее */
+      width: 65vw !important;       /* Делаем его заметно уже */
+      max-width: 280px !important;  /* Ограничиваем максимальную ширину */
+      padding: 15px !important;     /* Уменьшаем отступы внутри */
+      font-size: 13px !important;   /* Чуть уменьшаем шрифт */
+  }
+
+  /* Кнопка "Начать обучение" на телефоне */
+  tw-passage[tags~="l1"] tw-link,
+  tw-passage[tags~="l1"] tw-link.visited {
+      top: 68vh !important; /* Поднимаем кнопку над панелью браузера */
+  }
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag><tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
+[[Начать обучение]]</tw-passagedata><<tw-passagedata pid="2" name="Начать обучение" tags="l2" position="800,250" size="100,100">(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))]
 (if: $resetFlag)[
     (set: $resetFlag to false, $correct to 0, $wrong to 0, $perfect to true, $attempts to (cond: $attempts is a number, $attempts + 1, 1))
     <script>window.questStartTime = Date.now();</script>
-]
+]Укажите функцию, которая поможет вывести информацию на экран 🖥️
+[[Print()]]
+[[input()]]
+[[print()]]</tw-passagedata><tw-passagedata pid="3" name="print()" tags="l3" position="900,450" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span> 
+[[Переходим к следующему вопросу_2]]</tw-passagedata><tw-passagedata pid="4" name="input()" tags="l4" position="1025,325" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа]]
+[[Начать обучение]]</tw-passagedata>
+<tw-passagedata pid="5" name="Print()" tags="l5" position="1225,300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение неправильного ответа]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="6" name="Переходим к следующему вопросу_2" tags="l8" position="875,575" size="100,100">Ситуация: Вам нужно создать переменную для хранения имени клиента.
 
-(if: $step is 1)[[[История 1. Покупка автомобиля]]]
-(else-if: $step is 2)[[[История 2. Отмена заказа]]]
-(else-if: $step is 3)[[[История 3. VIP-клиент]]]
-(else-if: $step is 4)[[[История 4. Проверка базы]]]
-(else-if: $step is 5)[[[История 5. Проверка наличия товара]]]
-(else-if: $step is 6)[[[История 6. Добавление в корзину]]]
-(else-if: $step is 7)[[[История 7. Удаление из корзины]]]
-(else-if: $step is 8)[[[История 8. Очистка корзины]]]
-(else-if: $step is 9)[[[История 9. Запись к врачу]]]
-(else-if: $step is 10)[[[История 10. Перенос тренировки]]]
-(else-if: $step is 11)[[[История 11. Пароль]]]</tw-passagedata>
+[[client name = &quot;Иванов&quot;]] 
 
-<!-- ИСТОРИЯ 1 -->
-<tw-passagedata pid="3" name="История 1. Покупка автомобиля" tags="l2" position="800,400" size="100,100">(set: $step to 1)
-История 1. Покупка автомобиля. В гараже уже имеются автомобили: (print: (a: "Lada Granta", "Niva Travel", "Lada Vesta", "УАЗ Патриот")). 
-Мы приобрели 'Aurus Senat' и хотим добавить его в конец списка.
+[[client_name = &quot;Иванов&quot;]] 
 
-[[garage.append('Aurus Senat')->История 1 Верно]]
-[[garage.add('Aurus Senat')->История 1 Не верно 1]]
-[[garage.insert('Aurus Senat')->История 1 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="4" name="История 1 Верно" tags="l3" position="900,550" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span> 
-Метод append() добавляет элемент в конец списка.
-[[Переходим к Истории 2]]</tw-passagedata>
-<tw-passagedata pid="5" name="История 1 Не верно 1" tags="l4" position="1025,425" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-У списков Python отсутствует метод add().
-[[Попробовать снова->История 1. Покупка автомобиля]]</tw-passagedata>
-<tw-passagedata pid="6" name="История 1 Не верно 2" tags="l4" position="1225,400" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Метод insert() требует указания индекса.
-[[Попробовать снова->История 1. Покупка автомобиля]]</tw-passagedata>
+[[clientname = &quot;Иванов&quot;]]
 
-<!-- ИСТОРИЯ 2 -->
-<tw-passagedata pid="7" name="История 2. Отмена заказа" tags="l2" position="875,575" size="100,100">(set: $step to 2)
-Список: (print: (a: "Lada Vesta", "УАЗ Патриот", "Aurus Senat")). 
-Нужно удалить 'УАЗ Патриот'.
+[[Клиент = &quot;Иванов&quot;]]</tw-passagedata><tw-passagedata pid="7" name="Пояснение не верного ответа" tags="l7" position="1050,475" size="100,100">Эта функция нужна для получения данных от пользователя (ввода), а не для вывода.</tw-passagedata><tw-passagedata pid="8" name="Пояснение неправильного ответа" tags="l6" position="1250,450" size="100,100">В Python регистр имеет значение. Print() вызовет ошибку NameError, так как функция называется только строчными буквами.</tw-passagedata><tw-passagedata pid="9" name="client name = &quot;Иванов&quot;" tags="l14" position="400,400" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="10" name="Переходим к следующему вопросу_3" tags="l16" position="425,750" size="100,100">
+Ситуация: У вас есть переменная age = &#39;22&#39;. Вы хотите узнать, сколько лет будет человеку через 10 лет, и сложить age + 10.
 
-[[del my_cars[1]]->История 2 Верно]]
-[[my_cars.remove('УАЗ Патриот')->История 2 Верно]]
-[[my_cars.clear()->История 2 Не верно]]</tw-passagedata>
-<tw-passagedata pid="8" name="История 2 Верно" tags="l3" position="975,725" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-Оператор del удаляет по индексу, remove() — по значению.
-[[Переходим к Истории 3]]</tw-passagedata>
-<tw-passagedata pid="9" name="История 2 Не верно" tags="l4" position="1050,700" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Метод clear() удаляет все элементы, а не один.
-[[Попробовать снова->История 2. Отмена заказа]]</tw-passagedata>
+Варианты:
 
-<!-- ИСТОРИЯ 3 -->
-<tw-passagedata pid="10" name="История 3. VIP-клиент" tags="l2" position="825,750" size="100,100">(set: $step to 3)
-Список: (print: (a: "Анна", "Петр", "Мария", "Олег")). 
-Вставить Елену на индекс 2 (третья позиция).
+[[print(age + 10)]] 
 
-[[appointments.insert(2, 'Елена')->История 3 Верно]]
-[[appointments.append('Елена')->История 3 Не верно 1]]
-[[appointments[2] = 'Елена']->История 3 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="11" name="История 3 Верно" tags="l3" position="725,900" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-Метод insert(2, 'Елена') вставляет элемент на указанную позицию.
-[[Переходим к Истории 4]]</tw-passagedata>
-<tw-passagedata pid="12" name="История 3 Не верно 1" tags="l4" position="950,900" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Метод append() добавляет в конец.
-[[Попробовать снова->История 3. VIP-клиент]]</tw-passagedata>
-<tw-passagedata pid="13" name="История 3 Не верно 2" tags="l4" position="1075,900" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Такая запись заменит существующий элемент, а не вставит новый.
-[[Попробовать снова->История 3. VIP-клиент]]</tw-passagedata>
+[[age = int(age); print(age + 10)]] 
 
-<!-- ИСТОРИЯ 4 -->
-<tw-passagedata pid="14" name="История 4. Проверка базы" tags="l2" position="775,925" size="100,100">(set: $step to 4)
-Список: (print: (a: "Павел", "Петр", "Анна")). 
-Проверить наличие 'Павел'.
+[[age = float(age); print(age + 10)]] </tw-passagedata><tw-passagedata pid="11" name="clientname = &quot;Иванов&quot;" tags="l10" position="1000,775" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение неправильного ответа 2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="12" name="Клиент = &quot;Иванов&quot;" tags="l9" position="750,675" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение неправильного ответа 2_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="13" name="Пояснение не верного ответа 2" tags="l15" position="325,525" size="100,100">Пробел между словами. Python воспринимает это как два отдельных имени: client и name. Получается синтаксическая ошибка (SyntaxError).
 
-[[if 'Павел' in clients: ->История 4 Верно]]
-[[if 'Павел' == clients:->История 4 Не верно 1]]
-[[if clients.find('Павел'):->История 4 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="15" name="История 4 Верно" tags="l3" position="675,1075" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-Оператор in проверяет наличие элемента внутри списка.
-[[Переходим к Истории 5]]</tw-passagedata>
-<tw-passagedata pid="16" name="История 4 Не верно 1" tags="l4" position="575,1050" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Сравнивает строку со всем списком.
-[[Попробовать снова->История 4. Проверка базы]]</tw-passagedata>
-<tw-passagedata pid="17" name="История 4 Не верно 2" tags="l4" position="775,1050" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-У списков нет метода find().
-[[Попробовать снова->История 4. Проверка базы]]</tw-passagedata>
+Имена переменных не могут содержать пробелы.</tw-passagedata><tw-passagedata pid="14" name="Пояснение неправильного ответа 2" tags="l11" position="1050,900" size="100,100">Технически Python выполнит этот код - это допустимое имя.
 
-<!-- ИСТОРИЯ 5 -->
-<tw-passagedata pid="18" name="История 5. Проверка наличия товара" tags="l2" position="725,1150" size="100,100">(set: $step to 5)
-Список: (print: (a: "Смартфон", "Наушники", "Пылесос", "Чехол")). 
-Проверить наличие 'Пылесос'.
+Но оно не соответствует правилу «змеиного регистра». Слова не разделены, поэтому читать тяжело: clientname можно прочитать как «клиентнаме» или «клиент name».
 
-[[if 'Пылесос' in stock: ->История 5 Верно]]
-[[if 'Пылесос' == stock:->История 5 Не верно 1]]
-[[if stock.find('Пылесос'):->История 5 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="19" name="История 5 Верно" tags="l3" position="625,1300" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 6]]</tw-passagedata>
-<tw-passagedata pid="20" name="История 5 Не верно 1" tags="l4" position="525,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Сравнивает строку со всем списком.
-[[Попробовать снова->История 5. Проверка наличия товара]]</tw-passagedata>
-<tw-passagedata pid="21" name="История 5 Не верно 2" tags="l4" position="725,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-У списков нет метода find().
-[[Попробовать снова->История 5. Проверка наличия товара]]</tw-passagedata>
 
-<!-- ИСТОРИЯ 6 -->
-<tw-passagedata pid="22" name="История 6. Добавление в корзину" tags="l2" position="675,1325" size="100,100">(set: $step to 6)
-Список: (print: (a: "Смартфон", "Наушники", "Чехол")). 
-Добавить 'Книгу' в конец.
+</tw-passagedata><tw-passagedata pid="15" name="Пояснение неправильного ответа 2_2" tags="l15" position="800,825" size="100,100">Переменная написана на русском языке. 
 
-[[cart.append('Книга')->История 6 Верно]]
-[[cart.insert('Книга')->История 6 Не верно 1]]
-[[cart.add('Книга')->История 6 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="23" name="История 6 Верно" tags="l3" position="575,1475" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 7]]</tw-passagedata>
-<tw-passagedata pid="24" name="История 6 Не верно 1" tags="l4" position="475,1450" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Метод insert() требует индекса.
-[[Попробовать снова->История 6. Добавление в корзину]]</tw-passagedata>
-<tw-passagedata pid="25" name="История 6 Не верно 2" tags="l4" position="675,1450" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-У списков нет метода add().
-[[Попробовать снова->История 6. Добавление в корзину]]</tw-passagedata>
+Начинается с большой буквы. В Python так обычно называют классы, а не переменные.
 
-<!-- ИСТОРИЯ 7 -->
-<tw-passagedata pid="26" name="История 7. Удаление из корзины" tags="l2" position="625,1525" size="100,100">(set: $step to 7)
-Список: (print: (a: "Смартфон", "Наушники", "Чехол", "Книга")). 
-Удалить элемент под индексом 1.
+Технически в Python 3 русские буквы в именах переменных разрешены, но это плохой стиль и нарушает правила из твоей презентации. Поэтому в квесте это помечается как ошибка.</tw-passagedata><tw-passagedata pid="16" name="print(age + 10)" tags="l17" position="200,825" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 3_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="17" name="age = float(age); print(age + 10)" tags="l18" position="500,950" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 3_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="18" name="Пояснение не верного ответа 3_1" tags="l19" position="175,975" size="100,100">Ошибка: TypeError, нельзя сложить строку и число</tw-passagedata><tw-passagedata pid="19" name="Пояснение не верного ответа 3_2" tags="l21" position="500,1075" size="100,100">Правильно, но даст 32.0, а не 32</tw-passagedata><tw-passagedata pid="20" name="client_name = &quot;Иванов&quot;" tags="l13" position="625,800" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
 
-[[del cart[1]->История 7 Верно]]
-[[cart.remove(1)->История 7 Не верно 1]]
-[[cart.pop()->История 7 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="27" name="История 7 Верно" tags="l3" position="525,1675" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 8]]</tw-passagedata>
-<tw-passagedata pid="28" name="История 7 Не верно 1" tags="l4" position="425,1650" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Метод remove() ищет по значению.
-[[Попробовать снова->История 7. Удаление из корзины]]</tw-passagedata>
-<tw-passagedata pid="29" name="История 7 Не верно 2" tags="l4" position="625,1650" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-pop() без аргумента удаляет последний элемент.
-[[Попробовать снова->История 7. Удаление из корзины]]</tw-passagedata>
+Только английские буквы.
 
-<!-- ИСТОРИЯ 8 -->
-<tw-passagedata pid="30" name="История 8. Очистка корзины" tags="l2" position="575,1725" size="100,100">(set: $step to 8)
-Список: (print: (a: "Смартфон", "Чехол", "Книга")). 
-Очистить список, сохранив переменную.
+Слова разделены подчёркиванием.
 
-[[cart.clear()->История 8 Верно]]
-[[del cart->История 8 Не верно 1]]
-[[cart.remove_all()->История 8 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="31" name="История 8 Верно" tags="l3" position="475,1875" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 9]]</tw-passagedata>
-<tw-passagedata pid="32" name="История 8 Не верно 1" tags="l4" position="375,1850" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Удаляет саму переменную.
-[[Попробовать снова->История 8. Очистка корзины]]</tw-passagedata>
-<tw-passagedata pid="33" name="История 8 Не верно 2" tags="l4" position="575,1850" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Такого метода не существует.
-[[Попробовать снова->История 8. Очистка корзины]]</tw-passagedata>
+Понятно, что хранится: имя клиента.
 
-<!-- ИСТОРИЯ 9 -->
-<tw-passagedata pid="34" name="История 9. Запись к врачу" tags="l2" position="525,1925" size="100,100">(set: $step to 9)
-Список: (print: (a: "Терапевт (пн)", "Стоматолог (ср)", "Окулист (пт)")). 
-Вставить 'Хирурга' на индекс 1 (вторник).
+Начинается с маленькой буквы (переменные принято писать с маленькой).
 
-[[appointments.insert(1, 'Хирург')->История 9 Верно]]
-[[appointments.append('Хирург')->История 9 Не верно 1]]
-[[appointments[1] = 'Хирург']->История 9 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="35" name="История 9 Верно" tags="l3" position="425,2075" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 10]]</tw-passagedata>
-<tw-passagedata pid="36" name="История 9 Не верно 1" tags="l4" position="325,2050" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Добавит в конец.
-[[Попробовать снова->История 9. Запись к врачу]]</tw-passagedata>
-<tw-passagedata pid="37" name="История 9 Не верно 2" tags="l4" position="525,2050" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Заменит существующий элемент.
-[[Попробовать снова->История 9. Запись к врачу]]</tw-passagedata>
+[[Переходим к следующему вопросу_3]]</tw-passagedata><tw-passagedata pid="21" name="age = int(age); print(age + 10)" tags="l20" position="350,1025" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+⌨️input() всегда возвращает строку, и ее нужно приводить к нужному типу int(input())- целое число
 
-<!-- ИСТОРИЯ 10 -->
-<tw-passagedata pid="38" name="История 10. Перенос тренировки" tags="l2" position="475,2125" size="100,100">(set: $step to 10)
-Список: (print: (a: "Йога (пн)", "Бассейн (ср)", "Кроссфит (пт)")). 
-Заменить 'Бассейн' на 'Бокс' (индекс 1).
+[[Переходим к следующему вопросу_4]]</tw-passagedata><tw-passagedata pid="22" name="Переходим к следующему вопросу_4" tags="l22" position="350,1150" size="100,100">Вопрос: Укажите однострочный комментарий в коде.
 
-[[schedule[1] = 'Бокс'->История 10 Верно]]
-[[schedule.append('Бокс')->История 10 Не верно 1]]
-[[schedule.insert(1, 'Бокс')->История 10 Не верно 2]]</tw-passagedata>
-<tw-passagedata pid="39" name="История 10 Верно" tags="l3" position="375,2275" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
-[[Переходим к Истории 11]]</tw-passagedata>
-<tw-passagedata pid="40" name="История 10 Не верно 1" tags="l4" position="275,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Добавит в конец.
-[[Попробовать снова->История 10. Перенос тренировки]]</tw-passagedata>
-<tw-passagedata pid="41" name="История 10 Не верно 2" tags="l4" position="475,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)<span class="success-word">Ошибка</span>
-Вставит новый элемент, сдвинув старый.
-[[Попробовать снова->История 10. Перенос тренировки]]</tw-passagedata>
+Варианты:
 
-<!-- ИСТОРИЯ 11 -->
-<tw-passagedata pid="42" name="История 11. Пароль" tags="l2" position="425,2325" size="100,100">(set: $step to 11)
-Пароль должен содержать символ @ и заглавную букву S.
+[[# Это комментарий]] 
 
-(set: $password to (prompt: "Введите пароль (например: Secure@2026):", ""))
+[[&#39;&#39;&#39; Это комментарий &#39;&#39;&#39;]] 
 
-(if: $password contains "@" and $password contains "S")[
-    (set: $correct to $correct + 1)
-    <span class="success-word">Верно</span>
-    [[Финал]]
-]
-(else:)[
-    (set: $wrong to $wrong + 1, $perfect to false)
-    <span class="success-word">Ошибка</span>
-    (if: $password not contains "@")[Нет символа @. ]
-    (if: $password not contains "S")[Нет заглавной S. ]
-    [[Попробовать снова->История 11. Пароль]]
-]</tw-passagedata>
+[[// Это комментарий]] </tw-passagedata><tw-passagedata pid="23" name="# Это комментарий" tags="l23" position="225,1275" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
 
-<!-- ФИНАЛ -->
-<tw-passagedata pid="43" name="Финал" tags="l72" position="475,2575" size="100,100">(set: $resetFlag to true)(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))](set: $attemptHistory to $attemptHistory + (a: (dm: "attempt", $attempts, "correct", $correct, "wrong", $wrong)))
-👩🏻‍💻📈 Квест завершён!<br>Правильных ответов: $correct<br>Ошибок: $wrong<br>Всего вопросов: (print: $correct + $wrong)<br>Попытка: $attempts<br>(if: $wrong <= 3)[👍 Хороший результат. Ошибок: $wrong.<br>](else:)[📚 Стоит повторить материал. Ошибок: $wrong.<br>](if: $attemptHistory's length > 1)[<br>📜 История попыток:<div style="margin-bottom: 10px;">(for: each _item, ...$attemptHistory)[Попытка (print: _item's attempt): Правильных - (print: _item's correct), Ошибок - (print: _item's wrong)<br>]</div>]<br>⏱️ Затраченное время: <span id="ekb_duration"></span><br>📅 Дата: <span id="ekb_date"></span><br>🕐 Время: <span id="ekb_time"></span><br><br>Спасибо за игру!<br><br>[[Пройти заново->Начать обучение]]
+ В Python однострочный комментарий начинается с символа #. Всё, что стоит после # в этой же строке, интерпретатор игнорирует. Комментарий можно писать как отдельной строкой, так и после кода:
+
+[[Переходим к следующему вопросу_5]]</tw-passagedata><tw-passagedata pid="24" name="&#39;&#39;&#39; Это комментарий &#39;&#39;&#39;" tags="l24" position="350,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 4_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="25" name="// Это комментарий" tags="l25" position="475,1275" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 4_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="26" name="Переходим к следующему вопросу_5" tags="l28" position="225,1400" size="100,100">Ситуация: Вы создаете переменную для хранения номера договора. Какой вариант правильный?
+
+Варианты:
+
+[[contract_number = 123]] 
+
+[[номер_договора = 123]] 
+
+[[contract number = 123]]
+
+[[2024_contract = 123]] </tw-passagedata><tw-passagedata pid="27" name="Пояснение не верного ответа 4_1" tags="l27" position="350,1400" size="100,100">Тройные кавычки в Python - это строковые литералы. Используют для многострочных комментариев
+
+Тройные кавычки в Python - это строковый литерал (строка), а не комментарий. Технически это не однострочный комментарий, а строка, которая создаётся и сразу никуда не присваивается. 
+
+Да, иногда тройные кавычки используют для многострочных комментариев, но для однострочного комментария это неверный способ.</tw-passagedata><tw-passagedata pid="28" name="Пояснение не верного ответа 4_2" tags="l26" position="600,1400" size="100,100"> В Python такого синтаксиса комментариев нет. // -  это оператор целочисленного деления (floor division). 
+ 
+Если поставить // в начале строки, Python выдаст ошибку SyntaxError, потому что оператору не хватает левого операнда.</tw-passagedata><tw-passagedata pid="29" name="contract_number = 123" tags="l29" position="37.5,1525" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+
+Английский язык, нижний регистр, начинается с буквы.
+
+[[Переходим к следующему вопросу_7]]</tw-passagedata>
+<tw-passagedata pid="30" name="номер_договора = 123" tags="l30" position="162.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 5_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="31" name="contract number = 123" tags="l31" position="287.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 5_3]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="32" name="2024_contract = 123" tags="l32" position="412.5,1525" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 5_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="33" name="Пояснение не верного ответа 5_1" tags="l33" position="162.5,1650" size="100,100">В Python 3 русские буквы технически допустимы в именах переменных. По правилам хорошего тона так писать не рекомендуется.</tw-passagedata><tw-passagedata pid="34" name="Пояснение не верного ответа 5_2" tags="l35" position="412.5,1650" size="100,100">Имя переменной не может начинаться с цифры. Это SyntaxError.</tw-passagedata><tw-passagedata pid="35" name="Пояснение не верного ответа 5_3" tags="l34" position="287.5,1650" size="100,100">Пробел между словами. Python видит два отдельных имени, это SyntaxError</tw-passagedata><tw-passagedata pid="36" name="Переходим к следующему вопросу_7" tags="l36" position="225,1800" size="100,100">Ситуация: Вам нужно вывести фразу: Он сказал: &quot;Привет!&quot;. Как записать это в коде, чтобы избежать ошибки?
+
+Варианты:
+
+[[text = &#39;Он сказал: &quot;Привет!&quot;&#39;]] 
+
+[[text = &quot;Он сказал: &quot;Привет!&quot;&quot;]]  
+
+[[text = # Он сказал: &quot;Привет!&quot;]] </tw-passagedata><tw-passagedata pid="37" name="text = &#39;Он сказал: &quot;Привет!&quot;&#39;" tags="l37" position="100,1925" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+    
+
+В Python строку можно заключать как в одинарные, так и в двойные кавычки. Если внутри строки нужны двойные кавычки, удобно использовать снаружи одинарные - тогда конфликта не возникает. Python видит: строка начинается с &#39;, внутри спокойно воспринимает &quot; как обычный символ, а заканчивается строка на &#39;. Всё работает корректно.
+
+
+[[Переходим к следующему вопросу_8]]
+
+</tw-passagedata><tw-passagedata pid="38" name="text = &quot;Он сказал: &quot;Привет!&quot;&quot;" tags="l38" position="225,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 7_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="39" name="text = # Он сказал: &quot;Привет!&quot;" tags="l39" position="350,1925" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 7_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="40" name="Пояснение не верного ответа 7_1" tags="l41" position="225,2050" size="100,100">Внутренние двойные кавычки закрывают строку раньше времени. Python видит &quot;Он сказал: &quot; как одну строку, а Привет! - как непонятный код. Нужно использовать разные кавычки: одинарные снаружи.</tw-passagedata><tw-passagedata pid="41" name="Переходим к следующему вопросу_8" tags="l40" position="100,2050" size="100,100">Ситуация: У вас есть переменная age = &#39;22&#39;. Вы хотите превратить её в целое число. Какую функцию использовать?
+Варианты:
+
+[[age = int(age)]] 
+
+[[age = str(age)]] 
+
+[[age = float(age)]] 
+
+[[age = bool(age)]] </tw-passagedata><tw-passagedata pid="42" name="Пояснение не верного ответа 7_2" tags="l42" position="350,2050" size="100,100">После = ожидается значение, а не комментарий. Символ # превращает всё после себя в комментарий, поэтому присваивание остаётся незавершённым. 
+
+Справа от = не может стоять комментарий - нужно значение в кавычках.
+
+</tw-passagedata><tw-passagedata pid="43" name="age = int(age)" tags="l43" position="75,2225" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+
+Функция input() всегда возвращает строку (str), даже если пользователь ввёл число. Поэтому, чтобы работать с ним как с числом, нужно явно преобразовать тип. В Python для этого есть int(), float(), str() и bool(). Выбор зависит от того, что ты хочешь получить. В нашем случае - целое число, значит int(age).
+
+[[Переходим к следующему вопросу_9]]
+
+</tw-passagedata><tw-passagedata pid="44" name="age = str(age)" tags="l44" position="200,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 8_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="45" name="age = float(age)" tags="l45" position="325,2300" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 8_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="46" name="age = bool(age)" tags="l46" position="450,2250" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 8_3]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="47" name="Пояснение не верного ответа 8_1" tags="l48" position="200,2400" size="100,100">str() не меняет тип на целое число. Она наоборот превращает значение в строку. Так как age уже строка &#39;22&#39;, то после str(age) она останется той же строкой &#39;22&#39;. 
+
+Ты не сможешь сложить её с числом- Python выдаст ошибку TypeError. Чтобы получить целое число, нужна функция int().</tw-passagedata><tw-passagedata pid="48" name="Пояснение не верного ответа 8_2" tags="l49" position="325,2425" size="100,100">float() создаёт число с плавающей точкой (дробное). Из строки &#39;22&#39; получится 22.0, а не 22. Это не целое число. 
+Хотя с 22.0 можно делать математику, но если по условию нужно именно целое (например, для счётчика или возраста), это не подходит. Используй int()</tw-passagedata><tw-passagedata pid="49" name="Пояснение не верного ответа 8_3" tags="l50" position="450,2375" size="100,100">bool() превращает значение в логический тип True или False. Любая непустая строка, включая &#39;22&#39;, становится True. То есть age станет True, а не числом. 
+Это совсем не то, что нужно. True - это не 22, и с ним нельзя считать возраст. Для целого числа нужен int().</tw-passagedata><tw-passagedata pid="50" name="Переходим к следующему вопросу_9" tags="l47" position="75,2350" size="100,100">Ситуация: Пользователь вводит два числа: сначала 5, потом 4. Код выглядит так:
+
+number1 = input(&#39;Введите первое число: &#39;)
+number2 = input(&#39;Введите второе число: &#39;)
+print(number1 + number2)
+
+Что выведет программа?
+Варианты:
+
+[[54]] 
+
+[[9]] 
+
+[[Ошибка]] 
+
+[[5 4]] </tw-passagedata><tw-passagedata pid="51" name="54" tags="l54" position="425,2600" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+
+Пробел не ставится. Функция print() выводит результат выражения number1 + number2. 
+
+Поскольку это конкатенация строк, получается одна строка &quot;54&quot;.
+print() добавляет пробелы только между несколькими аргументами, переданными через запятую. Например: print(&quot;5&quot;, &quot;4&quot;) выведет 5 4.
+
+Но здесь аргумент один - уже склеенная строка &quot;54&quot;. Поэтому вывод будет 54, без пробела.
+
+
+[[Переходим к следующему вопросу 10]]</tw-passagedata><tw-passagedata pid="52" name="9" tags="l51" position="0,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 9_3]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="53" name="Ошибка" tags="l52" position="137.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 9_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="54" name="5 4" tags="l53" position="262.5,2600" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 9_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="55" name="Пояснение не верного ответа 9_1" tags="l57" position="262.5,2725" size="100,100">Пробел не ставится. Функция print() выводит результат выражения number1 + number2.
+
+Поскольку это конкатенация строк, получается одна строка &quot;54&quot;.
+
+print() добавляет пробелы только между несколькими аргументами, переданными через запятую. 
+
+Например: print(&quot;5&quot;, &quot;4&quot;) выведет 5 4.
+Но здесь аргумент один - уже склеенная строка &quot;54&quot;. Поэтому вывод будет 54, без пробела.</tw-passagedata><tw-passagedata pid="56" name="Пояснение не верного ответа 9_2" tags="l56" position="137.5,2725" size="100,100">Нельзя складывать строки - это неверное утверждение. В Python строки можно складывать с помощью +. Эта операция называется конкатенацией (объединением строк). Она не вызывает ошибку, если оба операнда - строки.
+
+Ошибка возникла бы, если бы мы попытались сложить строку с числом, например: &quot;5&quot; + 4. Но здесь оба значения - строки, поэтому результат будет &quot;54&quot;.
+
+Запомни: input() всегда возвращает str, поэтому + работает как склеивание, а не как сложение.</tw-passagedata><tw-passagedata pid="57" name="Пояснение не верного ответа 9_3" tags="l55" position="12.5,2725" size="100,100">Программа не складывает числа. Потому что input() возвращает строки, а не числа. Строки &quot;5&quot; и &quot;4&quot; при сложении через + не складываются арифметически, а соединяются в одну строку &quot;54&quot;.
+Чтобы получить 9, нужно явно преобразовать ввод в целые числа:
+number1 = int(input(&#39;Введите первое число: &#39;))
+number2 = int(input(&#39;Введите второе число: &#39;))
+Тогда number1 + number2 даст 9.</tw-passagedata><tw-passagedata pid="58" name="Переходим к следующему вопросу 10" tags="l58" position="625,2600" size="100,100">Ситуация: «Вы пишете программу-приветствие. Вам нужно получить имя пользователя с клавиатуры ⌨️».
+
+Варианты:
+
+[[print(&quot;Введите имя: &quot;)]] 
+
+[[input(&quot;Введите имя: &quot;)]] 
+
+[[get_name(&quot;Введите имя: &quot;)]] </tw-passagedata><tw-passagedata pid="59" name="print(&quot;Введите имя: &quot;)" tags="l59" position="500,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 10_1]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="60" name="input(&quot;Введите имя: &quot;)" tags="l60" position="625,2725" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+
+input() - это встроенная функция Python для получения данных от пользователя. Она выводит приглашение &quot;Введите имя: &quot; на экран, ждёт, пока пользователь что-то введёт и нажмёт Enter, а затем возвращает введённый текст в виде строки (str). Именно эту функцию нужно использовать, чтобы получить имя с клавиатуры.
+
+[[Переходим к следующему вопросу 11]]</tw-passagedata><tw-passagedata pid="61" name="get_name(&quot;Введите имя: &quot;)" tags="l61" position="750,2725" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 10_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="62" name="Переходим к следующему вопросу 11" tags="l63" position="625,2850" size="100,100">Сколько аргументов может принимать функция input()?
+Варианты:
+
+[[Сколько угодно]]
+
+[[Только один]]
+
+[[Ни одного]]
+
+[[Только два]]</tw-passagedata><tw-passagedata pid="63" name="Пояснение не верного ответа 10_1" tags="l62" position="500,2850" size="100,100">print() - это функция вывода информации на экран, а не ввода. 
+
+Она просто покажет текст &quot;Введите имя: &quot; и сразу завершится, не дожидаясь, пока пользователь что-то введёт. 
+
+Программа не получит имя, потому что print() не умеет читать данные с клавиатуры. Для ввода нужна функция input().
+</tw-passagedata>
+<tw-passagedata pid="64" name="Пояснение не верного ответа 10_2" tags="l64" position="750,2850" size="100,100">Данной функции в Python не существует. (print: "get_name()") - это выдуманное имя, его нет среди встроенных функций. Если попробовать выполнить этот код, Python выдаст ошибку NameError: name (print: "'get_name'") is not defined. Для получения ввода с клавиатуры в Python есть только одна стандартная функция - input().
+</tw-passagedata>
+<tw-passagedata pid="65" name="Сколько угодно" tags="l65" position="437.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 11_1]]
+[[Начать обучение]]</tw-passagedata>
+<tw-passagedata pid="66" name="Только один" tags="l66" position="550,3025" size="100,100">(set: $correct to $correct + 1)<span class="success-word">Верно</span>
+
+Функция input() может принимать один необязательный аргумент - строку-приглашение, которая выводится на экран перед вводом.
+Например:
+name = input(&#39;Введите имя: &#39;)
+Здесь &#39;Введите имя: &#39; - это тот самый единственный аргумент.
+Если аргумент не указать (input()), функция просто ждёт ввода без подсказки. Больше одного аргумента передать нельзя - это вызовет ошибку.
+
+input() принимает не более одного аргумента.
+
+Аргумент необязателен: можно вызвать input() без него.
+
+Аргумент - это строка-приглашение, которая выводится перед вводом.
+
+Всё, что введёт пользователь, возвращается как строка (str).
+
+
+[[ИТОГ]]</tw-passagedata>
+<tw-passagedata pid="67" name="Ни одного" tags="l67" position="687.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 11_2]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="68" name="Только два" tags="l68" position="812.5,2975" size="100,100">(set: $wrong to $wrong + 1, $perfect to false)Не верно
+[[Пояснение не верного ответа 11_3]]
+[[Начать обучение]]</tw-passagedata><tw-passagedata pid="69" name="Пояснение не верного ответа 11_1" tags="l69" position="437.5,3100" size="100,100">input() не может принимать произвольное количество аргументов. У неё есть только один параметр - строка-приглашение. 
+
+Если попытаться передать два или более аргументов, например input(&#39;a&#39;, &#39;b&#39;), Python выдаст ошибку TypeError. Так что «сколько угодно» - неверно.</tw-passagedata><tw-passagedata pid="70" name="Пояснение не верного ответа 11_2" tags="l70" position="687.5,3100" size="100,100">Это не совсем точно. input() может работать без аргументов - тогда она просто ждёт ввода, не выводя подсказку. Но вопрос спрашивает, сколько аргументов она может принимать. 
+
+Поскольку она способна принять один (и это её максимальная возможность), ответ &quot;ни одного&quot; неверен.
+
+Она может принимать ноль (не указывать аргумент) или один, но не больше.</tw-passagedata><tw-passagedata pid="71" name="Пояснение не верного ответа 11_3" tags="l71" position="812.5,3100" size="100,100">input() не принимает два аргумента. У неё только один параметр - приглашение. 
+
+Если написать input(&#39;Введите имя: &#39;, &#39;Ещё что-то&#39;), возникнет ошибка TypeError: input expected at most 1 argument, got 2. Поэтому &quot;только два&quot; - неверно.</tw-passagedata><tw-passagedata pid="72" name="1" tags="" position="1050,3275" size="100,100"></tw-passagedata><tw-passagedata pid="73" name="122" tags="" position="1275,3300" size="100,100"></tw-passagedata><tw-passagedata pid="74" name="ИТОГ" tags="l72" position="675,3275" size="100,100">(set: $resetFlag to true)(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))](set: $attemptHistory to $attemptHistory + (a: (dm: "attempt", $attempts, "correct", $correct, "wrong", $wrong)))👩🏻‍💻📈 Квест завершён!<br>Правильных ответов: $correct<br>Ошибок: $wrong<br>Всего вопросов: (print: $correct + $wrong)<br>Попытка: $attempts<br>(if: $wrong <= 3)[👍 Хороший результат. Ошибок: $wrong.<br>](else:)[📚 Стоит повторить материал. Ошибок: $wrong.<br>](if: $attemptHistory's length > 1)[<br>📜 История попыток:<div style="margin-bottom: 10px;">(for: each _item, ...$attemptHistory)[Попытка (print: _item's attempt): Правильных - (print: _item's correct), Ошибок - (print: _item's wrong)<br>]</div>]<br>⏱️ Затраченное время: <span id="ekb_duration"></span><br>📅 Дата: <span id="ekb_date"></span><br>🕐 Время: <span id="ekb_time"></span><br><br>Спасибо за игру!<br><br>[[Пройти заново->Начать обучение]]
 <script>
 (function() {
     function updateTime() {
