@@ -321,7 +321,8 @@ tw-passage[tags~="l250"] {
 }
 
 /* ============================================================ */
-/* 7. СТРЕЛКА «НАЗАД» (УМНЫЙ СЕЛЕКТОР - РАБОТАЕТ ВЕЗДЕ, КРОМЕ СТАРТА, ВОПРОСОВ И ФИНАЛА) */
+/* ============================================================ */
+/* 7. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
 /* ============================================================ */
 tw-link, tw-link:link, tw-link:visited, tw-link:hover, tw-link:active,
 tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
@@ -330,12 +331,36 @@ tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
     -webkit-tap-highlight-color: transparent !important;
 }
 
+/* 1. ЖЕСТКО СКРЫВАЕМ СТРЕЛКУ ВЕЗДЕ ПО УМОЛЧАНИЮ */
 tw-sidebar {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
-/* Показываем стрелку на всех страницах, КРОМЕ l1 (старт), l2 (вопросы), l3 (успех) и l72 (итог) */
-tw-passage[tags]:not([tags~="l1"]):not([tags~="l2"]):not([tags~="l3"]):not([tags~="l72"]) tw-sidebar {
+/* 2. ПОКАЗЫВАЕМ ТОЛЬКО НА ЭТИХ СТРАНИЦАХ (ГДЕ ТЕКСТ ПОЯСНЕНИЙ) */
+tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar,
+tw-passage[tags~="l301"] tw-sidebar, tw-passage[tags~="l302"] tw-sidebar,
+tw-passage[tags~="l303"] tw-sidebar, tw-passage[tags~="l304"] tw-sidebar,
+tw-passage[tags~="l305"] tw-sidebar, tw-passage[tags~="l306"] tw-sidebar,
+tw-passage[tags~="l307"] tw-sidebar, tw-passage[tags~="l308"] tw-sidebar,
+tw-passage[tags~="l309"] tw-sidebar, tw-passage[tags~="l310"] tw-sidebar,
+tw-passage[tags~="l311"] tw-sidebar, tw-passage[tags~="l312"] tw-sidebar,
+tw-passage[tags~="l313"] tw-sidebar, tw-passage[tags~="l314"] tw-sidebar,
+tw-passage[tags~="l315"] tw-sidebar, tw-passage[tags~="l316"] tw-sidebar,
+tw-passage[tags~="l317"] tw-sidebar, tw-passage[tags~="l318"] tw-sidebar,
+tw-passage[tags~="l319"] tw-sidebar {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -355,7 +380,7 @@ tw-sidebar tw-icon[alt="Undo"] {
     opacity: 1 !important;
     font-size: 36px !important;
     margin: 0 !important;
-    color: #4169E1 !important; /* Синяя стрелка */
+    color: #4169E1 !important; 
     pointer-events: auto !important;
     background-color: #FFFFFF !important;
     border: 2px solid #4169E1 !important;
@@ -370,29 +395,70 @@ tw-sidebar tw-icon[alt="Undo"] {
 
 tw-sidebar tw-icon:hover {
     transform: scale(1.1) !important;
-    background-color: #F4F9FF !important; /* Легкий голубой фон */
+    background-color: #F4F9FF !important; 
     box-shadow: 0 8px 20px rgba(65, 105, 225, 0.4) !important;
 }
 
-/* Позиционирование стрелки на ПК */
+/* 3. ПОЗИЦИОНИРОВАНИЕ (В ЛЕВОМ ВЕРХНЕМ УГЛУ) */
 @media screen and (min-width: 821px) {
-    tw-passage[tags]:not([tags~="l1"]):not([tags~="l2"]):not([tags~="l3"]):not([tags~="l72"]) tw-sidebar {
+    tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+    tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+    tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+    tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+    tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+    tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+    tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+    tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+    tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+    tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+    tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+    tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar,
+    tw-passage[tags~="l301"] tw-sidebar, tw-passage[tags~="l302"] tw-sidebar,
+    tw-passage[tags~="l303"] tw-sidebar, tw-passage[tags~="l304"] tw-sidebar,
+    tw-passage[tags~="l305"] tw-sidebar, tw-passage[tags~="l306"] tw-sidebar,
+    tw-passage[tags~="l307"] tw-sidebar, tw-passage[tags~="l308"] tw-sidebar,
+    tw-passage[tags~="l309"] tw-sidebar, tw-passage[tags~="l310"] tw-sidebar,
+    tw-passage[tags~="l311"] tw-sidebar, tw-passage[tags~="l312"] tw-sidebar,
+    tw-passage[tags~="l313"] tw-sidebar, tw-passage[tags~="l314"] tw-sidebar,
+    tw-passage[tags~="l315"] tw-sidebar, tw-passage[tags~="l316"] tw-sidebar,
+    tw-passage[tags~="l317"] tw-sidebar, tw-passage[tags~="l318"] tw-sidebar,
+    tw-passage[tags~="l319"] tw-sidebar {
         position: fixed !important;
-        left: 39% !important;
-        top: 36% !important;
-        transform: translate(-50%, -50%) !important;
+        left: 20px !important;  
+        top: 20px !important;   
         right: auto !important;
         bottom: auto !important;
+        transform: none !important;
         flex-direction: row !important;
     }
 }
 
-/* Позиционирование стрелки на телефонах */
 @media screen and (max-width: 820px) {
-    tw-passage[tags]:not([tags~="l1"]):not([tags~="l2"]):not([tags~="l3"]):not([tags~="l72"]) tw-sidebar {
+    tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
+    tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
+    tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
+    tw-passage[tags~="l26"] tw-sidebar, tw-passage[tags~="l27"] tw-sidebar,
+    tw-passage[tags~="l33"] tw-sidebar, tw-passage[tags~="l34"] tw-sidebar,
+    tw-passage[tags~="l35"] tw-sidebar, tw-passage[tags~="l41"] tw-sidebar,
+    tw-passage[tags~="l42"] tw-sidebar, tw-passage[tags~="l48"] tw-sidebar,
+    tw-passage[tags~="l49"] tw-sidebar, tw-passage[tags~="l50"] tw-sidebar,
+    tw-passage[tags~="l55"] tw-sidebar, tw-passage[tags~="l56"] tw-sidebar,
+    tw-passage[tags~="l57"] tw-sidebar, tw-passage[tags~="l62"] tw-sidebar,
+    tw-passage[tags~="l64"] tw-sidebar, tw-passage[tags~="l69"] tw-sidebar,
+    tw-passage[tags~="l70"] tw-sidebar, tw-passage[tags~="l71"] tw-sidebar,
+    tw-passage[tags~="l301"] tw-sidebar, tw-passage[tags~="l302"] tw-sidebar,
+    tw-passage[tags~="l303"] tw-sidebar, tw-passage[tags~="l304"] tw-sidebar,
+    tw-passage[tags~="l305"] tw-sidebar, tw-passage[tags~="l306"] tw-sidebar,
+    tw-passage[tags~="l307"] tw-sidebar, tw-passage[tags~="l308"] tw-sidebar,
+    tw-passage[tags~="l309"] tw-sidebar, tw-passage[tags~="l310"] tw-sidebar,
+    tw-passage[tags~="l311"] tw-sidebar, tw-passage[tags~="l312"] tw-sidebar,
+    tw-passage[tags~="l313"] tw-sidebar, tw-passage[tags~="l314"] tw-sidebar,
+    tw-passage[tags~="l315"] tw-sidebar, tw-passage[tags~="l316"] tw-sidebar,
+    tw-passage[tags~="l317"] tw-sidebar, tw-passage[tags~="l318"] tw-sidebar,
+    tw-passage[tags~="l319"] tw-sidebar {
         position: fixed !important; 
-        top: 35% !important;        
-        left: 30% !important;       
+        left: 15px !important;        
+        top: 15px !important;       
         right: auto !important;
         bottom: auto !important;
         transform: none !important;
