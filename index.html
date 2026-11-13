@@ -54,7 +54,7 @@ tw-passage p { margin: 5px 0 !important; padding: 0 !important; }
 /* ============================================================ */
 tw-story[tags~="l1"] { background-image: url("7.jpeg"); }
 tw-story[tags~="l2"] { background-image: url("print.jpeg"); }
-
+tw-story[tags~="sit_iphone"] { background-image: url("iphone_не_найден.jpeg") !important; }
 tw-story[tags~="l3"], tw-story[tags~="l13"], tw-story[tags~="l20"],
 tw-story[tags~="l23"], tw-story[tags~="l29"], tw-story[tags~="l37"],
 tw-story[tags~="l43"], tw-story[tags~="l54"], tw-story[tags~="l60"],
@@ -1452,7 +1452,7 @@ input() принимает не более одного аргумента.<br><
 [[Попробовать снова->Списки: Задание 11]]
 ]
 </tw-passagedata>
-<tw-passagedata pid="400" name="Квест: Ситуация 1 — Поиск товара" tags="l3 sit sit1" position="900,5300" size="100,100">
+<tw-passagedata pid="400" name="Квест: Ситуация 1 — Поиск товара" tags="l3 sit sit_iphone" position="900,5300" size="100,100">
 <h2>Ситуация 1. Клиент ищет iPhone, а магазин его «не видит»</h2>
 
 Клиент вводит в поиске <code>iphone</code>. В каталоге товар записан как <code>IPhone</code>. Приложение отвечает: «Товар не найден». Клиент уходит в другой магазин.<br><br>
@@ -1672,11 +1672,11 @@ print('Пароль пользователя:', password)
 <b>Как исправить:</b><br><br>
 
 <code>
-cart = \[\]<br>
+cart = &#91;&#93;<br>
 password = input('Введите пароль: ')<br><br>
-has\_digit = any(symbol.isdigit() for symbol in password)<br>
-has\_letter = any(symbol.isalpha() for symbol in password)<br><br>
-if len(password) &gt;= 8 and has\_digit and has\_letter:<br>
+has&#95;digit = any(symbol.isdigit() for symbol in password)<br>
+has&#95;letter = any(symbol.isalpha() for symbol in password)<br><br>
+if len(password) &gt;= 8 and has&#95;digit and has&#95;letter:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Пароль принят')<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Слабый пароль')<br><br>
@@ -1687,7 +1687,7 @@ else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Название товара не может быть пустым')<br><br>
 number = int(input('Выберите номер товара: '))<br><br>
 if 1 &lt;= number &lt;= len(cart):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart\[number - 1\])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart&#91;number - 1&#93;)<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')<br><br>
 item = 'Наушники'<br><br>
