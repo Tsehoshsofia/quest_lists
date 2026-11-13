@@ -1023,7 +1023,7 @@ input() принимает не более одного аргумента.<br><
 <tw-passagedata pid="207" name="Списки: Задание 2" tags="l2" position="1000,3300" size="100,100">
 Каким способом можно удалить данный элемент, зная его точное значение?<br><br>
 
-(link-goto: (str: "del myCars", "&#91;", "1", "&#93;"), "Списки: Ошибка 2А")
+(link-goto: "del myCars&#91;1&#93;", "Списки: Ошибка 2А")
 (link-goto: "myCars.remove('УАЗ Патриот')", "Списки: Ответ 2Б")
 (link-goto: "myCars.clear()", "Списки: Ошибка 2В")
 </tw-passagedata>
@@ -1445,7 +1445,7 @@ input() принимает не более одного аргумента.<br><
 В пароле присутствуют символ <code>@</code> и заглавная буква <code>S</code>.<br><br>
 Регистрация завершена.<br><br>
 
-[[Перейти к финалу->Списки: Финал]]
+[[Перейти к ситуации 1->Квест: Ситуация 1 — Поиск товара]]
 ]
 
 (else-if: $user_pass is not "")[
@@ -1461,6 +1461,267 @@ input() принимает не более одного аргумента.<br><
 
 [[Попробовать снова->Списки: Задание 11]]
 ]
+</tw-passagedata>
+
+<tw-passagedata pid="400" name="Квест: Ситуация 1 — Поиск товара" tags="l3 sit" position="900,5300" size="100,100">
+<h2>Ситуация 1. Клиент ищет iPhone, а магазин его «не видит»</h2>
+
+Клиент вводит в поиске <code>iphone</code>. В каталоге товар записан как <code>IPhone</code>. Приложение отвечает: «Товар не найден». Клиент уходит в другой магазин.<br><br>
+
+<code>
+products = &#91;'IPhone', 'Samsung Galaxy', 'Xiaomi'&#93;<br>
+query = 'iphone'<br><br>
+if query in products:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Товар доступен')<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Товар не найден')
+</code><br><br>
+
+Что выведет программа?<br><br>
+
+(link-goto: "A. Товар доступен", "Квест: Ошибка 1А")
+(link-goto: "B. Товар не найден", "Квест: Ответ 1Б")
+(link-goto: "C. True", "Квест: Ошибка 1В")
+(link-goto: "D. ValueError", "Квест: Ошибка 1Г")
+</tw-passagedata>
+
+<tw-passagedata pid="401" name="Квест: Ошибка 1А" tags="l4" position="1000,5400" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Строки <code>'iphone'</code> и <code>'IPhone'</code> не равны: Python сравнивает их посимвольно, учитывая регистр.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 1 — Поиск товара")
+</tw-passagedata>
+
+<tw-passagedata pid="402" name="Квест: Ответ 1Б" tags="l3" position="1100,5400" size="100,100">
+(set: $correct to $correct + 1)
+
+<span class="success-word">Верно!</span><br><br>
+
+Программа выведет <code>Товар не найден</code>, потому что <code>in</code> сравнивает строки точно: <code>iphone</code>, <code>IPhone</code> и <code>IPHONE</code> — разные значения.<br><br>
+
+<b>Что сломалось для клиента:</b> товар есть, но клиент его не находит и уходит к конкуренту.<br><br>
+
+<b>Как исправить:</b> нормализовать данные — убрать пробелы через <code>strip()</code> и привести к нижнему регистру через <code>lower()</code>.<br><br>
+
+<code>
+products = &#91;'IPhone', 'Samsung Galaxy', 'Xiaomi'&#93;<br>
+query = 'iphone'<br><br>
+normalized_products = &#91;product.lower().strip() for product in products&#93;<br><br>
+if query.strip().lower() in normalized_products:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Товар доступен')<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Товар не найден')
+</code><br><br>
+
+<b>Как предотвратить повтор:</b> хранить названия товаров в едином формате, добавить поиск по ID и артикулу, синонимам и исправлению опечаток.<br><br>
+
+(link-goto: "Перейти к ситуации 2", "Квест: Ситуация 2 — Номер товара")
+</tw-passagedata>
+
+<tw-passagedata pid="403" name="Квест: Ошибка 1В" tags="l4" position="1200,5400" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Оператор <code>in</code> для списка возвращает <code>True</code> или <code>False</code>, но здесь он используется внутри <code>if</code>. Ошибка <code>ValueError</code> здесь не возникает.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 1 — Поиск товара")
+</tw-passagedata>
+
+<tw-passagedata pid="404" name="Квест: Ошибка 1Г" tags="l4" position="1300,5400" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Оператор <code>in</code> для списка возвращает <code>True</code> или <code>False</code>, но здесь он используется внутри <code>if</code>. Ошибка <code>ValueError</code> здесь не возникает.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 1 — Поиск товара")
+</tw-passagedata>
+
+<tw-passagedata pid="405" name="Квест: Ситуация 2 — Номер товара" tags="l3 sit" position="900,5500" size="100,100">
+<h2>Ситуация 2. Клиент выбрал первый товар, а получил второй</h2>
+
+В приложении товары показаны с номерами:<br>
+1 — Ноутбук<br>
+2 — Смартфон<br>
+3 — Наушники<br><br>
+
+Клиент выбирает <code>1</code>, но получает смартфон.<br><br>
+
+<code>
+products = &#91;'Ноутбук', 'Смартфон', 'Наушники'&#93;<br>
+choice = int(input('Выберите номер товара: '))<br>
+print('Вы выбрали:', products&#91;choice&#93;)
+</code><br><br>
+
+Какой товар получит клиент при вводе <code>1</code>?<br><br>
+
+(link-goto: "A. Ноутбук", "Квест: Ошибка 2А")
+(link-goto: "B. Смартфон", "Квест: Ответ 2Б")
+(link-goto: "C. Наушники", "Квест: Ошибка 2В")
+(link-goto: "D. Возникнет ошибка", "Квест: Ошибка 2Г")
+</tw-passagedata>
+
+<tw-passagedata pid="406" name="Квест: Ошибка 2А" tags="l4" position="1000,5600" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
+</tw-passagedata>
+
+<tw-passagedata pid="407" name="Квест: Ответ 2Б" tags="l3" position="1100,5600" size="100,100">
+(set: $correct to $correct + 1)
+
+<span class="success-word">Верно!</span><br><br>
+
+При вводе <code>1</code> клиент получит <code>Смартфон</code>, потому что в Python нумерация элементов начинается с нуля: <code>products&#91;0&#93;</code> — «Ноутбук», <code>products&#91;1&#93;</code> — «Смартфон».<br><br>
+
+<b>Что сломалось для клиента:</b> он оформил не тот заказ, потратил время и потерял доверие к магазину.<br><br>
+
+<b>Как исправить:</b> использовать <code>products&#91;choice - 1&#93;</code> и проверять, что номер находится в допустимом диапазоне.<br><br>
+
+<code>
+if 1 &lt;= choice &lt;= len(products):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Вы выбрали:', products&#91;choice - 1&#93;)<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')
+</code><br><br>
+
+<b>Как предотвратить повтор:</b> всегда показывать пользователю номера с 1, а в коде сразу переводить их в индексы списка.<br><br>
+
+(link-goto: "Перейти к финальному инциденту", "Квест: Финальный инцидент — Корзина")
+</tw-passagedata>
+
+<tw-passagedata pid="408" name="Квест: Ошибка 2В" tags="l4" position="1200,5600" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
+</tw-passagedata>
+
+<tw-passagedata pid="409" name="Квест: Ошибка 2Г" tags="l4" position="1300,5600" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+
+(link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
+</tw-passagedata>
+
+<tw-passagedata pid="410" name="Квест: Финальный инцидент — Корзина" tags="l3 sit" position="900,5700" size="100,100">
+<h2>Финальный инцидент. Сломанная корзина и утечка данных</h2>
+
+Клиент добавляет товар, вводит номер позиции, пытается удалить несуществующий товар и видит свой пароль на экране. Заказ не оформляется, а служба безопасности фиксирует утечку данных.<br><br>
+
+<code>
+cart = &#91;&#93;<br>
+password = input('Введите пароль: ')<br>
+product = input('Введите товар: ')<br>
+number = int(input('Выберите номер товара: '))<br><br>
+cart.append(product)<br>
+cart.remove('Наушники')<br>
+print(cart&#91;number&#93;)<br>
+print('Пароль пользователя:', password)
+</code><br><br>
+
+Какая ошибка наиболее опасна для безопасности клиента?<br><br>
+
+(link-goto: "A. append() добавляет элемент в конец", "Квест: Финал Ошибка А")
+(link-goto: "B. Пароль выводится на экран", "Квест: Финал Ответ Б")
+(link-goto: "C. remove() удаляет первый элемент", "Квест: Финал Ошибка В")
+(link-goto: "D. Список можно очистить", "Квест: Финал Ошибка Г")
+</tw-passagedata>
+
+<tw-passagedata pid="411" name="Квест: Финал Ошибка А" tags="l4" position="1000,5800" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Это особенность работы со списками, но не главная угроза безопасности. Самая опасная проблема здесь — вывод пароля пользователя на экран.<br><br>
+
+(link-goto: "Вернуться к инциденту", "Квест: Финальный инцидент — Корзина")
+</tw-passagedata>
+
+<tw-passagedata pid="412" name="Квест: Финал Ответ Б" tags="l3" position="1100,5800" size="100,100">
+(set: $correct to $correct + 1)
+
+<span class="success-word">Верно!</span><br><br>
+
+Самая опасная ошибка — вывод пароля на экран. Это утечка конфиденциальной информации: пароль может попасть в логи, скриншоты, поддержку или к злоумышленнику.<br><br>
+
+<b>Другие проблемы кода:</b><br>
+
+- Пароль не проверяется на длину, буквы и цифры.<br>
+- Пустое название товара можно добавить в корзину.<br>
+- Название не очищается от пробелов и не нормализуется по регистру.<br>
+- <code>cart.remove('Наушники')</code> вызывает <code>ValueError</code>, если товара нет.<br>
+- <code>cart&#91;number&#93;</code> вызывает <code>IndexError</code> при неверном номере.<br>
+- Пользовательский номер начинается с 1, а индекс списка — с 0.<br><br>
+
+<b>Как исправить:</b><br><br>
+
+<code>
+cart = &#91;&#93;<br>
+password = input('Введите пароль: ')<br><br>
+has_digit = any(symbol.isdigit() for symbol in password)<br>
+has_letter = any(symbol.isalpha() for symbol in password)<br><br>
+if len(password) &gt;= 8 and has_digit and has_letter:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Пароль принят')<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Слабый пароль')<br><br>
+product = input('Введите товар: ').strip()<br><br>
+if product:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cart.append(product)<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Название товара не может быть пустым')<br><br>
+number = int(input('Выберите номер товара: '))<br><br>
+if 1 &lt;= number &lt;= len(cart):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart&#91;number - 1&#93;)<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')<br><br>
+item = 'Наушники'<br><br>
+if item in cart:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cart.remove(item)<br>
+else:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Товара нет в корзине')<br><br>
+print('Корзина:', cart)
+</code><br><br>
+
+<b>Как предотвратить повтор:</b> никогда не выводить пароли и другие секретные данные; валидировать ввод; использовать проверки перед <code>remove()</code> и обращением по индексу.<br><br>
+
+<b>Последствия для бизнеса:</b> незавершённый заказ, обращение в поддержку, репутационные и финансовые потери, риск штрафа и утечки персональных данных.<br><br>
+
+(link-goto: "Завершить квест", "Списки: Финал")
+</tw-passagedata>
+
+<tw-passagedata pid="413" name="Квест: Финал Ошибка В" tags="l4" position="1200,5800" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Это особенность работы со списками, но не главная угроза безопасности. Самая опасная проблема здесь — вывод пароля пользователя на экран.<br><br>
+
+(link-goto: "Вернуться к инциденту", "Квест: Финальный инцидент — Корзина")
+</tw-passagedata>
+
+<tw-passagedata pid="414" name="Квест: Финал Ошибка Г" tags="l4" position="1300,5800" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)
+
+<span class="error-word">Неверно.</span><br><br>
+
+Это особенность работы со списками, но не главная угроза безопасности. Самая опасная проблема здесь — вывод пароля пользователя на экран.<br><br>
+
+(link-goto: "Вернуться к инциденту", "Квест: Финальный инцидент — Корзина")
 </tw-passagedata>
 
 <tw-passagedata pid="253" name="Списки: Финал" tags="l3" position="1100,5200" size="100,100">
