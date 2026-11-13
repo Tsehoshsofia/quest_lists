@@ -1023,7 +1023,7 @@ input() принимает не более одного аргумента.<br><
 <tw-passagedata pid="207" name="Списки: Задание 2" tags="l2" position="1000,3300" size="100,100">
 Каким способом можно удалить данный элемент, зная его точное значение?<br><br>
 
-(link-goto: "del myCars[1]", "Списки: Ответ 2А")
+(link-goto: "del myCars&#91;1&#93;", "Списки: Ответ 2А")
 (link-goto: "myCars.remove('УАЗ Патриот')", "Списки: Ответ 2Б")
 (link-goto: "myCars.clear()", "Списки: Ошибка 2В")
 </tw-passagedata>
@@ -1068,7 +1068,7 @@ input() принимает не более одного аргумента.<br><
 
 [[appointments.append('Елена')->Списки: Ошибка 3А]]
 [[appointments.insert(2, 'Елена')->Списки: Ответ 3Б]]
-(link-goto: "appointments[2] = 'Елена'", "Списки: Ошибка 3В")
+(link-goto: "appointments&#91;2&#93; = 'Елена'", "Списки: Ошибка 3В")
 </tw-passagedata>
 
 <tw-passagedata pid="213" name="Списки: Ошибка 3А" tags="l4" position="1100,3600" size="100,100">
@@ -1252,7 +1252,7 @@ input() принимает не более одного аргумента.<br><
 <tw-passagedata pid="232" name="Списки: Задание 7" tags="l2" position="1000,4300" size="100,100">
 Как удалить элемент по его индексу?<br><br>
 
-(link-goto: "del cart[1]", "Списки: Ответ 7А")
+(link-goto: "del cart&#91;1&#93;", "Списки: Ответ 7А")
 [[cart.remove(1)->Списки: Ошибка 7Б]]
 [[cart.pop()->Списки: Ошибка 7В]]
 </tw-passagedata>
@@ -1273,7 +1273,7 @@ input() принимает не более одного аргумента.<br><
 
 <tw-passagedata pid="312" name="Списки: Пояснение 7Б" tags="l15" position="1200,4400" size="100,100">
 Метод <code>remove()</code> осуществляет поиск элемента по значению, а не по индексу.<br><br>
-<b>Рекомендация:</b> для удаления элемента по индексу используется <code>del cart[1]</code> или <code>cart.pop(1)</code>.<br><br>
+<b>Рекомендация:</b> для удаления элемента по индексу используется <code>del cart&#91;1&#93;</code> или <code>cart.pop(1)</code>.<br><br>
 [[Начать обучение->Пользователь]]
 </tw-passagedata>
 
@@ -1285,7 +1285,7 @@ input() принимает не более одного аргумента.<br><
 
 <tw-passagedata pid="313" name="Списки: Пояснение 7В" tags="l15" position="1300,4400" size="100,100">
 Метод <code>pop()</code> без аргумента удаляет последний элемент списка.<br><br>
-<b>Рекомендация:</b> для удаления элемента по индексу используется <code>del cart[1]</code> или <code>cart.pop(1)</code>.<br><br>
+<b>Рекомендация:</b> для удаления элемента по индексу используется <code>del cart&#91;1&#93;</code> или <code>cart.pop(1)</code>.<br><br>
 [[Начать обучение->Пользователь]]
 </tw-passagedata>
 
@@ -1347,7 +1347,7 @@ input() принимает не более одного аргумента.<br><
 
 [[appointments.append('Хирург')->Списки: Ошибка 9А]]
 [[appointments.insert(1, 'Хирург')->Списки: Ответ 9Б]]
-(link-goto: "appointments[1] = 'Хирург'", "Списки: Ошибка 9В")
+(link-goto: "appointments&#91;1&#93; = 'Хирург'", "Списки: Ошибка 9В")
 </tw-passagedata>
 
 <tw-passagedata pid="243" name="Списки: Ошибка 9А" tags="l4" position="1100,4800" size="100,100">
@@ -1391,7 +1391,7 @@ input() принимает не более одного аргумента.<br><
 Какой код следует написать?<br><br>
 
 [[schedule.append('Бокс')->Списки: Ошибка 10А]]
-(link-goto: "schedule[1] = 'Бокс'", "Списки: Ответ 10Б")
+(link-goto: "schedule&#91;1&#93; = 'Бокс'", "Списки: Ответ 10Б")
 [[schedule.insert(1, 'Бокс')->Списки: Ошибка 10В]]
 </tw-passagedata>
 
@@ -1410,7 +1410,7 @@ input() принимает не более одного аргумента.<br><
 <tw-passagedata pid="249" name="Списки: Ответ 10Б" tags="l3" position="1200,5000" size="100,100">
 <span class="success-word">Верно</span><br><br>
 Списки в Python являются изменяемыми структурами данных.<br><br>
-Запись <code>schedule[1] = 'Бокс'</code> заменяет элемент <code>'Бассейн (ср)'</code> на <code>'Бокс'</code>.<br><br>
+Запись <code>schedule&#91;1&#93; = 'Бокс'</code> заменяет элемент <code>'Бассейн (ср)'</code> на <code>'Бокс'</code>.<br><br>
 [[Следующая ситуация->Списки: Ситуация 11]]
 </tw-passagedata>
 
