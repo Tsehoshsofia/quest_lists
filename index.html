@@ -314,6 +314,8 @@ tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !importa
 /* ============================================================ */
 /* 6. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
 /* ============================================================ */
+/* 6. ПОЯСНЕНИЯ (С ОТСТУПОМ СВЕРХУ ДЛЯ КНОПКИ) */
+/* ============================================================ */
 tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l6"], 
 tw-passage[tags~="l7"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], 
 tw-passage[tags~="l11"], tw-passage[tags~="l14"], tw-passage[tags~="l15"], 
@@ -342,10 +344,10 @@ tw-passage[tags~="l250"] {
     color: #000000 !important;
     max-height: 75vh !important; 
     overflow-y: auto !important;
-    padding: 25px !important; /* Убран padding-top: 60px */
+    
+    /* ИСПРАВЛЕНИЕ: Верхний отступ 70px, чтобы текст не залезал под кнопку */
+    padding: 70px 25px 25px 25px !important; 
 }
-
-/* ============================================================ */
 /* ============================================================ */
 /* 7. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
 /* ============================================================ */
@@ -1519,8 +1521,8 @@ else:<br>
 <code>
 products = &#91;'IPhone', 'Samsung Galaxy', 'Xiaomi'&#93;<br>
 query = 'iphone'<br><br>
-normalized&#95;products = &#91;product.lower().strip() for product in products&#93;<br><br>
-if query.strip().lower() in normalized&#95;products:<br>
+normalized\_products = &#91;product.lower().strip() for product in products&#93;<br><br>
+if query.strip().lower() in normalized\_products:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар доступен')<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар не найден')
@@ -1691,9 +1693,9 @@ print('Пароль пользователя:', password)
 <code>
 cart = &#91;&#93;<br>
 password = input('Введите пароль: ')<br><br>
-has_digit = any(symbol.isdigit() for symbol in password)<br>
-has_letter = any(symbol.isalpha() for symbol in password)<br><br>
-if len(password) &gt;= 8 and has_digit and has_letter:<br>
+has\_digit = any(symbol.isdigit() for symbol in password)<br>
+has\_letter = any(symbol.isalpha() for symbol in password)<br><br>
+if len(password) &gt;= 8 and has\_digit and has\_letter:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Пароль принят')<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Слабый пароль')<br><br>
