@@ -1023,17 +1023,15 @@ input() принимает не более одного аргумента.<br><
 <tw-passagedata pid="207" name="Списки: Задание 2" tags="l2" position="1000,3300" size="100,100">
 Каким способом можно удалить данный элемент, зная его точное значение?<br><br>
 
-(link-goto: "del myCars&#91;1&#93;", "Списки: Ответ 2А")
+(link-goto: "del myCars&#91;1&#93;", "Списки: Ошибка 2А")
 (link-goto: "myCars.remove('УАЗ Патриот')", "Списки: Ответ 2Б")
 (link-goto: "myCars.clear()", "Списки: Ошибка 2В")
 </tw-passagedata>
 
-<tw-passagedata pid="208" name="Списки: Ответ 2А" tags="l3" position="1100,3400" size="100,100">
-<span class="success-word">Верно</span><br><br>
-Оператор <code>del</code> удаляет элемент по указанному индексу.<br><br>
-После выполнения операции список будет иметь вид:<br><br>
-`&#91;'Lada Vesta', 'Aurus Senat'&#93;`<br><br>
-[[Следующая ситуация->Списки: Ситуация 3]]
+<tw-passagedata pid="208" name="Списки: Ошибка 2А" tags="l4" position="1100,3400" size="100,100">
+(set: $wrong to $wrong + 1, $perfect to false)<span class="error-word">Не верно</span><br><br>
+Оператор <code>del</code> удаляет элемент <b>по индексу</b>, а не по значению. Так как в вопросе сказано «зная его точное значение», правильнее использовать метод <code>remove()</code>.<br><br>
+[[Начать обучение->Пользователь]]
 </tw-passagedata>
 
 <tw-passagedata pid="209" name="Списки: Ответ 2Б" tags="l3" position="1200,3400" size="100,100">
