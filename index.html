@@ -1509,8 +1509,8 @@ else:<br>
 <code>
 products = &#91;'IPhone', 'Samsung Galaxy', 'Xiaomi'&#93;<br>
 query = 'iphone'<br><br>
-normalized_products = &#91;product.lower().strip() for product in products&#93;<br><br>
-if query.strip().lower() in normalized_products:<br>
+(verbatim: "normalized_products = [product.lower().strip() for product in products]")<br><br>
+(verbatim: "if query.strip().lower() in normalized_products:")<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар доступен')<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар не найден')
@@ -1554,7 +1554,7 @@ else:<br>
 <code>
 products = &#91;'Ноутбук', 'Смартфон', 'Наушники'&#93;<br>
 choice = int(input('Выберите номер товара: '))<br>
-print('Вы выбрали:', products&#91;choice&#93;)
+(verbatim: "print('Вы выбрали:', products[choice])")
 </code><br><br>
 
 Какой товар получит клиент при вводе <code>1</code>?<br><br>
@@ -1570,7 +1570,7 @@ print('Вы выбрали:', products&#91;choice&#93;)
 
 <span class="error-word">Неверно.</span><br><br>
 
-В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products[1]</code> — это второй элемент, а не первый.<br><br>
 
 (link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
 </tw-passagedata>
@@ -1580,15 +1580,15 @@ print('Вы выбрали:', products&#91;choice&#93;)
 
 <span class="success-word">Верно!</span><br><br>
 
-При вводе <code>1</code> клиент получит <code>Смартфон</code>, потому что в Python нумерация элементов начинается с нуля: <code>products&#91;0&#93;</code> — «Ноутбук», <code>products&#91;1&#93;</code> — «Смартфон».<br><br>
+При вводе <code>1</code> клиент получит <code>Смартфон</code>, потому что в Python нумерация элементов начинается с нуля: <code>products[0]</code> — «Ноутбук», <code>products[1]</code> — «Смартфон».<br><br>
 
 <b>Что сломалось для клиента:</b> он оформил не тот заказ, потратил время и потерял доверие к магазину.<br><br>
 
-<b>Как исправить:</b> использовать <code>products&#91;choice - 1&#93;</code> и проверять, что номер находится в допустимом диапазоне.<br><br>
+<b>Как исправить:</b> использовать <code>products[choice - 1]</code> и проверять, что номер находится в допустимом диапазоне.<br><br>
 
 <code>
 if 1 &lt;= choice &lt;= len(products):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print('Вы выбрали:', products&#91;choice - 1&#93;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(verbatim: "print('Вы выбрали:', products[choice - 1])")<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')
 </code><br><br>
@@ -1603,7 +1603,7 @@ else:<br>
 
 <span class="error-word">Неверно.</span><br><br>
 
-В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products[1]</code> — это второй элемент, а не первый.<br><br>
 
 (link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
 </tw-passagedata>
@@ -1613,7 +1613,7 @@ else:<br>
 
 <span class="error-word">Неверно.</span><br><br>
 
-В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products&#91;1&#93;</code> — это второй элемент, а не первый.<br><br>
+В Python первый элемент списка имеет индекс <code>0</code>. Поэтому <code>products[1]</code> — это второй элемент, а не первый.<br><br>
 
 (link-goto: "Вернуться к вопросу", "Квест: Ситуация 2 — Номер товара")
 </tw-passagedata>
@@ -1630,7 +1630,7 @@ product = input('Введите товар: ')<br>
 number = int(input('Выберите номер товара: '))<br><br>
 cart.append(product)<br>
 cart.remove('Наушники')<br>
-print(cart&#91;number&#93;)<br>
+(verbatim: "print(cart[number])")<br>
 print('Пароль пользователя:', password)
 </code><br><br>
 
@@ -1665,7 +1665,7 @@ print('Пароль пользователя:', password)
 - Пустое название товара можно добавить в корзину.<br>
 - Название не очищается от пробелов и не нормализуется по регистру.<br>
 - <code>cart.remove('Наушники')</code> вызывает <code>ValueError</code>, если товара нет.<br>
-- <code>cart&#91;number&#93;</code> вызывает <code>IndexError</code> при неверном номере.<br>
+- <code>cart[number]</code> вызывает <code>IndexError</code> при неверном номере.<br>
 - Пользовательский номер начинается с 1, а индекс списка — с 0.<br><br>
 
 <b>Как исправить:</b><br><br>
@@ -1686,7 +1686,7 @@ else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Название товара не может быть пустым')<br><br>
 number = int(input('Выберите номер товара: '))<br><br>
 if 1 &lt;= number &lt;= len(cart):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart&#91;number - 1&#93;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(verbatim: "print('Выбранный товар:', cart[number - 1])")<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')<br><br>
 item = 'Наушники'<br><br>
@@ -1723,7 +1723,6 @@ print('Корзина:', cart)
 
 (link-goto: "Вернуться к инциденту", "Квест: Финальный инцидент — Корзина")
 </tw-passagedata>
-
 <tw-passagedata pid="253" name="Списки: Финал" tags="l3" position="1100,5200" size="100,100">
 <h2>Квест завершён</h2>
 Поздравляем! Квест по теме «Списки» успешно завершён.<br><br>
