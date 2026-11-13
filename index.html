@@ -48,7 +48,6 @@ tw-passage p { margin: 5px 0 !important; padding: 0 !important; }
 tw-story[tags~="l1"] { background-image: url("7.jpeg"); }
 tw-story[tags~="l2"] { background-image: url("print.jpeg"); }
 
-/* Сначала идут ОБЩИЕ правила */
 tw-story[tags~="l3"], tw-story[tags~="l13"], tw-story[tags~="l20"],
 tw-story[tags~="l23"], tw-story[tags~="l29"], tw-story[tags~="l37"],
 tw-story[tags~="l43"], tw-story[tags~="l54"], tw-story[tags~="l60"],
@@ -84,20 +83,15 @@ tw-story[tags~="l47"], tw-story[tags~="l58"], tw-story[tags~="l63"] {
     background-image: url("белый_фон.jpeg") !important; 
 }
 
-/* 
-   ВАЖНО: Правила для конкретных ситуаций пишем В САМОМ КОНЦЕ 
-   блока с картинками, чтобы они перебивали 9.jpeg из правила l3
-*/
-
+/* Ситуации */
 tw-story[tags~="sit1"] { background-image: url("добавить_авто.jpeg") !important; }
 tw-story[tags~="sit2"] { background-image: url("добавить_авто.jpeg") !important; }
 tw-story[tags~="sit3"] { background-image: url("салон_красоты.jpeg") !important; }
 tw-story[tags~="sit6"] { background-image: url("книга.jpeg") !important; }
 tw-story[tags~="sit7"] { background-image: url("удалить_товар.jpeg") !important; }
 tw-story[tags~="sit9"] { background-image: url("запись_доктор.jpeg") !important; }
-tw-story[tags~="sit10"] { background-image: url("бокс.jpeg") !important; } /* <-- ДОБАВЛЕНО ДЛЯ БОКСА */
+tw-story[tags~="sit10"] { background-image: url("бокс.jpeg") !important; }
 tw-story[tags~="sit11"] { background-image: url("пароль.jpeg") !important; }
-
 
 /* ============================================================ */
 /* 3. ОБЩИЕ СТИЛИ ДЛЯ КАРТОЧЕК */
@@ -113,10 +107,7 @@ tw-passage[tags]:not([tags~="l1"]) {
     width: 700px !important;
     max-width: calc(100% - 40px) !important;
     
-    /* Плотный белый фон (80%), чтобы не было серости */
     background-color: rgba(255, 255, 255, 0.85) !important; 
-    
-    /* Мягкое размытие фона под карточкой */
     backdrop-filter: blur(10px) !important; 
     -webkit-backdrop-filter: blur(10px) !important;
     
@@ -126,10 +117,11 @@ tw-passage[tags]:not([tags~="l1"]) {
     
     font-size: 25px !important;       
     font-weight: bold !important;     
-    color: #000000 !important; /* Чистый черный текст */
-    text-shadow: none !important; /* Убрали тень, чтобы текст был чистым */
+    color: #000000 !important; 
+    text-shadow: none !important; 
     z-index: 10 !important;
 }
+
 /* ============================================================ */
 /* 4. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
 /* ============================================================ */
@@ -145,7 +137,6 @@ tw-passage[tags~="l63"] {
     padding: 20px !important;
 }
 
-/* Кнопки внутри вопросов */
 tw-passage[tags~="l2"] tw-link, tw-passage[tags~="l8"] tw-link, 
 tw-passage[tags~="l16"] tw-link, tw-passage[tags~="l22"] tw-link, 
 tw-passage[tags~="l28"] tw-link, tw-passage[tags~="l36"] tw-link, 
@@ -189,15 +180,11 @@ tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
     text-align: justify !important; 
     text-justify: inter-word !important;
     color: #000000 !important;
-    
-    /* ИСПРАВЛЕНИЕ: Добавлена прокрутка и ограничение высоты */
     max-height: 80vh !important; 
     overflow-y: auto !important; 
-    
     padding: 20px 25px !important;
     font-size: 16px !important; 
     line-height: 1.25 !important; 
-    
     width: 90vw !important; 
     max-width: 850px !important; 
     bottom: 2vh !important; 
@@ -208,7 +195,6 @@ tw-passage[tags~="l72"] div {
     line-height: 1.2 !important;
 }
 
-/* Слово "Верно" (зеленое, в строку) */
 .success-word { 
     color: #008000 !important; 
     font-weight: bold !important;
@@ -216,7 +202,6 @@ tw-passage[tags~="l72"] div {
     display: inline !important;
 }
 
-/* Слово "Не верно" (красное, в строку) */
 .error-word { 
     color: #CC0000 !important; 
     display: inline !important; 
@@ -224,7 +209,7 @@ tw-passage[tags~="l72"] div {
     font-weight: bold !important;
 }
 
-/* Кнопки для карточек с правильными ответами и пояснениями */
+/* Кнопки для правильных и неправильных ответов */
 tw-passage[tags~="l3"] tw-link, tw-passage[tags~="l13"] tw-link,
 tw-passage[tags~="l20"] tw-link, tw-passage[tags~="l23"] tw-link,
 tw-passage[tags~="l29"] tw-link, tw-passage[tags~="l37"] tw-link,
@@ -261,7 +246,6 @@ tw-passage[tags~="l250"] tw-link {
     max-width: 450px !important;
     margin: 15px auto 8px auto !important;  
     padding: 12px 15px !important;
-    
     background-color: #F4F9FF !important; 
     border: 2px solid #4169E1 !important; 
     border-radius: 10px !important; 
@@ -312,8 +296,6 @@ tw-passage[tags~="l250"] tw-link:hover {
 tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !important; padding-bottom: 15px !important; line-height: 1.2 !important; }
 
 /* ============================================================ */
-/* 6. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
-/* ============================================================ */
 /* 6. ПОЯСНЕНИЯ (С ОТСТУПОМ СВЕРХУ ДЛЯ КНОПКИ) */
 /* ============================================================ */
 tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l6"], 
@@ -344,12 +326,11 @@ tw-passage[tags~="l250"] {
     color: #000000 !important;
     max-height: 75vh !important; 
     overflow-y: auto !important;
-    
-    /* ИСПРАВЛЕНИЕ: Верхний отступ 70px, чтобы текст не залезал под кнопку */
     padding: 70px 25px 25px 25px !important; 
 }
+
 /* ============================================================ */
-/* 7. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
+/* 7. СТРЕЛКА «НАЗАД» */
 /* ============================================================ */
 tw-link, tw-link:link, tw-link:visited, tw-link:hover, tw-link:active,
 tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
@@ -358,14 +339,12 @@ tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
     -webkit-tap-highlight-color: transparent !important;
 }
 
-/* 1. ЖЕСТКО СКРЫВАЕМ СТРЕЛКУ ВЕЗДЕ ПО УМОЛЧАНИЮ */
 tw-sidebar {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
 }
 
-/* 2. ПОКАЗЫВАЕМ ТОЛЬКО НА ЭТИХ СТРАНИЦАХ (ГДЕ ТЕКСТ ПОЯСНЕНИЙ) */
 tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
 tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
 tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -426,7 +405,6 @@ tw-sidebar tw-icon:hover {
     box-shadow: 0 8px 20px rgba(65, 105, 225, 0.4) !important;
 }
 
-/* 3. ПОЗИЦИОНИРОВАНИЕ (В ЛЕВОМ ВЕРХНЕМ УГЛУ) */
 @media screen and (min-width: 821px) {
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
@@ -500,7 +478,7 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
-/* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
+/* 8. ПЕРВЫЙ ЭКРАН (L1) */
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
@@ -585,8 +563,7 @@ tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="sit"]) {
     position: absolute !important; 
     bottom: 5vh !important;        
 }
-/* 1. Основной блок: текст по ширине (выравнивание по обоим краям) */
-/* 1. Основной блок: текст по ширине (выравнивание по обоим краям) */
+
 tw-passage[tags~="sit"]:not([tags~="l1"]) {
     top: auto !important;
     bottom: 0 !important;      
@@ -599,25 +576,20 @@ tw-passage[tags~="sit"]:not([tags~="l1"]) {
     width: 95vw !important;
     max-width: 900px !important; 
     
-    padding: 15px 30px 20px 30px !important; /* Чуть увеличили верхний отступ */
+    padding: 15px 30px 20px 30px !important; 
     font-size: 18px !important;  
     line-height: 1.3 !important;
     
-    /* ИСПРАВЛЕНИЕ: Добавлена прокрутка для длинных ситуаций */
     max-height: 85vh !important; 
     overflow-y: auto !important;
     
-    /* Текст по центру */
     text-align: center !important; 
     
-    /* Прозрачность 35% */
     background-color: rgba(255, 255, 255, 0.35) !important; 
     
-    /* Без размытия */
     backdrop-filter: none !important; 
     -webkit-backdrop-filter: none !important;
     
-    /* Мягкое белое свечение для текста */
     text-shadow: 0px 0px 4px #FFFFFF, 0px 0px 8px #FFFFFF, 0px 0px 12px #FFFFFF !important;
     
     box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.15) !important;
@@ -635,15 +607,18 @@ tw-passage[tags~="sit"] tw-link {
     background-color: #FFFFFF !important; 
 }
 
-/* Блок с кодом */
+/* ИСПРАВЛЕНО: Блок с кодом теперь не вылезает за края */
 tw-passage[tags~="sit"] code {
-    display: inline-block !important;
-    margin: 5px auto !important;
-    padding: 4px 10px !important;
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 10px 0 !important;
+    padding: 15px !important;
     background-color: rgba(255, 255, 255, 0.85) !important; 
     border-radius: 6px !important;
     text-shadow: none !important; 
     text-align: left !important;
+    white-space: normal !important;
 }
     
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
@@ -1691,7 +1666,7 @@ print('Пароль пользователя:', password)
 <b>Как исправить:</b><br><br>
 
 <code>
-cart = &#91;&#93;<br>
+cart = \[\]<br>
 password = input('Введите пароль: ')<br><br>
 has\_digit = any(symbol.isdigit() for symbol in password)<br>
 has\_letter = any(symbol.isalpha() for symbol in password)<br><br>
@@ -1706,7 +1681,7 @@ else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Название товара не может быть пустым')<br><br>
 number = int(input('Выберите номер товара: '))<br><br>
 if 1 &lt;= number &lt;= len(cart):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart&#91;number - 1&#93;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;print('Выбранный товар:', cart\[number - 1\])<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Неверный номер товара')<br><br>
 item = 'Наушники'<br><br>
