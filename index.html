@@ -1462,7 +1462,6 @@ input() принимает не более одного аргумента.<br><
 [[Попробовать снова->Списки: Задание 11]]
 ]
 </tw-passagedata>
-
 <tw-passagedata pid="400" name="Квест: Ситуация 1 — Поиск товара" tags="l3 sit sit1" position="900,5300" size="100,100">
 <h2>Ситуация 1. Клиент ищет iPhone, а магазин его «не видит»</h2>
 
@@ -1513,8 +1512,8 @@ else:<br>
 <code>
 products = &#91;'IPhone', 'Samsung Galaxy', 'Xiaomi'&#93;<br>
 query = 'iphone'<br><br>
-normalized_products = &#91;product.lower().strip() for product in products&#93;<br><br>
-if query.strip().lower() in normalized_products:<br>
+normalized&#95;products = &#91;product.lower().strip() for product in products&#93;<br><br>
+if query.strip().lower() in normalized&#95;products:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар доступен')<br>
 else:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;print('Товар не найден')
@@ -1664,7 +1663,7 @@ print('Пароль пользователя:', password)
 (link-goto: "Вернуться к инциденту", "Квест: Вопрос — Финальный инцидент")
 </tw-passagedata>
 
-<tw-passagedata pid="415" name="Квест: Финал Ответ Б" tags="l3" position="1100,5800" size="100,100">
+<tw-passagedata pid="415" name="Квест: Финал Ответ Б" tags="l3 sit" position="1100,5800" size="100,100">
 (set: $correct to $correct + 1)
 
 <span class="success-word">Верно!</span><br><br>
