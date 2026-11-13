@@ -17,6 +17,8 @@
 <!-- ========================================== -->
 <style>
 /* 1. БАЗОВЫЕ НАСТРОЙКИ, ШРИФТ И ПЕРЕНОСЫ */
+/* ========================================= */
+/* 1. БАЗОВЫЕ НАСТРОЙКИ, ШРИФТ И ПЕРЕНОСЫ */
 /* ============================================================ */
 body {
     background-color: #FFFFFF !important;
@@ -234,7 +236,17 @@ tw-passage[tags~="l45"] tw-link, tw-passage[tags~="l46"] tw-link,
 tw-passage[tags~="l51"] tw-link, tw-passage[tags~="l52"] tw-link, 
 tw-passage[tags~="l53"] tw-link, tw-passage[tags~="l59"] tw-link, 
 tw-passage[tags~="l61"] tw-link, tw-passage[tags~="l65"] tw-link, 
-tw-passage[tags~="l67"] tw-link, tw-passage[tags~="l68"] tw-link {
+tw-passage[tags~="l67"] tw-link, tw-passage[tags~="l68"] tw-link,
+tw-passage[tags~="l203"] tw-link, tw-passage[tags~="l205"] tw-link,
+tw-passage[tags~="l210"] tw-link, tw-passage[tags~="l213"] tw-link,
+tw-passage[tags~="l215"] tw-link, tw-passage[tags~="l218"] tw-link,
+tw-passage[tags~="l220"] tw-link, tw-passage[tags~="l223"] tw-link,
+tw-passage[tags~="l225"] tw-link, tw-passage[tags~="l228"] tw-link,
+tw-passage[tags~="l230"] tw-link, tw-passage[tags~="l234"] tw-link,
+tw-passage[tags~="l235"] tw-link, tw-passage[tags~="l239"] tw-link,
+tw-passage[tags~="l240"] tw-link, tw-passage[tags~="l243"] tw-link,
+tw-passage[tags~="l245"] tw-link, tw-passage[tags~="l248"] tw-link,
+tw-passage[tags~="l250"] tw-link {
     text-align: center !important;
     display: block !important;    
     width: 100% !important;
@@ -271,7 +283,17 @@ tw-passage[tags~="l45"] tw-link:hover, tw-passage[tags~="l46"] tw-link:hover,
 tw-passage[tags~="l51"] tw-link:hover, tw-passage[tags~="l52"] tw-link:hover,
 tw-passage[tags~="l53"] tw-link:hover, tw-passage[tags~="l59"] tw-link:hover,
 tw-passage[tags~="l61"] tw-link:hover, tw-passage[tags~="l65"] tw-link:hover,
-tw-passage[tags~="l67"] tw-link:hover, tw-passage[tags~="l68"] tw-link:hover {
+tw-passage[tags~="l67"] tw-link:hover, tw-passage[tags~="l68"] tw-link:hover,
+tw-passage[tags~="l203"] tw-link:hover, tw-passage[tags~="l205"] tw-link:hover,
+tw-passage[tags~="l210"] tw-link:hover, tw-passage[tags~="l213"] tw-link:hover,
+tw-passage[tags~="l215"] tw-link:hover, tw-passage[tags~="l218"] tw-link:hover,
+tw-passage[tags~="l220"] tw-link:hover, tw-passage[tags~="l223"] tw-link:hover,
+tw-passage[tags~="l225"] tw-link:hover, tw-passage[tags~="l228"] tw-link:hover,
+tw-passage[tags~="l230"] tw-link:hover, tw-passage[tags~="l234"] tw-link:hover,
+tw-passage[tags~="l235"] tw-link:hover, tw-passage[tags~="l239"] tw-link:hover,
+tw-passage[tags~="l240"] tw-link:hover, tw-passage[tags~="l243"] tw-link:hover,
+tw-passage[tags~="l245"] tw-link:hover, tw-passage[tags~="l248"] tw-link:hover,
+tw-passage[tags~="l250"] tw-link:hover {
     background-color: #4169E1 !important;
     color: #FFFFFF !important;
     transform: translateY(-2px) !important; 
@@ -299,7 +321,14 @@ tw-passage[tags~="l55"], tw-passage[tags~="l56"], tw-passage[tags~="l57"],
 tw-passage[tags~="l59"], tw-passage[tags~="l61"], tw-passage[tags~="l62"], 
 tw-passage[tags~="l64"], tw-passage[tags~="l65"], tw-passage[tags~="l67"], 
 tw-passage[tags~="l68"], tw-passage[tags~="l69"], tw-passage[tags~="l70"], 
-tw-passage[tags~="l71"] { 
+tw-passage[tags~="l71"],
+tw-passage[tags~="l203"], tw-passage[tags~="l205"], tw-passage[tags~="l210"],
+tw-passage[tags~="l213"], tw-passage[tags~="l215"], tw-passage[tags~="l218"],
+tw-passage[tags~="l220"], tw-passage[tags~="l223"], tw-passage[tags~="l225"],
+tw-passage[tags~="l228"], tw-passage[tags~="l230"], tw-passage[tags~="l234"],
+tw-passage[tags~="l235"], tw-passage[tags~="l239"], tw-passage[tags~="l240"],
+tw-passage[tags~="l243"], tw-passage[tags~="l245"], tw-passage[tags~="l248"],
+tw-passage[tags~="l250"] { 
     text-align: justify !important; 
     color: #000000 !important;
     max-height: 75vh !important; 
@@ -323,10 +352,6 @@ tw-sidebar {
     opacity: 0 !important;
 }
 
-/* ВАЖНО: добавлены теги l2 и l4, чтобы кнопка Undo
-   показывалась на вопросах и на экранах "Не верно". */
-tw-passage[tags~="l2"] tw-sidebar,
-tw-passage[tags~="l4"] tw-sidebar,
 tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
 tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
 tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -388,8 +413,6 @@ tw-sidebar tw-icon:hover {
 }
 
 @media screen and (min-width: 821px) {
-    tw-passage[tags~="l2"] tw-sidebar,
-    tw-passage[tags~="l4"] tw-sidebar,
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
     tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -423,8 +446,6 @@ tw-sidebar tw-icon:hover {
 }
 
 @media screen and (max-width: 820px) {
-    tw-passage[tags~="l2"] tw-sidebar,
-    tw-passage[tags~="l4"] tw-sidebar,
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
     tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -593,7 +614,7 @@ tw-passage[tags~="sit"] tw-link {
     background-color: #FFFFFF !important; 
 }
 
-/* Блок с кодом не вылезает за края */
+/* ИСПРАВЛЕНО: Блок с кодом теперь не вылезает за края */
 tw-passage[tags~="sit"] code {
     display: block !important;
     width: 100% !important;
