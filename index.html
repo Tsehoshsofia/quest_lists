@@ -234,17 +234,7 @@ tw-passage[tags~="l45"] tw-link, tw-passage[tags~="l46"] tw-link,
 tw-passage[tags~="l51"] tw-link, tw-passage[tags~="l52"] tw-link, 
 tw-passage[tags~="l53"] tw-link, tw-passage[tags~="l59"] tw-link, 
 tw-passage[tags~="l61"] tw-link, tw-passage[tags~="l65"] tw-link, 
-tw-passage[tags~="l67"] tw-link, tw-passage[tags~="l68"] tw-link,
-tw-passage[tags~="l203"] tw-link, tw-passage[tags~="l205"] tw-link,
-tw-passage[tags~="l210"] tw-link, tw-passage[tags~="l213"] tw-link,
-tw-passage[tags~="l215"] tw-link, tw-passage[tags~="l218"] tw-link,
-tw-passage[tags~="l220"] tw-link, tw-passage[tags~="l223"] tw-link,
-tw-passage[tags~="l225"] tw-link, tw-passage[tags~="l228"] tw-link,
-tw-passage[tags~="l230"] tw-link, tw-passage[tags~="l234"] tw-link,
-tw-passage[tags~="l235"] tw-link, tw-passage[tags~="l239"] tw-link,
-tw-passage[tags~="l240"] tw-link, tw-passage[tags~="l243"] tw-link,
-tw-passage[tags~="l245"] tw-link, tw-passage[tags~="l248"] tw-link,
-tw-passage[tags~="l250"] tw-link {
+tw-passage[tags~="l67"] tw-link, tw-passage[tags~="l68"] tw-link {
     text-align: center !important;
     display: block !important;    
     width: 100% !important;
@@ -281,17 +271,7 @@ tw-passage[tags~="l45"] tw-link:hover, tw-passage[tags~="l46"] tw-link:hover,
 tw-passage[tags~="l51"] tw-link:hover, tw-passage[tags~="l52"] tw-link:hover,
 tw-passage[tags~="l53"] tw-link:hover, tw-passage[tags~="l59"] tw-link:hover,
 tw-passage[tags~="l61"] tw-link:hover, tw-passage[tags~="l65"] tw-link:hover,
-tw-passage[tags~="l67"] tw-link:hover, tw-passage[tags~="l68"] tw-link:hover,
-tw-passage[tags~="l203"] tw-link:hover, tw-passage[tags~="l205"] tw-link:hover,
-tw-passage[tags~="l210"] tw-link:hover, tw-passage[tags~="l213"] tw-link:hover,
-tw-passage[tags~="l215"] tw-link:hover, tw-passage[tags~="l218"] tw-link:hover,
-tw-passage[tags~="l220"] tw-link:hover, tw-passage[tags~="l223"] tw-link:hover,
-tw-passage[tags~="l225"] tw-link:hover, tw-passage[tags~="l228"] tw-link:hover,
-tw-passage[tags~="l230"] tw-link:hover, tw-passage[tags~="l234"] tw-link:hover,
-tw-passage[tags~="l235"] tw-link:hover, tw-passage[tags~="l239"] tw-link:hover,
-tw-passage[tags~="l240"] tw-link:hover, tw-passage[tags~="l243"] tw-link:hover,
-tw-passage[tags~="l245"] tw-link:hover, tw-passage[tags~="l248"] tw-link:hover,
-tw-passage[tags~="l250"] tw-link:hover {
+tw-passage[tags~="l67"] tw-link:hover, tw-passage[tags~="l68"] tw-link:hover {
     background-color: #4169E1 !important;
     color: #FFFFFF !important;
     transform: translateY(-2px) !important; 
@@ -319,14 +299,7 @@ tw-passage[tags~="l55"], tw-passage[tags~="l56"], tw-passage[tags~="l57"],
 tw-passage[tags~="l59"], tw-passage[tags~="l61"], tw-passage[tags~="l62"], 
 tw-passage[tags~="l64"], tw-passage[tags~="l65"], tw-passage[tags~="l67"], 
 tw-passage[tags~="l68"], tw-passage[tags~="l69"], tw-passage[tags~="l70"], 
-tw-passage[tags~="l71"],
-tw-passage[tags~="l203"], tw-passage[tags~="l205"], tw-passage[tags~="l210"],
-tw-passage[tags~="l213"], tw-passage[tags~="l215"], tw-passage[tags~="l218"],
-tw-passage[tags~="l220"], tw-passage[tags~="l223"], tw-passage[tags~="l225"],
-tw-passage[tags~="l228"], tw-passage[tags~="l230"], tw-passage[tags~="l234"],
-tw-passage[tags~="l235"], tw-passage[tags~="l239"], tw-passage[tags~="l240"],
-tw-passage[tags~="l243"], tw-passage[tags~="l245"], tw-passage[tags~="l248"],
-tw-passage[tags~="l250"] { 
+tw-passage[tags~="l71"] { 
     text-align: justify !important; 
     color: #000000 !important;
     max-height: 75vh !important; 
@@ -350,6 +323,10 @@ tw-sidebar {
     opacity: 0 !important;
 }
 
+/* ВАЖНО: добавлены теги l2 и l4, чтобы кнопка Undo
+   показывалась на вопросах и на экранах "Не верно". */
+tw-passage[tags~="l2"] tw-sidebar,
+tw-passage[tags~="l4"] tw-sidebar,
 tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
 tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
 tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -411,6 +388,8 @@ tw-sidebar tw-icon:hover {
 }
 
 @media screen and (min-width: 821px) {
+    tw-passage[tags~="l2"] tw-sidebar,
+    tw-passage[tags~="l4"] tw-sidebar,
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
     tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -444,6 +423,8 @@ tw-sidebar tw-icon:hover {
 }
 
 @media screen and (max-width: 820px) {
+    tw-passage[tags~="l2"] tw-sidebar,
+    tw-passage[tags~="l4"] tw-sidebar,
     tw-passage[tags~="l6"] tw-sidebar, tw-passage[tags~="l7"] tw-sidebar,
     tw-passage[tags~="l11"] tw-sidebar, tw-passage[tags~="l15"] tw-sidebar,
     tw-passage[tags~="l19"] tw-sidebar, tw-passage[tags~="l21"] tw-sidebar,
@@ -612,7 +593,7 @@ tw-passage[tags~="sit"] tw-link {
     background-color: #FFFFFF !important; 
 }
 
-/* ИСПРАВЛЕНО: Блок с кодом теперь не вылезает за края */
+/* Блок с кодом не вылезает за края */
 tw-passage[tags~="sit"] code {
     display: block !important;
     width: 100% !important;
@@ -625,7 +606,6 @@ tw-passage[tags~="sit"] code {
     text-align: left !important;
     white-space: normal !important;
 }
-    
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
 <tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
 [[Начать обучение]]</tw-passagedata>
