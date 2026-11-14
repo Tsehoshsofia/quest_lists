@@ -560,14 +560,12 @@ tw-passage[tags~="l1"] tw-link.visited {
     /* Опускаем вниз к ноутбуку */
     top: 55vh !important;   
     
-    /* Ставим точку отсчета по центру экрана */
-    left: 50% !important; 
     transform: none !important;  
-    
+    margin: 0 !important;    
     display: inline-block !important;
+    
     width: 180px !important; 
     padding: 12px 10px !important;
-    margin: 0 !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -584,16 +582,14 @@ tw-passage[tags~="l1"] tw-link.visited {
     pointer-events: auto !important;
 }
 
-/* Левая кнопка ("Изучить базовый синтаксис") */
+/* Первая кнопка ("Изучить базовый синтаксис") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    /* Сдвигаем влево от центра ровно на ширину кнопки + зазор */
-    margin-left: -195px !important; 
+    left: 20vw !important;  /* Позиция левее ноутбука */
 }
 
-/* Правая кнопка ("Списки") */
+/* Вторая кнопка ("Списки") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    /* Сдвигаем вправо от центра на небольшой зазор */
-    margin-left: 15px !important; 
+    left: calc(20vw + 195px) !important; /* Встает ровно справа от первой */
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
