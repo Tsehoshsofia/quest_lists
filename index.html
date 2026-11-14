@@ -1434,13 +1434,12 @@ input() принимает не более одного аргумента.<br><
 [[Перейти к вопросу->Списки: Задание 11]]
 </tw-passagedata>
 
-<tw-passagedata pid="252" name="Списки: Задание 11" tags="l2" position="1000,5100" size="100,100">
 Введите пароль:<br><br>
 
 {
 (set: $user_pass to (prompt: "Введите пароль:", ""))
 
-(if: $user_pass is not "" and $user_pass matches "(?=.*@)(?=.*S)")[
+(if: $user_pass is not "" and (str-find: "@", $user_pass)'s length > 0 and (str-find: "S", $user_pass)'s length > 0)[
 Пароль соответствует требованиям безопасности.<br><br>
 В пароле присутствуют символ <code>@</code> и заглавная буква <code>S</code>.<br><br>
 Регистрация завершена.<br><br>
@@ -1451,9 +1450,9 @@ input() принимает не более одного аргумента.<br><
 (else-if: $user_pass is not "")[
 Пароль не соответствует требованиям безопасности.<br><br>
 
-(if: $user_pass does not match "(?=.*@)")[В пароле отсутствует символ <code>@</code>.<br><br>]
+(if: (str-find: "@", $user_pass)'s length is 0)[В пароле отсутствует символ <code>@</code>.<br><br>]
 
-(if: $user_pass does not match "(?=.*S)")[В пароле отсутствует заглавная буква <code>S</code>.<br><br>]
+(if: (str-find: "S", $user_pass)'s length is 0)[В пароле отсутствует заглавная буква <code>S</code>.<br><br>]
 
 <b>Рекомендация:</b> в Python проверка выполняется следующим образом:<br><br>
 
