@@ -309,7 +309,7 @@ tw-passage[tags~="l250"] tw-link:hover {
 tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !important; padding-bottom: 15px !important; line-height: 1.2 !important; }
 
 /* ============================================================ */
-/* 6. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
+* 6. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
 /* ============================================================ */
 tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l6"], 
 tw-passage[tags~="l7"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], 
@@ -519,11 +519,6 @@ tw-passage[tags~="l1"] {
     line-height: 1.4 !important;
     text-align: center !important; 
     z-index: 10 !important;
-    
-    /* Используем flex для выравнивания контента */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
 }
 
 tw-passage[tags~="l1"]::before,
@@ -546,35 +541,18 @@ tw-passage[tags~="l1"]::after {
     width: 12px !important;
     height: 12px !important;
 }
-
-/* Контейнер для кнопок (Главное исправление) */
-tw-passage[tags~="l1"] .menu-buttons {
-    display: flex !important;
-    flex-wrap: wrap !important; 
-    justify-content: center !important;
-    gap: 15px !important; /* Отступ между кнопками */
-    margin-top: 15px !important;
-    width: 100% !important;
-}
-
-/* Стили для самих кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: relative !important; /* Убираем fixed, чтобы они стояли в ряду */
-    display: inline-block !important;
-    
-    /* Разрешаем перенос текста, если не влезает */
-    white-space: normal !important; 
-    text-align: center !important;
-    
-    /* Гибкая ширина */
-    flex: 1 1 auto !important; 
-    min-width: 120px !important; 
-    max-width: 45% !important;   
-    
-    margin: 0 !important; 
-    padding: 12px 15px !important;
-    
+    position: fixed !important;
+    top: 77vh !important;       
+    left: 48% !important;
+    transform: translateX(-50%) !important; 
+    bottom: auto !important;
+    right: auto !important;
+    margin: 0 !important;
+    display: block !important;
+    width: max-content !important;
+    padding: 12px 25px !important;
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
     border-radius: 8px !important;
@@ -582,6 +560,7 @@ tw-passage[tags~="l1"] tw-link.visited {
     text-decoration: none !important;
     font-size: 16px !important;
     font-weight: bold !important;
+    white-space: nowrap !important; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
@@ -589,17 +568,9 @@ tw-passage[tags~="l1"] tw-link.visited {
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
-    transform: scale(1.05) !important; 
+    transform: translateX(-50%) scale(1.05) !important; 
     background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
-}
-
-/* Мобильная адаптация для кнопок (чтобы вставали друг под другом на узких экранах) */
-@media (max-width: 450px) {
-    tw-passage[tags~="l1"] tw-link {
-        max-width: 100% !important; 
-        width: 100% !important;
-    }
 }
 
 /* ============================================================ */
