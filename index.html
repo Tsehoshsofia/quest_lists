@@ -551,45 +551,55 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — ВНЕ ОБЛАКА, В РЯД, НА УРОВНЕ НОУТБУКА */
 /* ============================================================ */
+/* КНОПКИ — ВНЕ ОБЛАКА, В РЯД, ПО ЦЕНТРУ */
+/* ============================================================ */
+
+/* Создаем невидимый контейнер на весь экран для выравнивания */
+tw-passage[tags~="l1"] {
+    display: flex !important;
+    flex-direction: row !important; /* Выстраиваем кнопки в ряд */
+    justify-content: center !important; /* Центрируем по горизонтали */
+    align-items: flex-end !important; /* Прижимаем к низу */
+    gap: 20px !important; /* Расстояние между кнопками */
+    pointer-events: none !important; /* Пропускаем клики сквозь пустоту */
+    
+    /* Опускаем весь ряд кнопок вниз */
+    padding-bottom: 25vh !important; 
+}
+
+/* Возвращаем облаку нормальное поведение */
+tw-passage[tags~="l1"]::before {
+    pointer-events: auto !important; /* Облако кликабельно (если нужно) */
+}
+
+/* Общие стили для кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: fixed !important; 
-    
-    /* Опускаем вниз к ноутбуку */
-    top: 55vh !important;   
-    
+    position: static !important; /* Убираем жесткую привязку к экрану */
     transform: none !important;  
     margin: 0 !important;    
-    display: inline-block !important;
     
-    width: 180px !important; 
-    padding: 12px 10px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    width: 200px !important; /* Одинаковая ширина для обеих */
+    padding: 15px 10px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
     border-radius: 8px !important;
     border: 2px solid #FFFFFF !important; 
     text-decoration: none !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
     font-weight: bold !important;
-    white-space: nowrap !important; 
+    white-space: normal !important; /* Разрешаем перенос текста, если не влезает */
     text-align: center !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
-    pointer-events: auto !important;
-}
-
-/* Первая кнопка ("Изучить базовый синтаксис") */
-tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    left: 20vw !important;  /* Позиция левее ноутбука */
-}
-
-/* Вторая кнопка ("Списки") */
-tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    left: calc(20vw + 195px) !important; /* Встает ровно справа от первой */
+    pointer-events: auto !important; /* Возвращаем кликабельность */
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
