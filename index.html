@@ -548,7 +548,7 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — РЯДОМ, ПОД НОУТБУКОМ */
+/* КНОПКИ — ЖЕСТКО ПО КРАЯМ ЭКРАНА */
 /* ============================================================ */
 
 /* Общие стили для кнопок */
@@ -556,22 +556,17 @@ tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
     position: fixed !important; 
     
-    /* Опускаем кнопки ниже ноутбука */
-    top: 75vh !important;   
-    
-    /* Привязываем к центру экрана */
-    left: 50% !important;
-    transform: none !important;  
-    margin: 0 !important;    
+    /* Опускаем кнопки вниз (на уровень ноутбука) */
+    top: 65vh !important;   
     
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     
-    /* Размеры кнопок */
     width: 190px !important; 
     height: 55px !important; 
     padding: 0 10px !important;
+    margin: 0 !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -588,20 +583,16 @@ tw-passage[tags~="l1"] tw-link.visited {
     pointer-events: auto !important;
 }
 
-/* Первая кнопка ("Изучить базовый синтаксис") — сдвигаем влево от центра */
+/* Первая кнопка ("Изучить базовый синтаксис") — привязываем к ЛЕВОМУ краю экрана */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    margin-left: -200px !important; 
+    left: 15vw !important; 
+    right: auto !important;
 }
 
-/* Вторая кнопка ("Списки") — сдвигаем вправо от центра */
+/* Вторая кнопка ("Списки") — привязываем к ПРАВОМУ краю экрана */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    margin-left: 10px !important; 
-}
-
-tw-passage[tags~="l1"] tw-link:hover {
-    transform: translateY(-3px) !important; 
-    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
+    right: 15vw !important; 
+    left: auto !important;
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
