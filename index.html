@@ -500,7 +500,7 @@ tw-sidebar tw-icon:hover {
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
 
-/* Облако (не трогаем, оставляем как было) */
+/* Облако (не трогаем) */
 tw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
@@ -548,7 +548,7 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — ЖЕСТКО ПО КРАЯМ ЭКРАНА, ПОД НОУТБУКОМ */
+/* КНОПКИ — СТОЛБИКОМ СПРАВА ВНИЗУ */
 /* ============================================================ */
 
 /* Общие стили для кнопок */
@@ -556,8 +556,9 @@ tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
     position: fixed !important; 
     
-    /* Опускаем кнопки вниз (на уровень ноутбука) */
-    top: 70vh !important;   
+    /* Привязываем к правому краю */
+    right: 5vw !important; 
+    left: auto !important;
     
     display: inline-flex !important;
     align-items: center !important;
@@ -565,7 +566,7 @@ tw-passage[tags~="l1"] tw-link.visited {
     
     /* Размеры кнопок */
     width: 200px !important; 
-    height: 60px !important; 
+    height: 55px !important; 
     padding: 0 10px !important;
     margin: 0 !important;
     
@@ -584,16 +585,14 @@ tw-passage[tags~="l1"] tw-link.visited {
     pointer-events: auto !important;
 }
 
-/* ПЕРВАЯ КНОПКА ("Изучить базовый синтаксис") — привязываем к левой части экрана */
+/* ВЕРХНЯЯ КНОПКА ("Изучить базовый синтаксис") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    left: 10vw !important; 
-    right: auto !important;
+    top: 65vh !important; 
 }
 
-/* ВТОРАЯ КНОПКА ("Списки") — привязываем к правой части экрана */
+/* НИЖНЯЯ КНОПКА ("Списки") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    right: 10vw !important; 
-    left: auto !important;
+    top: 75vh !important; /* Сдвинута вниз относительно первой */
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
