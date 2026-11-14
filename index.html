@@ -497,11 +497,8 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
-/* ============================================================ */
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
-
-/* Настраиваем облако: оно будет держать текст внутри, а кнопки внизу */
 tw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
@@ -509,13 +506,9 @@ tw-passage[tags~="l1"] {
     left: auto !important;
     transform: none !important; 
     width: 85vw !important;    
-    max-width: 450px !important; 
+    max-width: 400px !important; 
     margin: 0 !important;
-    
-    /* Даем облаку жесткую высоту, чтобы текст был сверху, а кнопки снизу */
-    height: 300px !important; 
-    padding: 25px 30px 80px 30px !important; /* Отступ снизу для кнопок */
-    
+    padding: 25px 30px !important;
     background-color: rgba(255, 255, 255, 0.95) !important; 
     backdrop-filter: blur(10px) !important; 
     border: none !important;
@@ -528,12 +521,6 @@ tw-passage[tags~="l1"] {
     line-height: 1.4 !important;
     text-align: center !important; 
     z-index: 10 !important;
-    
-    /* Выстраиваем контент в колонку */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important; /* Текст прижимаем к верху */
 }
 
 /* Хвостик облачка */
@@ -559,19 +546,16 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — В РЯД, ВНУТРИ ОБЛАКА (В САМОМ НИЗУ) */
+/* КНОПКИ — РЯДОМ, ПОД НОУТБУКОМ */
 /* ============================================================ */
 
 /* Общие стили для кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: absolute !important; /* Позиционируем внутри облака */
+    position: fixed !important; 
     
-    /* Опускаем кнопки к нижнему краю облака */
-    bottom: -40px !important; 
-    
-    transform: none !important;  
-    margin: 0 !important;    
+    /* Опускаем кнопки вниз (на уровень ноутбука) */
+    top: 75vh !important;   
     
     display: inline-flex !important;
     align-items: center !important;
@@ -581,6 +565,7 @@ tw-passage[tags~="l1"] tw-link.visited {
     width: 190px !important; 
     height: 55px !important; 
     padding: 0 10px !important;
+    margin: 0 !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -597,16 +582,16 @@ tw-passage[tags~="l1"] tw-link.visited {
     pointer-events: auto !important;
 }
 
-/* Первая кнопка ("Изучить базовый синтаксис") — сдвигаем влево от центра */
+/* ПЕРВАЯ КНОПКА ("Изучить базовый синтаксис") — привязываем к левой части экрана */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    left: 50% !important;
-    margin-left: -200px !important; 
+    left: 15vw !important; 
+    right: auto !important;
 }
 
-/* Вторая кнопка ("Списки") — сдвигаем вправо от центра */
+/* ВТОРАЯ КНОПКА ("Списки") — привязываем к правой части экрана */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    left: 50% !important;
-    margin-left: 10px !important; 
+    right: 15vw !important; 
+    left: auto !important;
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
