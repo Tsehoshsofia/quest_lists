@@ -96,12 +96,12 @@ tw-story[tags~="sit3"] { background-image: url("салон_красоты.jpeg")
 tw-story[tags~="sit6"] { background-image: url("книга.jpeg") !important; }
 tw-story[tags~="sit7"] { background-image: url("удалить_товар.jpeg") !important; }
 tw-story[tags~="sit9"] { background-image: url("запись_доктор.jpeg") !important; }
-tw-story[tags~="sit10"] { background-image: url("бокс.jpeg") !important; } /* <-- ДОБАВЛЕНО ДЛЯ БОКСА */
+tw-story[tags~="sit10"] { background-image: url("бокс.jpeg") !important; }
 tw-story[tags~="sit11"] { background-image: url("пароль.jpeg") !important; }
 
 
 /* ============================================================ */
-/* 3. ОБЩИЕ СТИЛИ ДЛЯ КАРТОЧЕК */
+/* 3. БАЗОВЫЕ СТИЛИ ДЛЯ ВСЕХ КАРТОЧЕК (ТОЛЬКО ПОЗИЦИОНИРОВАНИЕ) */
 /* ============================================================ */
 tw-passage[tags]:not([tags~="l1"]) { 
     position: fixed !important;
@@ -110,29 +110,90 @@ tw-passage[tags]:not([tags~="l1"]) {
     left: 0 !important;     
     right: 0 !important;    
     margin: 0 auto !important; 
-    
-    width: 700px !important;
-    max-width: calc(100% - 40px) !important;
-    
-    /* Плотный белый фон (80%), чтобы не было серости */
-    background-color: rgba(255, 255, 255, 0.85) !important; 
-    
-    /* Мягкое размытие фона под карточкой */
-    backdrop-filter: blur(10px) !important; 
-    -webkit-backdrop-filter: blur(10px) !important;
-    
-    padding: 25px !important;         
-    border-radius: 15px !important;   
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important; 
-    
-    font-size: 25px !important;       
-    font-weight: bold !important;     
-    color: #000000 !important; /* Чистый черный текст */
-    text-shadow: none !important; /* Убрали тень, чтобы текст был чистым */
     z-index: 10 !important;
 }
+
 /* ============================================================ */
-/* 4. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
+/* 4. СПЕЦИАЛЬНЫЕ СТИЛИ ТОЛЬКО ДЛЯ СИТУАЦИЙ В СПИСКАХ (ТЕГ sit) */
+/* ============================================================ */
+tw-passage[tags~="sit"] { 
+    width: 750px !important;
+    max-width: calc(100% - 40px) !important;
+    
+    /* Полупрозрачный белый фон (картинка просвечивает) */
+    background-color: rgba(255, 255, 255, 0.88) !important; 
+    
+    /* Тень и скругление */
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25) !important; 
+    border-radius: 20px !important;   
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    
+    padding: 30px 35px !important;         
+    
+    /* Комфортный размер текста */
+    font-size: 18px !important;       
+    font-weight: normal !important;     
+    line-height: 1.6 !important;      
+    color: #222222 !important; 
+    text-shadow: none !important; 
+    
+    /* Прокрутка, если текст длинный */
+    max-height: 80vh !important; 
+    overflow-y: auto !important; 
+}
+
+/* Заголовок внутри ситуаций */
+tw-passage[tags~="sit"] h2 {
+    font-size: 26px !important;
+    font-weight: bold !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    color: #000000 !important;
+    border-bottom: 3px solid #4169E1 !important;
+    padding-bottom: 10px !important;
+}
+
+/* Код внутри ситуаций */
+tw-passage[tags~="sit"] code {
+    font-family: 'Consolas', 'Courier New', monospace !important;
+    font-size: 16px !important;
+    font-weight: normal !important;
+    background-color: rgba(65, 105, 225, 0.1) !important; 
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    color: #c7254e !important;
+    display: inline-block !important;
+    margin: 5px 0 !important;
+}
+
+/* Кнопки внутри ситуаций */
+tw-passage[tags~="sit"] tw-link {
+    display: block !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 15px auto !important; 
+    padding: 12px 20px !important;
+    background-color: #F4F9FF !important; 
+    border: 2px solid #4169E1 !important; 
+    border-radius: 10px !important; 
+    color: #4169E1 !important; 
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-align: center !important; 
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out !important; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+}
+
+tw-passage[tags~="sit"] tw-link:hover {
+    background-color: #4169E1 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important; 
+    box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
+}
+
+/* ============================================================ */
+/* 5. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
 /* ============================================================ */
 tw-passage[tags~="l2"], tw-passage[tags~="l8"], tw-passage[tags~="l16"], 
 tw-passage[tags~="l22"], tw-passage[tags~="l28"], tw-passage[tags~="l36"], 
@@ -144,6 +205,11 @@ tw-passage[tags~="l63"] {
     max-height: 80vh !important; 
     overflow-y: auto !important; 
     padding: 20px !important;
+    background-color: rgba(255, 255, 255, 0.85) !important; /* Добавлен фон для читаемости */
+    border-radius: 15px !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
+    width: 700px !important;
+    max-width: calc(100% - 40px) !important;
 }
 
 /* Кнопки внутри вопросов */
@@ -181,7 +247,7 @@ tw-passage[tags~="l58"] tw-link:hover, tw-passage[tags~="l63"] tw-link:hover {
 }
 
 /* ============================================================ */
-/* 5. БЛОКИ "ВЕРНО" И "НЕ ВЕРНО" */
+/* 6. БЛОКИ "ВЕРНО" И "НЕ ВЕРНО" */
 /* ============================================================ */
 tw-passage[tags~="l3"], tw-passage[tags~="l13"], tw-passage[tags~="l20"], 
 tw-passage[tags~="l23"], tw-passage[tags~="l29"], tw-passage[tags~="l37"], 
@@ -199,6 +265,9 @@ tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
     width: 90vw !important; 
     max-width: 850px !important; 
     bottom: 2vh !important; 
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    border-radius: 15px !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
 tw-passage[tags~="l72"] div {
@@ -310,7 +379,7 @@ tw-passage[tags~="l250"] tw-link:hover {
 tw-passage[tags~="l66"] { font-size: 19px !important; padding-top: 20px !important; padding-bottom: 15px !important; line-height: 1.2 !important; }
 
 /* ============================================================ */
-/* 6. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
+/* 7. ПОЯСНЕНИЯ (БЕЗ ОГРОМНЫХ ОТСТУПОВ) */
 /* ============================================================ */
 tw-passage[tags~="l4"], tw-passage[tags~="l5"], tw-passage[tags~="l6"], 
 tw-passage[tags~="l7"], tw-passage[tags~="l9"], tw-passage[tags~="l10"], 
@@ -340,13 +409,16 @@ tw-passage[tags~="l250"] {
     color: #000000 !important;
     max-height: 75vh !important; 
     overflow-y: auto !important;
-    padding: 25px !important; /* Убран padding-top: 60px */
+    padding: 25px !important; 
+    background-color: rgba(255, 255, 255, 0.85) !important; /* Добавлен фон для читаемости */
+    border-radius: 15px !important;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
+    width: 700px !important;
+    max-width: calc(100% - 40px) !important;
 }
 
 /* ============================================================ */
-/* ============================================================ */
-/* ============================================================ */
-/* 7. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
+/* 8. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
 /* ============================================================ */
 tw-link, tw-link:link, tw-link:visited, tw-link:hover, tw-link:active,
 tw-link.visited, tw-link.visited:hover, tw-link.visited:active {
@@ -497,7 +569,7 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
-/* 8. ПЕРВЫЙ ЭКРАН (L1) — НОВАЯ ВЕРСТКА */
+/* 9. ПЕРВЫЙ ЭКРАН (L1) — НОВАЯ ВЕРСТКА */
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
