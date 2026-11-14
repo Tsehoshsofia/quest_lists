@@ -500,94 +500,74 @@ tw-sidebar tw-icon:hover {
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
 
-/* Делаем невидимый контейнер на весь экран */
+/* Облако (оставляем как было, не трогаем) */
 tw-passage[tags~="l1"] {
     position: fixed !important;
-    top: 0 !important;       
-    left: 0 !important;     
-    width: 100vw !important;    
-    height: 100vh !important;
+    top: 8vh !important;       
+    right: 5vw !important;     
+    left: auto !important;
+    transform: none !important; 
+    width: 85vw !important;    
+    max-width: 400px !important; 
     margin: 0 !important;
-    padding: 0 !important;
-    background-color: transparent !important; 
+    padding: 25px 30px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    backdrop-filter: blur(10px) !important; 
     border: none !important;
-    box-shadow: none !important;
-    z-index: 10 !important;
-    pointer-events: none !important; 
-    
-    /* Выстраиваем элементы в колонку */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-end !important; 
-    padding-bottom: 15vh !important; /* Опускаем кнопки вниз */
-}
-
-/* Рисуем белое облако ТОЛЬКО под текстом (не трогаем само облако) */
-tw-passage[tags~="l1"]::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 8vh !important;
-    right: 5vw !important;
-    width: 85vw !important;
-    max-width: 400px !important;
-    height: 230px !important; 
-    background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-    z-index: -1 !important;
-    pointer-events: auto !important;
-}
-
-/* Хвостик облачка */
-tw-passage[tags~="l1"]::after {
-    content: "" !important;
-    position: absolute !important;
-    top: calc(8vh + 220px) !important; 
-    right: calc(5vw + 350px) !important; 
-    width: 25px !important;
-    height: 25px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50% !important;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
-    z-index: -1 !important;
-    pointer-events: none !important;
-}
-
-/* Возвращаем текст на место в облако */
-tw-passage[tags~="l1"] > p,
-tw-passage[tags~="l1"] > span {
-    pointer-events: auto !important;
-    position: absolute !important;
-    top: 10vh !important; 
-    right: 6vw !important;
-    width: 80vw !important;
-    max-width: 360px !important;
-    text-align: center !important;
-    color: #2c3e50 !important;
+    color: #2c3e50 !important; 
+    text-shadow: none !important;
     font-size: 16px !important; 
     font-weight: bold !important;
     line-height: 1.4 !important;
-    z-index: 1 !important;
+    text-align: center !important; 
+    z-index: 10 !important;
+}
+
+/* Хвостик облачка */
+tw-passage[tags~="l1"]::before,
+tw-passage[tags~="l1"]::after {
+    content: "" !important;
+    position: absolute !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+}
+tw-passage[tags~="l1"]::before {
+    bottom: -20px !important;
+    left: 30px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+tw-passage[tags~="l1"]::after {
+    bottom: -40px !important;
+    left: 10px !important;
+    width: 12px !important;
+    height: 12px !important;
 }
 
 /* ============================================================ */
-/* КНОПКИ — В РЯД, ВНИЗУ ЭКРАНА */
+/* КНОПКИ — ЖЕСТКО ПО КРАЯМ ЭКРАНА */
 /* ============================================================ */
 
-/* Создаем обертку для кнопок, чтобы они встали в ряд */
+/* Общие стили для кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: static !important; 
-    transform: none !important;  
-    margin: 0 10px !important; /* Отступы между кнопками */
+    position: fixed !important; 
+    
+    /* Опускаем кнопки ниже ноутбука */
+    top: 70vh !important;   
+    
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     
+    /* Размеры кнопок */
     width: 200px !important; 
-    height: 55px !important;
+    height: 60px !important; 
     padding: 0 10px !important;
+    margin: 0 !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -601,23 +581,19 @@ tw-passage[tags~="l1"] tw-link.visited {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
-    pointer-events: auto !important; 
+    pointer-events: auto !important;
 }
 
-/* Чтобы кнопки не сжимались, если текст длинный */
-tw-passage[tags~="l1"] tw-link {
-    flex-shrink: 0 !important;
-}
-
-/* Хак: делаем так, чтобы ссылки стояли в строку внутри колонки */
-tw-passage[tags~="l1"] {
-    /* Это заставит кнопки игнорировать колонку и встать в ряд */
-}
+/* Первая кнопка ("Изучить базовый синтаксис") — прибиваем к ЛЕВОМУ краю */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    margin-left: 0 !important;
+    left: 10vw !important; 
+    right: auto !important;
 }
+
+/* Вторая кнопка ("Списки") — прибиваем к ПРАВОМУ краю */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    margin-left: 20px !important;
+    right: 10vw !important; 
+    left: auto !important;
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
