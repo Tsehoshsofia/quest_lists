@@ -500,7 +500,7 @@ tw-sidebar tw-icon:hover {
 /* ============================================================ */
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
-tw-passage[tags~="l1"] {
+ttw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
     right: 5vw !important;     
@@ -523,11 +523,8 @@ tw-passage[tags~="l1"] {
     text-align: center !important; 
     z-index: 10 !important;
     
-    /* ДОБАВЛЕНО: Flex-контейнер для кнопок */
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+    /* УБРАЛИ FLEX, чтобы облачко не растягивалось под кнопки */
+    display: block !important;
 }
 
 tw-passage[tags~="l1"]::before,
@@ -551,16 +548,17 @@ tw-passage[tags~="l1"]::after {
     height: 12px !important;
 }
 
-/* ИЗМЕНЕНО: Кнопки теперь статичные внутри карточки */
+/* ============================================================ */
+/* КНОПКИ ВНИЗУ, В РЯД */
+/* ============================================================ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: static !important; /* Убрали fixed */
-    transform: none !important;  /* Убрали сдвиги */
-    margin: 8px 0 !important;    /* Отступы между кнопками */
-    display: block !important;
-    width: 100% !important;      /* На всю ширину карточки */
-    max-width: 320px !important;
-    padding: 12px 20px !important;
+    position: fixed !important;
+    top: 77vh !important; /* Уровень ноутбука */
+    
+    display: inline-block !important;
+    width: max-content !important;
+    padding: 12px 25px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -569,82 +567,40 @@ tw-passage[tags~="l1"] tw-link.visited {
     text-decoration: none !important;
     font-size: 16px !important;
     font-weight: bold !important;
-    white-space: normal !important; /* Разрешаем перенос текста */
-    text-align: center !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    white-space: nowrap !important; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
     pointer-events: auto !important;
 }
 
-tw-passage[tags~="l1"] tw-link:hover {
-    transform: scale(1.02) !important; 
-    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
-}
-
-/* ============================================================ */
-/* 9. ИСКЛЮЧЕНИЯ И МОБИЛЬНАЯ АДАПТАЦИЯ */
-/* ============================================================ */
-tw-story tw-passage[tags]:not([tags~="l1"]):not([tags~="sit"]) { 
-    position: absolute !important; 
-    bottom: 5vh !important;        
-}
-tw-passage[tags~="sit"]:not([tags~="l1"]) {
-    top: auto !important;
-    bottom: 0 !important;      
-    
-    left: 50% !important;        
-    right: auto !important;
+/* Первая кнопка (сдвиг влево) */
+tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
+    left: 35% !important;
     transform: translateX(-50%) !important; 
-    margin: 0 !important;       
-    
-    width: 95vw !important;
-    max-width: 900px !important; 
-    
-    padding: 10px 30px 15px 30px !important;
-    font-size: 18px !important;  
-    line-height: 1.3 !important;
-    text-align: center !important; 
-    
-    /* Делаем карточку более прозрачной (всего 35% белого) */
-    background-color: rgba(255, 255, 255, 0.35) !important; 
-    
-    /* УБРАЛИ РАЗМЫТИЕ, чтобы картинка была четкой! */
-    backdrop-filter: none !important; 
-    -webkit-backdrop-filter: none !important;
-    
-    /* ДОБАВИЛИ БЕЛУЮ ОБВОДКУ (свечение) для текста, чтобы он не сливался с картинкой */
-    text-shadow: 0px 0px 4px #FFFFFF, 0px 0px 8px #FFFFFF, 0px 0px 12px #FFFFFF !important;
-    
-    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.15) !important;
-    border-radius: 15px 15px 0 0 !important; 
 }
 
-tw-passage[tags~="sit"] h2 {
-    font-size: 22px !important;
-    margin: 0px 0 8px 0 !important; 
-    text-align: center !important;
+/* Вторая кнопка (сдвиг вправо) */
+tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
+    left: 65% !important;
+    transform: translateX(-50%) !important; 
 }
 
-tw-passage[tags~="sit"] tw-link {
-    margin-top: 15px !important;
-    margin-bottom: 0px !important;
-    /* Кнопке тоже добавим плотный фон, чтобы она не растворялась */
-    background-color: #FFFFFF !important; 
+/* Эффекты при наведении */
+tw-passage[tags~="l1"] tw-link:hover {
+    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* Блок с кодом делаем плотным, чтобы код читался без напряжения */
-tw-passage[tags~="sit"] code {
-    display: inline-block !important;
-    margin: 5px auto !important;
-    padding: 4px 10px !important;
-    background-color: rgba(255, 255, 255, 0.85) !important; 
-    border-radius: 6px !important;
-    text-shadow: none !important; /* Коду обводка не нужна */
+tw-passage[tags~="l1"] tw-link:nth-of-type(1):hover {
+    transform: translateX(-50%) scale(1.05) !important; 
+}
+
+tw-passage[tags~="l1"] tw-link:nth-of-type(2):hover {
+    transform: translateX(-50%) scale(1.05) !important; 
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
-<tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София Ивановна, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
+<tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
 [[Изучить базовый синтаксис->Начать обучение]]
 [[Списки->Списки: Начало]]</tw-passagedata>
 <tw-passagedata pid="2" name="Начать обучение" tags="l2" position="800,250" size="100,100">(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))]
