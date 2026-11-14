@@ -524,32 +524,36 @@ tw-passage[tags~="l1"] {
     padding-bottom: 20vh !important; 
 }
 
-/* --- ОБЛАКО ДЛЯ ТЕКСТА --- */
+/* --- ОБЛАКО С ТЕКСТОМ --- */
 .cloud-text {
-    pointer-events: auto !important;
+    pointer-events: auto !important; 
     position: absolute !important;
-    top: 8vh !important; /* Положение облака сверху */
-    right: 5vw !important; /* Положение справа */
+    top: 4vh !important;      /* Приподняли выше (было 8vh) */
+    right: 3vw !important;    /* Сдвинули правее (было 5vw) */
     
     width: 85vw !important;
-    max-width: 400px !important;
-    min-height: 200px !important; /* Минимальная высота облака */
+    max-width: 450px !important; /* Сделали чуть шире, чтобы текст не сжимался */
+    height: 240px !important;    /* Задали фиксированную высоту */
     
     /* Визуал облака */
     background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50px !important;
+    border-radius: 50px !important; /* Сделали более круглым */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
     
+    /* Центрируем текст внутри облака по вертикали */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
     /* Текст внутри */
-    padding: 30px !important;
+    padding: 30px 40px !important; /* Увеличили отступы по бокам */
     color: #000000 !important;
-    font-size: 20px !important;
-    line-height: 1.4 !important;
-    text-align: justify !important;
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    text-align: center !important; /* Текст по центру смотрится лучше в облаке */
     font-family: "Times New Roman", Times, serif !important;
     z-index: 11 !important;
 }
-
 /* Хвостик облачка (рисуем через псевдоэлемент самого облака) */
 .cloud-text::after {
     content: "" !important;
