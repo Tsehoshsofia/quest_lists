@@ -529,20 +529,21 @@ tw-passage[tags~="l1"] {
     pointer-events: auto !important; 
     position: absolute !important;
     
-    top: 4vh !important;      
-    right: 3vw !important;    
+    /* Сдвигаем правее и чуть выше */
+    top: 3vh !important;      
+    right: 4vw !important;    
     
     width: 85vw !important;
-    max-width: 420px !important; /* Ширина облака */
-    min-height: 180px !important; 
+    max-width: 440px !important; /* Сделаем чуть шире, чтобы овал был красивым */
+    min-height: 210px !important; 
     
-    /* Визуал облака: прямоугольник с мягкими углами */
+    /* Визуал облака (возвращаем пухлый овал) */
     background-color: rgba(255, 255, 255, 0.96) !important;
-    border-radius: 30px !important; /* Умеренное скругление */
+    border-radius: 50% !important; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important; 
     
     /* Текст внутри */
-    padding: 30px 35px !important; 
+    padding: 35px 45px !important; /* Больше отступов, чтобы текст не прилипал к краям овала */
     color: #1a1a1a !important; 
     font-size: 18px !important;
     line-height: 1.45 !important;
@@ -551,39 +552,40 @@ tw-passage[tags~="l1"] {
     z-index: 11 !important;
 }
 
-/* Главный хвостик (первый кружок) */
+/* Главный хвостик (первый кружок от овала) */
 .cloud-text::after {
     content: "" !important;
     position: absolute !important;
     
-    /* Крепим к левому нижнему углу */
-    bottom: 15px !important; 
-    left: -12px !important;    
+    /* Привязываем к левому нижнему краю овала */
+    bottom: 5% !important; 
+    left: -15px !important;    
     
-    width: 25px !important;
-    height: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
     background-color: rgba(255, 255, 255, 0.96) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
     z-index: -1 !important;
 }
 
-/* Маленький хвостик (второй кружок) */
+/* Маленький хвостик (второй кружок, ближе к лицу) */
 .cloud-text::before {
     content: "" !important;
     position: absolute !important;
     
-    /* Уводим вниз и влево */
-    bottom: -15px !important; 
-    left: -35px !important;    
+    /* Уводим вниз и влево по диагонали */
+    bottom: -35px !important; 
+    left: -45px !important;    
     
-    width: 14px !important;
-    height: 14px !important;
+    width: 16px !important;
+    height: 16px !important;
     background-color: rgba(255, 255, 255, 0.96) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
     z-index: -1 !important;
 }
+
 /* --- КНОПКИ (остаются внизу, как были) --- */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
