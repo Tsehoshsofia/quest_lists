@@ -529,24 +529,25 @@ tw-passage[tags~="l1"] {
     pointer-events: auto !important; 
     position: absolute !important;
     
-    top: 4vh !important;      /* Подняли выше (было 6vh) */
-    right: 2vw !important;    /* Прижали ближе к правому краю */
+    /* Поднимаем и сдвигаем ближе к центру, чтобы не было привязки к краю */
+    top: 5vh !important;      
+    right: 10vw !important;    
     
-    width: 80vw !important;
-    max-width: 360px !important; /* Сделали заметно уже (было 420px) */
-    min-height: 220px !important; 
+    width: 85vw !important;
+    max-width: 390px !important; /* Сделали чуть шире для лучшего переноса */
+    min-height: 200px !important; 
     
     /* Визуал облака */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 45px !important; /* Чуть более круглые углы */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-radius: 50% !important; /* Сделали идеально овальным/круглым */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important; /* Мягкая тень */
     
     /* Текст внутри */
-    padding: 25px 30px !important; 
-    color: #000000 !important;
+    padding: 40px 35px !important; /* Больше воздуха внутри */
+    color: #1a1a1a !important; /* Чуть мягче черный */
     font-size: 18px !important;
-    line-height: 1.45 !important;
-    text-align: center !important; /* Вернем по центру для аккуратности */
+    line-height: 1.5 !important;
+    text-align: center !important; 
     font-family: "Times New Roman", Times, serif !important;
     z-index: 11 !important;
 }
@@ -556,15 +557,15 @@ tw-passage[tags~="l1"] {
     content: "" !important;
     position: absolute !important;
     
-    /* Привязываем к левому нижнему углу облака */
-    bottom: -10px !important; 
-    left: 30px !important;    
+    /* Смещаем хвостик ближе к центру нижнего края */
+    bottom: -15px !important; 
+    left: 40% !important;    
     
-    width: 30px !important;
-    height: 30px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    width: 35px !important;
+    height: 35px !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
     border-radius: 50% !important;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
     z-index: -1 !important;
 }
 
@@ -573,26 +574,15 @@ tw-passage[tags~="l1"] {
     content: "" !important;
     position: absolute !important;
     
-    /* Уводим вниз и влево, как в комиксах */
-    bottom: -35px !important; 
-    left: 15px !important;    
+    /* Уводим вниз и влево, к лицу */
+    bottom: -45px !important; 
+    left: 35% !important;    
     
-    width: 15px !important;
-    height: 15px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
+    width: 18px !important;
+    height: 18px !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
     border-radius: 50% !important;
-    z-index: -1 !important;
-}
-/* Дополнительный маленький кружок (для эффекта мыслей) */
-.cloud-text::before {
-    content: "" !important;
-    position: absolute !important;
-    bottom: -40px !important; 
-    left: 40px !important;    
-    width: 15px !important;
-    height: 15px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
     z-index: -1 !important;
 }
 
