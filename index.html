@@ -498,9 +498,10 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
+/* ============================================================ */
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
-ttw-passage[tags~="l1"] {
+tw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
     right: 5vw !important;     
@@ -523,10 +524,14 @@ ttw-passage[tags~="l1"] {
     text-align: center !important; 
     z-index: 10 !important;
     
-    /* УБРАЛИ FLEX, чтобы облачко не растягивалось под кнопки */
-    display: block !important;
+    /* Включаем Flexbox для выравнивания контента */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
+/* Хвостик облачка */
 tw-passage[tags~="l1"]::before,
 tw-passage[tags~="l1"]::after {
     content: "" !important;
@@ -548,17 +553,16 @@ tw-passage[tags~="l1"]::after {
     height: 12px !important;
 }
 
-/* ============================================================ */
-/* КНОПКИ ВНИЗУ, В РЯД */
-/* ============================================================ */
+/* СТИЛИ ДЛЯ КНОПОК ВНУТРИ КАРТОЧКИ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: fixed !important;
-    top: 77vh !important; /* Уровень ноутбука */
-    
-    display: inline-block !important;
-    width: max-content !important;
-    padding: 12px 25px !important;
+    position: static !important; /* Убираем привязку к экрану */
+    transform: none !important;  
+    margin: 8px 0 !important;    
+    display: block !important;
+    width: 100% !important;      
+    max-width: 320px !important;
+    padding: 12px 20px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -567,37 +571,18 @@ tw-passage[tags~="l1"] tw-link.visited {
     text-decoration: none !important;
     font-size: 16px !important;
     font-weight: bold !important;
-    white-space: nowrap !important; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6) !important;
+    white-space: normal !important; 
+    text-align: center !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
     pointer-events: auto !important;
 }
 
-/* Первая кнопка (сдвиг влево) */
-tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    left: 35% !important;
-    transform: translateX(-50%) !important; 
-}
-
-/* Вторая кнопка (сдвиг вправо) */
-tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    left: 65% !important;
-    transform: translateX(-50%) !important; 
-}
-
-/* Эффекты при наведении */
 tw-passage[tags~="l1"] tw-link:hover {
+    transform: scale(1.02) !important; 
     background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
-}
-
-tw-passage[tags~="l1"] tw-link:nth-of-type(1):hover {
-    transform: translateX(-50%) scale(1.05) !important; 
-}
-
-tw-passage[tags~="l1"] tw-link:nth-of-type(2):hover {
-    transform: translateX(-50%) scale(1.05) !important; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
 <tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
