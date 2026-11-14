@@ -13,9 +13,7 @@
 /* ========================================= */
 /* 1. БАЗОВЫЕ НАСТРОЙКИ, ШРИФТ И ПЕРЕНОСЫ */
 /* ============================================================ */
-/* ========================================= */
-/* 1. БАЗОВЫЕ НАСТРОЙКИ, ШРИФТ И ПЕРЕНОСЫ */
-/* ============================================================ */
+
 body {
     background-color: #FFFFFF !important;
 }
@@ -347,6 +345,7 @@ tw-passage[tags~="l250"] {
 
 /* ============================================================ */
 /* ============================================================ */
+/* ============================================================ */
 /* 7. СТРЕЛКА «НАЗАД» (ЖЕСТКО ТОЛЬКО НА ПОЯСНЕНИЯХ) */
 /* ============================================================ */
 tw-link, tw-link:link, tw-link:visited, tw-link:hover, tw-link:active,
@@ -553,14 +552,22 @@ tw-passage[tags~="l1"]::after {
     height: 12px !important;
 }
 
-/* СТИЛИ ДЛЯ КНОПОК ВНУТРИ КАРТОЧКИ */
+/* ============================================================ */
+/* КНОПКИ — ВЫНЕСЕНЫ ПОД ОБЛАКО (НА УРОВЕНЬ НОУТБУКА) */
+/* ============================================================ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: static !important; /* Убираем привязку к экрану */
+    /* Вырываем кнопки из облака и фиксируем на экране */
+    position: fixed !important;
+    
+    /* Позиция под облаком: ниже и левее (на уровень ноутбука) */
+    top: 40vh !important;   /* Опускает кнопки вниз. Настройте под картинку */
+    right: 5vw !important;  /* Выравнивает по правому краю облака */
+    
     transform: none !important;  
-    margin: 8px 0 !important;    
+    margin: 0 !important;    
     display: block !important;
-    width: 100% !important;      
+    width: 85vw !important;      
     max-width: 320px !important;
     padding: 12px 20px !important;
     
@@ -577,6 +584,11 @@ tw-passage[tags~="l1"] tw-link.visited {
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
     pointer-events: auto !important;
+}
+
+/* Вторая кнопка — сдвигаем ниже первой */
+tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
+    margin-top: 65px !important; 
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
