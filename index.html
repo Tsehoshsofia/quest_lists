@@ -500,7 +500,7 @@ tw-sidebar tw-icon:hover {
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
 
-/* Настраиваем облако */
+/* Облако (не трогаем) */
 tw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
@@ -510,11 +510,7 @@ tw-passage[tags~="l1"] {
     width: 85vw !important;    
     max-width: 400px !important; 
     margin: 0 !important;
-    
-    /* Задаем жесткую высоту и отступы для текста */
-    height: 250px !important; 
-    padding: 25px 30px 30px 30px !important; 
-    
+    padding: 25px 30px !important;
     background-color: rgba(255, 255, 255, 0.95) !important; 
     backdrop-filter: blur(10px) !important; 
     border: none !important;
@@ -552,16 +548,16 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — СТОЛБИКОМ В ПРАВОМ НИЖНЕМ УГЛУ ОБЛАКА */
+/* КНОПКИ — ПОД ОБЛАКОМ, СПРАВА, СТОЛБИКОМ */
 /* ============================================================ */
 
 /* Общие стили для кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: absolute !important; /* Привязываем к облаку */
+    position: fixed !important; 
     
-    /* Отступ 0.5 см (примерно 15px) от правого края */
-    right: 15px !important; 
+    /* Выравниваем по правому краю облака */
+    right: 5vw !important; 
     left: auto !important;
     
     display: inline-flex !important;
@@ -569,8 +565,8 @@ tw-passage[tags~="l1"] tw-link.visited {
     justify-content: center !important;
     
     /* Размеры кнопок */
-    width: 180px !important; 
-    height: 45px !important; 
+    width: 200px !important; 
+    height: 55px !important; 
     padding: 0 10px !important;
     margin: 0 !important;
     
@@ -579,7 +575,7 @@ tw-passage[tags~="l1"] tw-link.visited {
     border-radius: 8px !important;
     border: 2px solid #FFFFFF !important; 
     text-decoration: none !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
     font-weight: bold !important;
     white-space: normal !important; 
     text-align: center !important;
@@ -591,12 +587,14 @@ tw-passage[tags~="l1"] tw-link.visited {
 
 /* ВЕРХНЯЯ КНОПКА ("Изучить базовый синтаксис") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    bottom: 75px !important; /* Отступ от нижнего края облака */
+    /* 5 см от низа облака (примерно 35vh + 150px) */
+    top: calc(35vh + 50px) !important; 
 }
 
 /* НИЖНЯЯ КНОПКА ("Списки") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    bottom: 20px !important; /* Отступ 0.5 см от нижнего края облака */
+    /* Ниже первой на 70 пикселей */
+    top: calc(35vh + 120px) !important; 
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
