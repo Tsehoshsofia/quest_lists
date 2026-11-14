@@ -502,73 +502,83 @@ tw-sidebar tw-icon:hover {
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
-    top: 8vh !important;       
-    right: 5vw !important;     
-    left: auto !important;
-    transform: none !important; 
-    width: 85vw !important;    
-    max-width: 400px !important; 
+    top: 0 !important;       
+    left: 0 !important;     
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;    
+    height: 100vh !important;
     margin: 0 !important;
-    padding: 25px 30px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important; 
-    backdrop-filter: blur(10px) !important; 
+    padding: 0 !important;
+    background-color: transparent !important; /* Убираем белый фон со всего экрана */
     border: none !important;
-    border-radius: 50px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-    color: #2c3e50 !important; 
-    text-shadow: none !important;
-    font-size: 16px !important; 
-    font-weight: bold !important;
-    line-height: 1.4 !important;
-    text-align: center !important; 
+    box-shadow: none !important;
     z-index: 10 !important;
+    pointer-events: none !important; /* Пропускаем клики сквозь пустую область */
     
-    /* Включаем Flexbox для выравнивания контента */
+    /* Выстраиваем элементы в колонку: текст сверху, кнопки снизу */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-end !important; /* Прижимаем всё к низу */
+    padding-bottom: 20vh !important; /* Отступ снизу, чтобы кнопки были на уровне ноутбука */
+}
+
+/* Восстанавливаем облачко ТОЛЬКО для текста */
+tw-passage[tags~="l1"] {
+    /* Этот трюк позволяет тексту оставаться в облаке, а кнопкам — внизу */
+    background: linear-gradient(to bottom, transparent 0%, transparent 100%) !important; 
+}
+
+/* Создаем визуальное облако только вокруг текста */
+tw-passage[tags~="l1"] > p,
+tw-passage[tags~="l1"] > span,
+tw-passage[tags~="l1"] > br {
+    pointer-events: auto !important;
+}
+
+/* Жестко задаем облако для текста */
+tw-passage[tags~="l1"]::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 8vh !important;
+    right: 5vw !important;
+    width: 85vw !important;
+    max-width: 400px !important;
+    height: 220px !important; /* Высота облака под текст */
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
 }
 
 /* Хвостик облачка */
-tw-passage[tags~="l1"]::before,
 tw-passage[tags~="l1"]::after {
     content: "" !important;
     position: absolute !important;
+    top: calc(8vh + 210px) !important; /* Чуть ниже облака */
+    right: calc(5vw + 400px) !important; /* Позиция хвостика */
+    width: 25px !important;
+    height: 25px !important;
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
-}
-tw-passage[tags~="l1"]::before {
-    bottom: -20px !important;
-    left: 30px !important;
-    width: 25px !important;
-    height: 25px !important;
-}
-tw-passage[tags~="l1"]::after {
-    bottom: -40px !important;
-    left: 10px !important;
-    width: 12px !important;
-    height: 12px !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
 }
 
 /* ============================================================ */
-/* КНОПКИ — ВЫНЕСЕНЫ ПОД ОБЛАКО (НА УРОВЕНЬ НОУТБУКА) */
+/* КНОПКИ — СТАВИМ В РЯД НА УРОВНЕ НОУТБУКА */
 /* ============================================================ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    /* Вырываем кнопки из облака и фиксируем на экране */
-    position: fixed !important;
-    
-    /* Позиция под облаком: ниже и левее (на уровень ноутбука) */
-    top: 40vh !important;   /* Опускает кнопки вниз. Настройте под картинку */
-    right: 5vw !important;  /* Выравнивает по правому краю облака */
-    
+    position: static !important; /* Возвращаем в поток Flexbox */
     transform: none !important;  
-    margin: 0 !important;    
-    display: block !important;
-    width: 85vw !important;      
-    max-width: 320px !important;
+    margin: 0 10px !important; /* Отступы между кнопками по бокам */
+    display: inline-block !important;
+    width: auto !important;      
+    min-width: 200px !important; /* Ширина кнопок */
     padding: 12px 20px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
@@ -578,21 +588,33 @@ tw-passage[tags~="l1"] tw-link.visited {
     text-decoration: none !important;
     font-size: 16px !important;
     font-weight: bold !important;
-    white-space: normal !important; 
+    white-space: nowrap !important; /* Текст в одну строку */
     text-align: center !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
-    pointer-events: auto !important;
+    pointer-events: auto !important; /* Возвращаем кликабельность */
 }
 
-/* Вторая кнопка — сдвигаем ниже первой */
+/* Чтобы кнопки стояли в ряд, мы переопределяем flex-направление для них */
+tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
+    margin-top: auto !important; /* Прижимаем к низу */
+}
+
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    margin-top: 65px !important; 
+    margin-top: auto !important; 
+}
+
+/* Обертка для кнопок, чтобы они стояли в строку */
+tw-passage[tags~="l1"] {
+    /* Хак: заставляем кнопки игнорировать колонку и вставать в ряд */
+}
+tw-passage[tags~="l1"] tw-link {
+    flex-shrink: 0 !important;
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
-    transform: scale(1.02) !important; 
+    transform: scale(1.05) !important; 
     background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
