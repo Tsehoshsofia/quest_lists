@@ -528,15 +528,15 @@ tw-passage[tags~="l1"] {
     pointer-events: auto !important; 
     position: absolute !important;
     
-    /* Поднимаем выше (было 4vh) и сдвигаем правее (было 2vw) */
-    top: 2vh !important;      
-    right: 1vw !important;    
+    /* Сдвигаем само облако правее и чуть выше */
+    top: 4vh !important;      
+    right: 2vw !important;    
     
     width: 85vw !important;
     max-width: 420px !important; 
     min-height: 180px !important; 
     
-    /* Визуал облака */
+    /* Визуал облака: прямоугольник с мягкими углами */
     background-color: rgba(255, 255, 255, 0.96) !important;
     border-radius: 30px !important; 
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important; 
@@ -556,9 +556,9 @@ tw-passage[tags~="l1"] {
     content: "" !important;
     position: absolute !important;
     
-    /* Чуть поднимаем внутри облака, чтобы не отрывался */
-    bottom: 15px !important; 
-    left: -12px !important;    
+    /* Смещаем к левому краю облака */
+    bottom: 10px !important; 
+    left: -10px !important;    
     
     width: 25px !important;
     height: 25px !important;
@@ -573,8 +573,8 @@ tw-passage[tags~="l1"] {
     content: "" !important;
     position: absolute !important;
     
-    /* Уводим вниз и влево к лицу */
-    bottom: -20px !important; 
+    /* Уводим вниз и влево, ближе к голове */
+    bottom: -25px !important; 
     left: -35px !important;    
     
     width: 14px !important;
