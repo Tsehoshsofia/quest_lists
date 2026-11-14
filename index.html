@@ -523,7 +523,6 @@ tw-passage[tags~="l1"] {
     justify-content: flex-end !important; 
     padding-bottom: 20vh !important; 
 }
-
 /* --- ОБЛАКО С ТЕКСТОМ --- */
 .cloud-text {
     pointer-events: auto !important; 
@@ -552,6 +551,39 @@ tw-passage[tags~="l1"] {
     z-index: 11 !important;
 }
 
+/* Главный хвостик (первый кружок от овала) */
+.cloud-text::after {
+    content: "" !important;
+    position: absolute !important;
+    
+    /* Привязываем к левому нижнему краю овала */
+    bottom: 5% !important; 
+    left: -15px !important;    
+    
+    width: 30px !important;
+    height: 30px !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
+    z-index: -1 !important;
+}
+
+/* Маленький хвостик (второй кружок, ближе к лицу) */
+.cloud-text::before {
+    content: "" !important;
+    position: absolute !important;
+    
+    /* Уводим вниз и влево по диагонали */
+    bottom: -35px !important; 
+    left: -45px !important;    
+    
+    width: 16px !important;
+    height: 16px !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05) !important;
+    z-index: -1 !important;
+}
 /* Главный хвостик (первый кружок от овала) */
 .cloud-text::after {
     content: "" !important;
