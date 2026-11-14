@@ -1439,7 +1439,11 @@ input() принимает не более одного аргумента.<br><
 
 (set: $user_pass to (prompt: "Введите пароль:", ""))
 
-(if: $user_pass is not "" and $user_pass contains "@" and $user_pass contains "S")[
+Введите пароль:<br><br>
+
+(set: $user_pass to (prompt: "Введите пароль:", ""))
+
+(if: $user_pass is not "" and $user_pass matches "@" and $user_pass matches "S")[
 Пароль соответствует требованиям безопасности.<br><br>
 В пароле присутствуют символ <code>@</code> и заглавная буква <code>S</code>.<br><br>
 Регистрация завершена.<br><br>
@@ -1450,9 +1454,9 @@ input() принимает не более одного аргумента.<br><
 (else-if: $user_pass is not "")[
 Пароль не соответствует требованиям безопасности.<br><br>
 
-(if: $user_pass does not contain "@")[В пароле отсутствует символ <code>@</code>.<br><br>]
+(if: $user_pass does not match "@")[В пароле отсутствует символ <code>@</code>.<br><br>]
 
-(if: $user_pass does not contain "S")[В пароле отсутствует заглавная буква <code>S</code>.<br><br>]
+(if: $user_pass does not match "S")[В пароле отсутствует заглавная буква <code>S</code>.<br><br>]
 
 <b>Рекомендация:</b> в Python проверка выполняется следующим образом:<br><br>
 
