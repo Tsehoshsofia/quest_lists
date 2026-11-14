@@ -907,8 +907,7 @@ input() принимает не более одного аргумента.<br><
 
 Она может принимать ноль (не указывать аргумент) или один, но не больше.</tw-passagedata><tw-passagedata pid="71" name="Пояснение не верного ответа 11_3" tags="l71" position="812.5,3100" size="100,100">input() не принимает два аргумента. У неё только один параметр - приглашение. 
 
-Если написать input(&#39;Введите имя: &#39;, &#39;Ещё что-то&#39;), возникнет ошибка TypeError: input expected at most 1 argument, got 2. Поэтому &quot;только два&quot; - неверно.</tw-passagedata><tw-passagedata pid="72" name="1" tags="" position="1050,3275" size="100,100"></tw-passagedata><tw-passagedata pid="73" name="122" tags="" position="1275,3300" size="100,100"></tw-passagedata><tw-passagedata pid="74" name="ИТОГ" tags="l72" position="675,3275" size="100,100">(set: $resetFlag to true)(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))](set: $attemptHistory to $attemptHistory + (a: (dm: "attempt", $attempts, "correct", $correct, "wrong", $wrong)))👩🏻‍💻📈 Квест завершён!<br>Правильных ответов: $correct<br>Ошибок: $wrong<br>Всего вопросов: (print: $correct + $wrong)<br>Попытка: $attempts<br>(if: $wrong <= 3)[👍 Хороший результат. Ошибок: $wrong.<br>](else:)[📚 Стоит повторить материал. Ошибок: $wrong.<br>](if: $attemptHistory's length > 1)[<br>📜 История попыток:<div style="margin-bottom: 10px;">(for: each _item, ...$attemptHistory)[Попытка (print: _item's attempt): Правильных - (print: _item's correct), Ошибок - (print: _item's wrong)<br>]</div>]<br>⏱️ Затраченное время: <span id="ekb_duration"></span><br>📅 Дата: <span id="ekb_date"></span><br>🕐 Время: <span id="ekb_time"></span><br><br>Спасибо за игру!<br><br>[[Пройти заново->Начать обучение]]
-<script>
+Если написать input(&#39;Введите имя: &#39;, &#39;Ещё что-то&#39;), возникнет ошибка TypeError: input expected at most 1 argument, got 2. Поэтому &quot;только два&quot; - неверно.</tw-passagedata><tw-passagedata pid="72" name="1" tags="" position="1050,3275" size="100,100"></tw-passagedata><tw-passagedata pid="73" name="122" tags="" position="1275,3300" size="100,100"></tw-passagedata><tw-passagedata pid="74" name="ИТОГ" tags="l72" position="675,3275" size="100,100">(set: $resetFlag to true)(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))](set: $attemptHistory to $attemptHistory + (a: (dm: "attempt", $attempts, "correct", $correct, "wrong", $wrong)))👩🏻‍💻📈 Квест завершён!<br>Правильных ответов: $correct<br>Ошибок: $wrong<br>Всего вопросов: (print: $correct + $wrong)<br>Попытка: $attempts<br>(if: $wrong <= 3)[👍 Хороший результат. Ошибок: $wrong.<br>](else:)[📚 Стоит повторить материал. Ошибок: $wrong.<br>](if: $attemptHistory's length > 1)[<br>📜 История попыток:<div style="margin-bottom: 10px;">(for: each _item, ...$attemptHistory)[Попытка (print: _item's attempt): Правильных - (print: _item's correct), Ошибок - (print: _item's wrong)<br>]</div>]<br>⏱️ Затраченное время: <span id="ekb_duration"></span><br>📅 Дата: <span id="ekb_date"></span><br>🕐 Время: <span id="ekb_time"></span><br><br>Спасибо за игру!<br><br>[[Пройти заново->Начать обучение]] | [[В меню->Пользователь]]<script>
 (function() {
     function updateTime() {
         var eDate = document.getElementById('ekb_date');
@@ -944,8 +943,7 @@ input() принимает не более одного аргумента.<br><
     updateTime();
 })();
 </script></tw-passagedata>
-<tw-passagedata pid="200" name="Списки: Начало" tags="l3" position="800,3000" size="100,100">
-<h2>Новая тема: Списки в Python</h2>
+<tw-passagedata pid="200" name="Списки: Начало" tags="l3" position="800,3000" size="100,100">(set: $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $attempts to 1)<h2>Новая тема: Списки в Python</h2></h2>
 
 Мы переходим к изучению списков — одной из основных структур данных в Python.<br><br>
 
