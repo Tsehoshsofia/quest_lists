@@ -499,6 +499,8 @@ tw-sidebar tw-icon:hover {
 /* ============================================================ */
 /* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
 /* ============================================================ */
+
+/* Облако (не трогаем, оставляем как было) */
 tw-passage[tags~="l1"] {
     position: fixed !important;
     top: 8vh !important;       
@@ -546,16 +548,18 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* КНОПКИ — СТРОГО ПОД ОБЛАКОМ, В РЯД */
+/* КНОПКИ — РЯДОМ, ПОД НОУТБУКОМ */
 /* ============================================================ */
+
+/* Общие стили для кнопок */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
     position: fixed !important; 
     
-    /* Опускаем кнопки вниз (настройте top, чтобы они попали на ноутбук) */
-    top: 58vh !important;   
+    /* Опускаем кнопки ниже ноутбука */
+    top: 75vh !important;   
     
-    /* Центрируем весь ряд по горизонтали */
+    /* Привязываем к центру экрана */
     left: 50% !important;
     transform: none !important;  
     margin: 0 !important;    
@@ -584,14 +588,20 @@ tw-passage[tags~="l1"] tw-link.visited {
     pointer-events: auto !important;
 }
 
-/* Первая кнопка ("Изучить базовый синтаксис") - сдвигаем влево от центра */
+/* Первая кнопка ("Изучить базовый синтаксис") — сдвигаем влево от центра */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
     margin-left: -200px !important; 
 }
 
-/* Вторая кнопка ("Списки") - сдвигаем вправо от центра */
+/* Вторая кнопка ("Списки") — сдвигаем вправо от центра */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
     margin-left: 10px !important; 
+}
+
+tw-passage[tags~="l1"] tw-link:hover {
+    transform: translateY(-3px) !important; 
+    background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
