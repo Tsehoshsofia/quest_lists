@@ -502,119 +502,110 @@ tw-sidebar tw-icon:hover {
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
-    top: 0 !important;       
-    left: 0 !important;     
-    right: 0 !important;
-    bottom: 0 !important;
-    width: 100vw !important;    
-    height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background-color: transparent !important; /* Убираем белый фон со всего экрана */
-    border: none !important;
-    box-shadow: none !important;
-    z-index: 10 !important;
-    pointer-events: none !important; /* Пропускаем клики сквозь пустую область */
+    top: 8vh !important;       
+    right: 5vw !important;     
+    left: auto !important;
+    transform: none !important; 
+    width: 85vw !important;    
+    max-width: 450px !important; /* Чуть шире, чтобы текст красиво лег */
     
-    /* Выстраиваем элементы в колонку: текст сверху, кнопки снизу */
+    /* Задаем жесткую высоту, чтобы кнопки было куда прикрепить */
+    height: 280px !important; 
+    
+    margin: 0 !important;
+    padding: 30px 30px 80px 30px !important; /* Большой отступ снизу для кнопок */
+    
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    backdrop-filter: blur(10px) !important; 
+    border: none !important;
+    border-radius: 50px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+    color: #2c3e50 !important; 
+    text-shadow: none !important;
+    font-size: 16px !important; 
+    font-weight: bold !important;
+    line-height: 1.4 !important;
+    text-align: center !important; 
+    z-index: 10 !important;
+    
+    /* Выравниваем текст по центру облака */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-end !important; /* Прижимаем всё к низу */
-    padding-bottom: 20vh !important; /* Отступ снизу, чтобы кнопки были на уровне ноутбука */
-}
-
-/* Восстанавливаем облачко ТОЛЬКО для текста */
-tw-passage[tags~="l1"] {
-    /* Этот трюк позволяет тексту оставаться в облаке, а кнопкам — внизу */
-    background: linear-gradient(to bottom, transparent 0%, transparent 100%) !important; 
-}
-
-/* Создаем визуальное облако только вокруг текста */
-tw-passage[tags~="l1"] > p,
-tw-passage[tags~="l1"] > span,
-tw-passage[tags~="l1"] > br {
-    pointer-events: auto !important;
-}
-
-/* Жестко задаем облако для текста */
-tw-passage[tags~="l1"]::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 8vh !important;
-    right: 5vw !important;
-    width: 85vw !important;
-    max-width: 400px !important;
-    height: 220px !important; /* Высота облака под текст */
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-    z-index: -1 !important;
-    pointer-events: none !important;
+    justify-content: flex-start !important; 
 }
 
 /* Хвостик облачка */
+tw-passage[tags~="l1"]::before,
 tw-passage[tags~="l1"]::after {
     content: "" !important;
     position: absolute !important;
-    top: calc(8vh + 210px) !important; /* Чуть ниже облака */
-    right: calc(5vw + 400px) !important; /* Позиция хвостика */
-    width: 25px !important;
-    height: 25px !important;
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
     z-index: -1 !important;
-    pointer-events: none !important;
+}
+tw-passage[tags~="l1"]::before {
+    bottom: -20px !important;
+    left: 30px !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+tw-passage[tags~="l1"]::after {
+    bottom: -40px !important;
+    left: 10px !important;
+    width: 12px !important;
+    height: 12px !important;
 }
 
 /* ============================================================ */
-/* КНОПКИ — СТАВИМ В РЯД НА УРОВНЕ НОУТБУКА */
+/* КНОПКИ — В РЯД, НА УРОВНЕ НОУТБУКА */
 /* ============================================================ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: static !important; /* Возвращаем в поток Flexbox */
+    /* Абсолютное позиционирование внутри облака */
+    position: absolute !important; 
+    
+    /* Опускаем кнопки вниз, ближе к столу */
+    bottom: -40px !important; 
+    
     transform: none !important;  
-    margin: 0 10px !important; /* Отступы между кнопками по бокам */
+    margin: 0 !important;    
     display: inline-block !important;
-    width: auto !important;      
-    min-width: 200px !important; /* Ширина кнопок */
-    padding: 12px 20px !important;
+    
+    /* Ширина кнопок, чтобы они влезли в ряд */
+    width: 180px !important;      
+    padding: 12px 10px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
     border-radius: 8px !important;
     border: 2px solid #FFFFFF !important; 
     text-decoration: none !important;
-    font-size: 16px !important;
+    font-size: 14px !important; /* Чуть уменьшили шрифт, чтобы влезло */
     font-weight: bold !important;
-    white-space: nowrap !important; /* Текст в одну строку */
+    white-space: nowrap !important; 
     text-align: center !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
-    pointer-events: auto !important; /* Возвращаем кликабельность */
+    pointer-events: auto !important;
 }
 
-/* Чтобы кнопки стояли в ряд, мы переопределяем flex-направление для них */
+/* Левая кнопка */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    margin-top: auto !important; /* Прижимаем к низу */
+    left: 50% !important;
+    margin-left: -190px !important; /* Сдвигаем влево от центра */
 }
 
+/* Правая кнопка */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    margin-top: auto !important; 
-}
-
-/* Обертка для кнопок, чтобы они стояли в строку */
-tw-passage[tags~="l1"] {
-    /* Хак: заставляем кнопки игнорировать колонку и вставать в ряд */
-}
-tw-passage[tags~="l1"] tw-link {
-    flex-shrink: 0 !important;
+    left: 50% !important;
+    margin-left: 10px !important; /* Сдвигаем вправо от центра */
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
-    transform: scale(1.05) !important; 
+    transform: translateY(-3px) !important; /* Кнопка чуть подпрыгивает */
     background: linear-gradient(135deg, #5ba1f0, #4184cc) !important;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
