@@ -1439,8 +1439,9 @@ input() принимает не более одного аргумента.<br><
 
 (set: $user_pass to (prompt: "Введите пароль:", ""))
 
-Введите пароль:<br><br>
+ВВведите пароль:<br><br>
 
+{
 (set: $user_pass to (prompt: "Введите пароль:", ""))
 
 (if: $user_pass is not "" and $user_pass matches "@" and $user_pass matches "S")[
@@ -1464,6 +1465,8 @@ input() принимает не более одного аргумента.<br><
 
 [[Попробовать снова->Списки: Задание 11]]
 ]
+}
+
 </tw-passagedata>
 
 <tw-passagedata pid="253" name="Списки: Финал" tags="l3" position="1100,5200" size="100,100">
