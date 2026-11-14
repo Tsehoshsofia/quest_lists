@@ -110,14 +110,19 @@ tw-passage[tags]:not([tags~="l1"]) {
 }
 
 /* ============================================================ */
+//* ============================================================ */
 /* 4. СПЕЦИАЛЬНЫЕ СТИЛИ ТОЛЬКО ДЛЯ СИТУАЦИЙ В СПИСКАХ (ТЕГ sit) */
 /* ============================================================ */
 tw-passage[tags~="sit"] { 
     width: 750px !important;
     max-width: calc(100% - 40px) !important;
     
-    /* Полупрозрачный белый фон (картинка просвечивает) */
-    background-color: rgba(255, 255, 255, 0.85) !important; 
+    /* ДЕЛАЕМ ПОДЛОЖКУ ПЛОТНЕЕ (95% белого) */
+    background-color: rgba(255, 255, 255, 0.95) !important; 
+    
+    /* ДОБАВЛЯЕМ ЛЕГКОЕ РАЗМЫТИЕ, чтобы картинка не мешала читать */
+    backdrop-filter: blur(8px) !important; 
+    -webkit-backdrop-filter: blur(8px) !important;
     
     /* Тень и скругление */
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25) !important; 
@@ -126,11 +131,11 @@ tw-passage[tags~="sit"] {
     
     padding: 30px 35px !important;         
     
-    /* Комфортный размер текста (18px, НЕ жирный) */
-    font-size: 18px !important;       
+    /* Размер текста 20px */
+    font-size: 20px !important;       
     font-weight: normal !important;     
-    line-height: 1.6 !important;      
-    color: #222222 !important; 
+    line-height: 1.5 !important;      
+    color: #111111 !important; /* Сделали цвет почти черным для контраста */
     text-shadow: none !important; 
     
     /* Прокрутка, если текст длинный */
@@ -140,7 +145,7 @@ tw-passage[tags~="sit"] {
 
 /* Заголовок внутри ситуаций */
 tw-passage[tags~="sit"] h2 {
-    font-size: 26px !important;
+    font-size: 28px !important;
     font-weight: bold !important;
     margin-top: 0 !important;
     margin-bottom: 20px !important;
@@ -152,7 +157,7 @@ tw-passage[tags~="sit"] h2 {
 /* Код внутри ситуаций */
 tw-passage[tags~="sit"] code {
     font-family: 'Consolas', 'Courier New', monospace !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: normal !important;
     background-color: rgba(65, 105, 225, 0.1) !important; 
     padding: 4px 8px !important;
@@ -187,7 +192,6 @@ tw-passage[tags~="sit"] tw-link:hover {
     transform: translateY(-2px) !important; 
     box-shadow: 0 5px 12px rgba(65, 105, 225, 0.3) !important;
 }
-
 /* ============================================================ */
 /* 5. ВОПРОСЫ (ТЕКСТ ПО ШИРИНЕ, КНОПКИ ПО ЦЕНТРУ) */
 /* ============================================================ */
