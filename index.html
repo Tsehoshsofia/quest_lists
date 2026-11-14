@@ -497,7 +497,7 @@ tw-sidebar tw-icon:hover {
 }
 
 /* ============================================================ */
-/* 8. ПЕРВЫЙ ЭКРАН (L1) — УНИВЕРСАЛЬНЫЙ */
+/* 8. ПЕРВЫЙ ЭКРАН (L1) — НОВАЯ ВЕРСТКА */
 /* ============================================================ */
 tw-passage[tags~="l1"] {
     position: fixed !important;
@@ -509,75 +509,70 @@ tw-passage[tags~="l1"] {
     height: 100vh !important;
     margin: 0 !important;
     padding: 0 !important;
-    background-color: transparent !important; /* Убираем белый фон со всего экрана */
+    background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
     z-index: 10 !important;
     pointer-events: none !important; /* Пропускаем клики сквозь пустую область */
     
-    /* Выстраиваем элементы в колонку: текст сверху, кнопки снизу */
+    /* Выстраиваем элементы в колонку */
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-end !important; /* Прижимаем всё к низу */
-    padding-bottom: 20vh !important; /* Отступ снизу, чтобы кнопки были на уровне ноутбука */
+    /* Прижимаем всё к низу, но оставляем место для кнопок */
+    justify-content: flex-end !important; 
+    padding-bottom: 20vh !important; 
 }
 
-/* Восстанавливаем облачко ТОЛЬКО для текста */
-tw-passage[tags~="l1"] {
-    /* Этот трюк позволяет тексту оставаться в облаке, а кнопкам — внизу */
-    background: linear-gradient(to bottom, transparent 0%, transparent 100%) !important; 
-}
-
-/* Создаем визуальное облако только вокруг текста */
-tw-passage[tags~="l1"] > p,
-tw-passage[tags~="l1"] > span,
-tw-passage[tags~="l1"] > br {
+/* --- ОБЛАКО ДЛЯ ТЕКСТА --- */
+.cloud-text {
     pointer-events: auto !important;
-}
-
-/* Жестко задаем облако для текста */
-tw-passage[tags~="l1"]::before {
-    content: "" !important;
     position: absolute !important;
-    top: 8vh !important;
-    right: 5vw !important;
+    top: 8vh !important; /* Положение облака сверху */
+    right: 5vw !important; /* Положение справа */
+    
     width: 85vw !important;
     max-width: 400px !important;
-    height: 220px !important; /* Высота облака под текст */
+    min-height: 200px !important; /* Минимальная высота облака */
+    
+    /* Визуал облака */
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50px !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
-    z-index: -1 !important;
-    pointer-events: none !important;
+    
+    /* Текст внутри */
+    padding: 30px !important;
+    color: #000000 !important;
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+    text-align: justify !important;
+    font-family: "Times New Roman", Times, serif !important;
+    z-index: 11 !important;
 }
 
-/* Хвостик облачка */
-tw-passage[tags~="l1"]::after {
+/* Хвостик облачка (рисуем через псевдоэлемент самого облака) */
+.cloud-text::after {
     content: "" !important;
     position: absolute !important;
-    top: calc(8vh + 210px) !important; /* Чуть ниже облака */
-    right: calc(5vw + 400px) !important; /* Позиция хвостика */
-    width: 25px !important;
-    height: 25px !important;
+    bottom: -10px !important; /* Чуть ниже облака */
+    left: 40px !important; /* Позиция хвостика слева */
+    width: 30px !important;
+    height: 30px !important;
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
     z-index: -1 !important;
-    pointer-events: none !important;
 }
 
-/* ============================================================ */
-/* КНОПКИ — СТАВИМ В РЯД НА УРОВНЕ НОУТБУКА */
-/* ============================================================ */
+/* --- КНОПКИ (остаются внизу, как были) --- */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
-    position: static !important; /* Возвращаем в поток Flexbox */
+    position: static !important; 
     transform: none !important;  
-    margin: 0 10px !important; /* Отступы между кнопками по бокам */
+    margin: 0 10px !important; 
     display: inline-block !important;
     width: auto !important;      
-    min-width: 200px !important; /* Ширина кнопок */
+    min-width: 200px !important; 
     padding: 12px 20px !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
@@ -587,29 +582,23 @@ tw-passage[tags~="l1"] tw-link.visited {
     text-decoration: none !important;
     font-size: 16px !important;
     font-weight: bold !important;
-    white-space: nowrap !important; /* Текст в одну строку */
+    white-space: nowrap !important;
     text-align: center !important;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
     transition: all 0.3s ease !important;
     z-index: 999999 !important; 
-    pointer-events: auto !important; /* Возвращаем кликабельность */
+    pointer-events: auto !important;
 }
 
-/* Чтобы кнопки стояли в ряд, мы переопределяем flex-направление для них */
-tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    margin-top: auto !important; /* Прижимаем к низу */
-}
-
-tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    margin-top: auto !important; 
-}
-
-/* Обертка для кнопок, чтобы они стояли в строку */
-tw-passage[tags~="l1"] {
-    /* Хак: заставляем кнопки игнорировать колонку и вставать в ряд */
-}
+/* Чтобы кнопки стояли в ряд */
 tw-passage[tags~="l1"] tw-link {
     flex-shrink: 0 !important;
+}
+
+/* Отступ для кнопок, чтобы прижать их к низу */
+tw-passage[tags~="l1"] tw-link:nth-of-type(1),
+tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
+    margin-top: auto !important; 
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
@@ -618,7 +607,7 @@ tw-passage[tags~="l1"] tw-link:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5) !important;
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="l1" color="green"></tw-tag><tw-tag name="l2" color="purple"></tw-tag><tw-tag name="l3" color="green"></tw-tag><tw-tag name="l4" color="green"></tw-tag><tw-tag name="l5" color="green"></tw-tag><tw-tag name="l6" color="green"></tw-tag><tw-tag name="l7" color="green"></tw-tag><tw-tag name="l8" color="purple"></tw-tag><tw-tag name="l9" color="purple"></tw-tag><tw-tag name="l10" color="purple"></tw-tag><tw-tag name="l11" color="purple"></tw-tag><tw-tag name="l13" color="purple"></tw-tag><tw-tag name="l14" color="purple"></tw-tag><tw-tag name="l15" color="purple"></tw-tag><tw-tag name="l16" color="orange"></tw-tag><tw-tag name="l17" color="orange"></tw-tag><tw-tag name="l18" color="orange"></tw-tag><tw-tag name="l19" color="orange"></tw-tag><tw-tag name="l20" color="orange"></tw-tag><tw-tag name="l21" color="orange"></tw-tag><tw-tag name="l22" color="blue"></tw-tag><tw-tag name="l23" color="blue"></tw-tag><tw-tag name="l24" color="blue"></tw-tag><tw-tag name="l25" color="blue"></tw-tag><tw-tag name="l26" color="blue"></tw-tag><tw-tag name="l27" color="blue"></tw-tag><tw-tag name="l28" color="blue"></tw-tag><tw-tag name="l29" color="blue"></tw-tag><tw-tag name="l30" color="blue"></tw-tag><tw-tag name="l31" color="blue"></tw-tag><tw-tag name="l32" color="blue"></tw-tag><tw-tag name="l33" color="blue"></tw-tag><tw-tag name="l34" color="blue"></tw-tag><tw-tag name="l35" color="blue"></tw-tag><tw-tag name="l36" color="blue"></tw-tag><tw-tag name="l37" color="blue"></tw-tag><tw-tag name="l38" color="blue"></tw-tag><tw-tag name="l39" color="blue"></tw-tag><tw-tag name="l40" color="blue"></tw-tag><tw-tag name="l42" color="blue"></tw-tag><tw-tag name="l41" color="blue"></tw-tag><tw-tag name="l43" color="blue"></tw-tag><tw-tag name="l44" color="blue"></tw-tag><tw-tag name="l45" color="blue"></tw-tag><tw-tag name="l46" color="blue"></tw-tag><tw-tag name="l47" color="blue"></tw-tag><tw-tag name="l48" color="blue"></tw-tag><tw-tag name="l49" color="blue"></tw-tag><tw-tag name="l50" color="blue"></tw-tag><tw-tag name="l51" color="red"></tw-tag><tw-tag name="l52" color="red"></tw-tag><tw-tag name="l53" color="red"></tw-tag><tw-tag name="l54" color="red"></tw-tag><tw-tag name="l55" color="red"></tw-tag><tw-tag name="l56" color="red"></tw-tag><tw-tag name="l57" color="red"></tw-tag><tw-tag name="l58" color="yellow"></tw-tag><tw-tag name="l59" color="yellow"></tw-tag><tw-tag name="l60" color="yellow"></tw-tag><tw-tag name="l61" color="yellow"></tw-tag><tw-tag name="l62" color="yellow"></tw-tag><tw-tag name="l63" color="yellow"></tw-tag><tw-tag name="l64" color="yellow"></tw-tag><tw-tag name="l65" color="yellow"></tw-tag><tw-tag name="l66" color="yellow"></tw-tag><tw-tag name="l67" color="yellow"></tw-tag><tw-tag name="l68" color="yellow"></tw-tag><tw-tag name="l69" color="yellow"></tw-tag><tw-tag name="l70" color="yellow"></tw-tag><tw-tag name="l71" color="yellow"></tw-tag><tw-tag name="l72" color="yellow"></tw-tag><tw-tag name="l73" color="yellow"></tw-tag>
-<tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)Здравствуйте. Меня зовут София Ивановна, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.
+<tw-passagedata pid="1" name="Пользователь" tags="l1" position="800,100" size="100,100">(set: $history to (a:), $correct to 0, $wrong to 0, $perfect to true, $attemptHistory to (a:), $resetFlag to true, $attempts to 0)<div class="cloud-text">Здравствуйте. Меня зовут София Ивановна, я преподаватель дисциплины "Основы программирования". Я помогу тебе разобраться с типами данных в Python.</div>
 [[Изучить базовый синтаксис->Начать обучение]]
 [[Списки->Списки: Начало]]</tw-passagedata>
 <tw-passagedata pid="2" name="Начать обучение" tags="l2" position="800,250" size="100,100">(if: $attemptHistory is not an array)[(set: $attemptHistory to (a:))]
