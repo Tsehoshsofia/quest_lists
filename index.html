@@ -528,48 +528,61 @@ tw-passage[tags~="l1"] {
 .cloud-text {
     pointer-events: auto !important; 
     position: absolute !important;
-    top: 6vh !important;      /* Чуть ниже верхнего края */
-    right: 4vw !important;    /* Отступ справа */
     
-    width: 85vw !important;
-    max-width: 420px !important; 
-    min-height: 200px !important; /* Высота подстраивается под текст */
+    top: 4vh !important;      /* Подняли выше (было 6vh) */
+    right: 2vw !important;    /* Прижали ближе к правому краю */
+    
+    width: 80vw !important;
+    max-width: 360px !important; /* Сделали заметно уже (было 420px) */
+    min-height: 220px !important; 
     
     /* Визуал облака */
     background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 40px !important; 
+    border-radius: 45px !important; /* Чуть более круглые углы */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
     
-    /* Отступы внутри */
-    padding: 30px 35px !important; 
-    
     /* Текст внутри */
+    padding: 25px 30px !important; 
     color: #000000 !important;
-    font-size: 19px !important;
-    line-height: 1.5 !important;
-    text-align: left !important; /* Убрали растягивание, текст слева */
+    font-size: 18px !important;
+    line-height: 1.45 !important;
+    text-align: center !important; /* Вернем по центру для аккуратности */
     font-family: "Times New Roman", Times, serif !important;
     z-index: 11 !important;
 }
 
-/* Хвостик облачка (рисуем внутри самого облака) */
+/* Главный хвостик (большой круг) */
 .cloud-text::after {
     content: "" !important;
     position: absolute !important;
     
-    /* Позиционируем хвостик внизу слева, прямо у лица */
-    bottom: -15px !important; 
-    left: 60px !important;    
+    /* Привязываем к левому нижнему углу облака */
+    bottom: -10px !important; 
+    left: 30px !important;    
     
-    /* Форма хвостика */
-    width: 35px !important;
-    height: 35px !important;
+    width: 30px !important;
+    height: 30px !important;
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
     z-index: -1 !important;
 }
 
+/* Маленький хвостик (второй кружок) */
+.cloud-text::before {
+    content: "" !important;
+    position: absolute !important;
+    
+    /* Уводим вниз и влево, как в комиксах */
+    bottom: -35px !important; 
+    left: 15px !important;    
+    
+    width: 15px !important;
+    height: 15px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    z-index: -1 !important;
+}
 /* Дополнительный маленький кружок (для эффекта мыслей) */
 .cloud-text::before {
     content: "" !important;
