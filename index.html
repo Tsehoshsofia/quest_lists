@@ -551,22 +551,23 @@ tw-passage[tags~="l1"]::after {
 }
 
 /* ============================================================ */
-/* ============================================================ */
-/* КНОПКИ — ВНЕ ОБЛАКА, В РЯД, ЛЕВЕЕ НОУТБУКА */
+/* КНОПКИ — ВНЕ ОБЛАКА, В РЯД, НА УРОВНЕ НОУТБУКА */
 /* ============================================================ */
 tw-passage[tags~="l1"] tw-link,
 tw-passage[tags~="l1"] tw-link.visited {
     position: fixed !important; 
     
     /* Опускаем вниз к ноутбуку */
-    top: 52vh !important;   
+    top: 55vh !important;   
     
+    /* Ставим точку отсчета по центру экрана */
+    left: 50% !important; 
     transform: none !important;  
-    margin: 0 !important;    
-    display: inline-block !important;
     
-    width: 180px !important; /* Ширина кнопок */
+    display: inline-block !important;
+    width: 180px !important; 
     padding: 12px 10px !important;
+    margin: 0 !important;
     
     background: linear-gradient(135deg, #4A90E2, #357ABD) !important;
     color: #FFFFFF !important;
@@ -585,12 +586,14 @@ tw-passage[tags~="l1"] tw-link.visited {
 
 /* Левая кнопка ("Изучить базовый синтаксис") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(1) {
-    left: 25vw !important; /* Сдвигаем влево (настройте под картинку) */
+    /* Сдвигаем влево от центра ровно на ширину кнопки + зазор */
+    margin-left: -195px !important; 
 }
 
 /* Правая кнопка ("Списки") */
 tw-passage[tags~="l1"] tw-link:nth-of-type(2) {
-    left: calc(25vw + 195px) !important; /* Ставим ровно справа от первой */
+    /* Сдвигаем вправо от центра на небольшой зазор */
+    margin-left: 15px !important; 
 }
 
 tw-passage[tags~="l1"] tw-link:hover {
