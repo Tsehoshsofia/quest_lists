@@ -20,7 +20,7 @@ body {
 
 tw-story {
     background-color: #FFFFFF !important;
-    background-size: contain;
+    background-size: cover; /* Картинка на весь экран */
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -35,7 +35,7 @@ tw-error,
 h1, h2, h3, h4, h5, h6, 
 p, span, div, code, li, ul {
     font-family: "Times New Roman", Times, serif !important;
-    line-height: 1.3 !important;
+    line-height: 1.4 !important;
 }
 
 /* Убираем лишние пустые строки и отступы абзацев */
@@ -85,11 +85,7 @@ tw-story[tags~="l47"], tw-story[tags~="l58"], tw-story[tags~="l63"] {
     background-image: url("белый_фон.jpeg") !important; 
 }
 
-/* 
-   ВАЖНО: Правила для конкретных ситуаций пишем В САМОМ КОНЦЕ 
-   блока с картинками, чтобы они перебивали 9.jpeg из правила l3
-*/
-
+/* Конкретные ситуации */
 tw-story[tags~="sit1"] { background-image: url("добавить_авто.jpeg") !important; }
 tw-story[tags~="sit2"] { background-image: url("добавить_авто.jpeg") !important; }
 tw-story[tags~="sit3"] { background-image: url("салон_красоты.jpeg") !important; }
@@ -121,7 +117,7 @@ tw-passage[tags~="sit"] {
     max-width: calc(100% - 40px) !important;
     
     /* Полупрозрачный белый фон (картинка просвечивает) */
-    background-color: rgba(255, 255, 255, 0.88) !important; 
+    background-color: rgba(255, 255, 255, 0.85) !important; 
     
     /* Тень и скругление */
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25) !important; 
@@ -130,7 +126,7 @@ tw-passage[tags~="sit"] {
     
     padding: 30px 35px !important;         
     
-    /* Комфортный размер текста */
+    /* Комфортный размер текста (18px, НЕ жирный) */
     font-size: 18px !important;       
     font-weight: normal !important;     
     line-height: 1.6 !important;      
@@ -205,11 +201,12 @@ tw-passage[tags~="l63"] {
     max-height: 80vh !important; 
     overflow-y: auto !important; 
     padding: 20px !important;
-    background-color: rgba(255, 255, 255, 0.85) !important; /* Добавлен фон для читаемости */
+    background-color: rgba(255, 255, 255, 0.85) !important; 
     border-radius: 15px !important;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
     width: 700px !important;
     max-width: calc(100% - 40px) !important;
+    font-size: 18px !important;
 }
 
 /* Кнопки внутри вопросов */
@@ -227,7 +224,7 @@ tw-passage[tags~="l58"] tw-link, tw-passage[tags~="l63"] tw-link {
     border: 2px solid #4169E1 !important; 
     border-radius: 10px !important; 
     color: #4169E1 !important; 
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: bold !important;
     text-align: center !important; 
     text-decoration: none !important;
@@ -260,7 +257,7 @@ tw-passage[tags~="l66"], tw-passage[tags~="l72"] {
     overflow-y: visible !important; 
     padding: 20px 25px !important;
     font-size: 16px !important; 
-    line-height: 1.25 !important; 
+    line-height: 1.4 !important; 
     
     width: 90vw !important; 
     max-width: 850px !important; 
@@ -279,7 +276,7 @@ tw-passage[tags~="l72"] div {
 .success-word { 
     color: #008000 !important; 
     font-weight: bold !important;
-    font-size: 25px !important;
+    font-size: 20px !important;
     display: inline !important;
 }
 
@@ -287,7 +284,7 @@ tw-passage[tags~="l72"] div {
 .error-word { 
     color: #CC0000 !important; 
     display: inline !important; 
-    font-size: 25px !important;
+    font-size: 20px !important;
     font-weight: bold !important;
 }
 
@@ -333,7 +330,7 @@ tw-passage[tags~="l250"] tw-link {
     border: 2px solid #4169E1 !important; 
     border-radius: 10px !important; 
     color: #4169E1 !important; 
-    font-size: 20px !important;
+    font-size: 18px !important;
     font-weight: bold !important;
     text-decoration: none !important;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
@@ -410,11 +407,12 @@ tw-passage[tags~="l250"] {
     max-height: 75vh !important; 
     overflow-y: auto !important;
     padding: 25px !important; 
-    background-color: rgba(255, 255, 255, 0.85) !important; /* Добавлен фон для читаемости */
+    background-color: rgba(255, 255, 255, 0.85) !important; 
     border-radius: 15px !important;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
     width: 700px !important;
     max-width: calc(100% - 40px) !important;
+    font-size: 18px !important;
 }
 
 /* ============================================================ */
