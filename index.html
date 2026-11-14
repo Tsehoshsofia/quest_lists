@@ -528,43 +528,58 @@ tw-passage[tags~="l1"] {
 .cloud-text {
     pointer-events: auto !important; 
     position: absolute !important;
-    top: 4vh !important;      /* Приподняли выше (было 8vh) */
-    right: 3vw !important;    /* Сдвинули правее (было 5vw) */
+    top: 6vh !important;      /* Чуть ниже верхнего края */
+    right: 4vw !important;    /* Отступ справа */
     
     width: 85vw !important;
-    max-width: 450px !important; /* Сделали чуть шире, чтобы текст не сжимался */
-    height: 240px !important;    /* Задали фиксированную высоту */
+    max-width: 420px !important; 
+    min-height: 200px !important; /* Высота подстраивается под текст */
     
     /* Визуал облака */
     background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 50px !important; /* Сделали более круглым */
+    border-radius: 40px !important; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
     
-    /* Центрируем текст внутри облака по вертикали */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    /* Отступы внутри */
+    padding: 30px 35px !important; 
     
     /* Текст внутри */
-    padding: 30px 40px !important; /* Увеличили отступы по бокам */
     color: #000000 !important;
-    font-size: 18px !important;
+    font-size: 19px !important;
     line-height: 1.5 !important;
-    text-align: center !important; /* Текст по центру смотрится лучше в облаке */
+    text-align: left !important; /* Убрали растягивание, текст слева */
     font-family: "Times New Roman", Times, serif !important;
     z-index: 11 !important;
 }
-/* Хвостик облачка (рисуем через псевдоэлемент самого облака) */
+
+/* Хвостик облачка (рисуем внутри самого облака) */
 .cloud-text::after {
     content: "" !important;
     position: absolute !important;
-    bottom: -10px !important; /* Чуть ниже облака */
-    left: 40px !important; /* Позиция хвостика слева */
-    width: 30px !important;
-    height: 30px !important;
+    
+    /* Позиционируем хвостик внизу слева, прямо у лица */
+    bottom: -15px !important; 
+    left: 60px !important;    
+    
+    /* Форма хвостика */
+    width: 35px !important;
+    height: 35px !important;
     background-color: rgba(255, 255, 255, 0.95) !important;
     border-radius: 50% !important;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1) !important;
+    z-index: -1 !important;
+}
+
+/* Дополнительный маленький кружок (для эффекта мыслей) */
+.cloud-text::before {
+    content: "" !important;
+    position: absolute !important;
+    bottom: -40px !important; 
+    left: 40px !important;    
+    width: 15px !important;
+    height: 15px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
     z-index: -1 !important;
 }
 
